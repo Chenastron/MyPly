@@ -1,4 +1,4 @@
-Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Grammar
 
@@ -11,14 +11,14 @@ Rule 5     stmt -> SPLIT
 Rule 6     stmt -> expression SPLIT
 Rule 7     stmt_print -> PRINT LPAREN expr_list RPAREN
 Rule 8     range -> RANGE LPAREN expr_list RPAREN
-Rule 9     stmt -> FOR ID IN range COLON stmt_print SPLIT
+Rule 9     stmt -> FOR VAR IN range COLON stmt_print SPLIT
 Rule 10    stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT
-Rule 11    if_assign -> ID ASSIGN expression
+Rule 11    if_assign -> VAR ASSIGN expression
 Rule 12    stmt -> if_assign IF condition_list ELSE expression SPLIT
 Rule 13    stmt -> IF condition_list COLON stmt_print SPLIT
 Rule 14    stmt -> IF condition_list COLON SPLIT stmt_print SPLIT
-Rule 15    stmt -> ID ASSIGN expression SPLIT
-Rule 16    stmt -> ID ASSIGN condition_list SPLIT
+Rule 15    stmt -> VAR ASSIGN expression SPLIT
+Rule 16    stmt -> VAR ASSIGN condition_list SPLIT
 Rule 17    expr_list -> expression
 Rule 18    expr_list -> expr_list COMMA expression
 Rule 19    condition_list -> expression
@@ -27,7 +27,7 @@ Rule 21    condition_list -> condition_list OR expression
 Rule 22    condition_list -> LPAREN condition_list RPAREN
 Rule 23    expression -> TRUE
 Rule 24    expression -> FALSE
-Rule 25    expression -> ID
+Rule 25    expression -> VAR
 Rule 26    expression -> NUMBER
 Rule 27    expression -> STRING
 Rule 28    expression -> expression ADD expression
@@ -59,7 +59,6 @@ FALSE                : 24
 FOR                  : 9
 GE                   : 35
 GT                   : 33
-ID                   : 9 11 15 16 25
 IF                   : 10 12 13 14
 IN                   : 9
 LE                   : 36
@@ -78,6 +77,7 @@ RPAREN               : 7 8 22 40
 SPLIT                : 2 5 6 9 10 12 13 14 14 15 16
 STRING               : 27
 TRUE                 : 23
+VAR                  : 9 11 15 16 25
 error                : 
 
 Nonterminals, with rules where they appear
@@ -108,7 +108,7 @@ state 0
     SPLIT           reduce using rule 41 (empty -> .)
     FOR             reduce using rule 41 (empty -> .)
     IF              reduce using rule 41 (empty -> .)
-    ID              reduce using rule 41 (empty -> .)
+    VAR             reduce using rule 41 (empty -> .)
     TRUE            reduce using rule 41 (empty -> .)
     FALSE           reduce using rule 41 (empty -> .)
     NUMBER          reduce using rule 41 (empty -> .)
@@ -134,16 +134,16 @@ state 2
     (7) stmt_print -> . PRINT LPAREN expr_list RPAREN
     (5) stmt -> . SPLIT
     (6) stmt -> . expression SPLIT
-    (9) stmt -> . FOR ID IN range COLON stmt_print SPLIT
+    (9) stmt -> . FOR VAR IN range COLON stmt_print SPLIT
     (10) stmt -> . stmt_print IF condition_list ELSE stmt_print SPLIT
     (12) stmt -> . if_assign IF condition_list ELSE expression SPLIT
     (13) stmt -> . IF condition_list COLON stmt_print SPLIT
     (14) stmt -> . IF condition_list COLON SPLIT stmt_print SPLIT
-    (15) stmt -> . ID ASSIGN expression SPLIT
-    (16) stmt -> . ID ASSIGN condition_list SPLIT
+    (15) stmt -> . VAR ASSIGN expression SPLIT
+    (16) stmt -> . VAR ASSIGN condition_list SPLIT
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -159,14 +159,14 @@ state 2
     (38) expression -> . expression NE expression
     (39) expression -> . expression POW expression
     (40) expression -> . LPAREN expression RPAREN
-    (11) if_assign -> . ID ASSIGN expression
+    (11) if_assign -> . VAR ASSIGN expression
 
     $end            reduce using rule 1 (entry -> start .)
     PRINT           shift and go to state 7
     SPLIT           shift and go to state 5
     FOR             shift and go to state 10
     IF              shift and go to state 12
-    ID              shift and go to state 11
+    VAR             shift and go to state 11
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
     NUMBER          shift and go to state 16
@@ -186,7 +186,7 @@ state 3
     SPLIT           reduce using rule 4 (start -> empty .)
     FOR             reduce using rule 4 (start -> empty .)
     IF              reduce using rule 4 (start -> empty .)
-    ID              reduce using rule 4 (start -> empty .)
+    VAR             reduce using rule 4 (start -> empty .)
     TRUE            reduce using rule 4 (start -> empty .)
     FALSE           reduce using rule 4 (start -> empty .)
     NUMBER          reduce using rule 4 (start -> empty .)
@@ -212,7 +212,7 @@ state 5
     SPLIT           reduce using rule 5 (stmt -> SPLIT .)
     FOR             reduce using rule 5 (stmt -> SPLIT .)
     IF              reduce using rule 5 (stmt -> SPLIT .)
-    ID              reduce using rule 5 (stmt -> SPLIT .)
+    VAR             reduce using rule 5 (stmt -> SPLIT .)
     TRUE            reduce using rule 5 (stmt -> SPLIT .)
     FALSE           reduce using rule 5 (stmt -> SPLIT .)
     NUMBER          reduce using rule 5 (stmt -> SPLIT .)
@@ -229,7 +229,7 @@ state 6
     SPLIT           reduce using rule 3 (start -> start stmt .)
     FOR             reduce using rule 3 (start -> start stmt .)
     IF              reduce using rule 3 (start -> start stmt .)
-    ID              reduce using rule 3 (start -> start stmt .)
+    VAR             reduce using rule 3 (start -> start stmt .)
     TRUE            reduce using rule 3 (start -> start stmt .)
     FALSE           reduce using rule 3 (start -> start stmt .)
     NUMBER          reduce using rule 3 (start -> start stmt .)
@@ -250,7 +250,7 @@ state 8
     (40) expression -> LPAREN . expression RPAREN
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -269,7 +269,7 @@ state 8
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -309,32 +309,32 @@ state 9
 
 state 10
 
-    (9) stmt -> FOR . ID IN range COLON stmt_print SPLIT
+    (9) stmt -> FOR . VAR IN range COLON stmt_print SPLIT
 
-    ID              shift and go to state 36
+    VAR             shift and go to state 36
 
 
 state 11
 
-    (15) stmt -> ID . ASSIGN expression SPLIT
-    (16) stmt -> ID . ASSIGN condition_list SPLIT
-    (25) expression -> ID .
-    (11) if_assign -> ID . ASSIGN expression
+    (15) stmt -> VAR . ASSIGN expression SPLIT
+    (16) stmt -> VAR . ASSIGN condition_list SPLIT
+    (25) expression -> VAR .
+    (11) if_assign -> VAR . ASSIGN expression
 
     ASSIGN          shift and go to state 37
-    SPLIT           reduce using rule 25 (expression -> ID .)
-    ADD             reduce using rule 25 (expression -> ID .)
-    REM             reduce using rule 25 (expression -> ID .)
-    MUL             reduce using rule 25 (expression -> ID .)
-    DIV             reduce using rule 25 (expression -> ID .)
-    MOD             reduce using rule 25 (expression -> ID .)
-    GT              reduce using rule 25 (expression -> ID .)
-    LT              reduce using rule 25 (expression -> ID .)
-    GE              reduce using rule 25 (expression -> ID .)
-    LE              reduce using rule 25 (expression -> ID .)
-    EQ              reduce using rule 25 (expression -> ID .)
-    NE              reduce using rule 25 (expression -> ID .)
-    POW             reduce using rule 25 (expression -> ID .)
+    SPLIT           reduce using rule 25 (expression -> VAR .)
+    ADD             reduce using rule 25 (expression -> VAR .)
+    REM             reduce using rule 25 (expression -> VAR .)
+    MUL             reduce using rule 25 (expression -> VAR .)
+    DIV             reduce using rule 25 (expression -> VAR .)
+    MOD             reduce using rule 25 (expression -> VAR .)
+    GT              reduce using rule 25 (expression -> VAR .)
+    LT              reduce using rule 25 (expression -> VAR .)
+    GE              reduce using rule 25 (expression -> VAR .)
+    LE              reduce using rule 25 (expression -> VAR .)
+    EQ              reduce using rule 25 (expression -> VAR .)
+    NE              reduce using rule 25 (expression -> VAR .)
+    POW             reduce using rule 25 (expression -> VAR .)
 
 
 state 12
@@ -347,7 +347,7 @@ state 12
     (22) condition_list -> . LPAREN condition_list RPAREN
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -367,7 +367,7 @@ state 12
     LPAREN          shift and go to state 40
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
 
@@ -493,7 +493,7 @@ state 18
     SPLIT           reduce using rule 2 (start -> start stmt_print SPLIT .)
     FOR             reduce using rule 2 (start -> start stmt_print SPLIT .)
     IF              reduce using rule 2 (start -> start stmt_print SPLIT .)
-    ID              reduce using rule 2 (start -> start stmt_print SPLIT .)
+    VAR             reduce using rule 2 (start -> start stmt_print SPLIT .)
     TRUE            reduce using rule 2 (start -> start stmt_print SPLIT .)
     FALSE           reduce using rule 2 (start -> start stmt_print SPLIT .)
     NUMBER          reduce using rule 2 (start -> start stmt_print SPLIT .)
@@ -511,7 +511,7 @@ state 19
     (22) condition_list -> . LPAREN condition_list RPAREN
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -531,7 +531,7 @@ state 19
     LPAREN          shift and go to state 40
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
 
@@ -545,7 +545,7 @@ state 20
     (18) expr_list -> . expr_list COMMA expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -564,7 +564,7 @@ state 20
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -605,28 +605,28 @@ state 21
 
 state 22
 
-    (25) expression -> ID .
+    (25) expression -> VAR .
 
-    RPAREN          reduce using rule 25 (expression -> ID .)
-    ADD             reduce using rule 25 (expression -> ID .)
-    REM             reduce using rule 25 (expression -> ID .)
-    MUL             reduce using rule 25 (expression -> ID .)
-    DIV             reduce using rule 25 (expression -> ID .)
-    MOD             reduce using rule 25 (expression -> ID .)
-    GT              reduce using rule 25 (expression -> ID .)
-    LT              reduce using rule 25 (expression -> ID .)
-    GE              reduce using rule 25 (expression -> ID .)
-    LE              reduce using rule 25 (expression -> ID .)
-    EQ              reduce using rule 25 (expression -> ID .)
-    NE              reduce using rule 25 (expression -> ID .)
-    POW             reduce using rule 25 (expression -> ID .)
-    COLON           reduce using rule 25 (expression -> ID .)
-    AND             reduce using rule 25 (expression -> ID .)
-    OR              reduce using rule 25 (expression -> ID .)
-    ELSE            reduce using rule 25 (expression -> ID .)
-    COMMA           reduce using rule 25 (expression -> ID .)
-    SPLIT           reduce using rule 25 (expression -> ID .)
-    IF              reduce using rule 25 (expression -> ID .)
+    RPAREN          reduce using rule 25 (expression -> VAR .)
+    ADD             reduce using rule 25 (expression -> VAR .)
+    REM             reduce using rule 25 (expression -> VAR .)
+    MUL             reduce using rule 25 (expression -> VAR .)
+    DIV             reduce using rule 25 (expression -> VAR .)
+    MOD             reduce using rule 25 (expression -> VAR .)
+    GT              reduce using rule 25 (expression -> VAR .)
+    LT              reduce using rule 25 (expression -> VAR .)
+    GE              reduce using rule 25 (expression -> VAR .)
+    LE              reduce using rule 25 (expression -> VAR .)
+    EQ              reduce using rule 25 (expression -> VAR .)
+    NE              reduce using rule 25 (expression -> VAR .)
+    POW             reduce using rule 25 (expression -> VAR .)
+    COLON           reduce using rule 25 (expression -> VAR .)
+    AND             reduce using rule 25 (expression -> VAR .)
+    OR              reduce using rule 25 (expression -> VAR .)
+    ELSE            reduce using rule 25 (expression -> VAR .)
+    COMMA           reduce using rule 25 (expression -> VAR .)
+    SPLIT           reduce using rule 25 (expression -> VAR .)
+    IF              reduce using rule 25 (expression -> VAR .)
 
 
 state 23
@@ -637,7 +637,7 @@ state 23
     SPLIT           reduce using rule 6 (stmt -> expression SPLIT .)
     FOR             reduce using rule 6 (stmt -> expression SPLIT .)
     IF              reduce using rule 6 (stmt -> expression SPLIT .)
-    ID              reduce using rule 6 (stmt -> expression SPLIT .)
+    VAR             reduce using rule 6 (stmt -> expression SPLIT .)
     TRUE            reduce using rule 6 (stmt -> expression SPLIT .)
     FALSE           reduce using rule 6 (stmt -> expression SPLIT .)
     NUMBER          reduce using rule 6 (stmt -> expression SPLIT .)
@@ -651,7 +651,7 @@ state 24
     (28) expression -> expression ADD . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -670,7 +670,7 @@ state 24
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -682,7 +682,7 @@ state 25
     (29) expression -> expression REM . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -701,7 +701,7 @@ state 25
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -713,7 +713,7 @@ state 26
     (30) expression -> expression MUL . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -732,7 +732,7 @@ state 26
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -744,7 +744,7 @@ state 27
     (31) expression -> expression DIV . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -763,7 +763,7 @@ state 27
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -775,7 +775,7 @@ state 28
     (32) expression -> expression MOD . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -794,7 +794,7 @@ state 28
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -806,7 +806,7 @@ state 29
     (33) expression -> expression GT . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -825,7 +825,7 @@ state 29
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -837,7 +837,7 @@ state 30
     (34) expression -> expression LT . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -856,7 +856,7 @@ state 30
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -868,7 +868,7 @@ state 31
     (35) expression -> expression GE . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -887,7 +887,7 @@ state 31
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -899,7 +899,7 @@ state 32
     (36) expression -> expression LE . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -918,7 +918,7 @@ state 32
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -930,7 +930,7 @@ state 33
     (37) expression -> expression EQ . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -949,7 +949,7 @@ state 33
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -961,7 +961,7 @@ state 34
     (38) expression -> expression NE . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -980,7 +980,7 @@ state 34
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -992,7 +992,7 @@ state 35
     (39) expression -> expression POW . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -1011,7 +1011,7 @@ state 35
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -1020,19 +1020,19 @@ state 35
 
 state 36
 
-    (9) stmt -> FOR ID . IN range COLON stmt_print SPLIT
+    (9) stmt -> FOR VAR . IN range COLON stmt_print SPLIT
 
     IN              shift and go to state 58
 
 
 state 37
 
-    (15) stmt -> ID ASSIGN . expression SPLIT
-    (16) stmt -> ID ASSIGN . condition_list SPLIT
-    (11) if_assign -> ID ASSIGN . expression
+    (15) stmt -> VAR ASSIGN . expression SPLIT
+    (16) stmt -> VAR ASSIGN . condition_list SPLIT
+    (11) if_assign -> VAR ASSIGN . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -1055,7 +1055,7 @@ state 37
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 61
@@ -1119,7 +1119,7 @@ state 40
     (22) condition_list -> . LPAREN condition_list RPAREN
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -1139,7 +1139,7 @@ state 40
     LPAREN          shift and go to state 40
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
 
@@ -1155,7 +1155,7 @@ state 41
     (22) condition_list -> . LPAREN condition_list RPAREN
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -1175,7 +1175,7 @@ state 41
     LPAREN          shift and go to state 40
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
 
@@ -1874,7 +1874,7 @@ state 57
 
 state 58
 
-    (9) stmt -> FOR ID IN . range COLON stmt_print SPLIT
+    (9) stmt -> FOR VAR IN . range COLON stmt_print SPLIT
     (8) range -> . RANGE LPAREN expr_list RPAREN
 
     RANGE           shift and go to state 72
@@ -1883,8 +1883,8 @@ state 58
 
 state 59
 
-    (15) stmt -> ID ASSIGN expression . SPLIT
-    (11) if_assign -> ID ASSIGN expression .
+    (15) stmt -> VAR ASSIGN expression . SPLIT
+    (11) if_assign -> VAR ASSIGN expression .
     (28) expression -> expression . ADD expression
     (29) expression -> expression . REM expression
     (30) expression -> expression . MUL expression
@@ -1901,7 +1901,7 @@ state 59
 
   ! shift/reduce conflict for SPLIT resolved as shift
     SPLIT           shift and go to state 73
-    IF              reduce using rule 11 (if_assign -> ID ASSIGN expression .)
+    IF              reduce using rule 11 (if_assign -> VAR ASSIGN expression .)
     ADD             shift and go to state 24
     REM             shift and go to state 25
     MUL             shift and go to state 26
@@ -1922,7 +1922,7 @@ state 59
 
 state 60
 
-    (16) stmt -> ID ASSIGN condition_list . SPLIT
+    (16) stmt -> VAR ASSIGN condition_list . SPLIT
     (20) condition_list -> condition_list . AND expression
     (21) condition_list -> condition_list . OR expression
 
@@ -1937,7 +1937,7 @@ state 61
     (22) condition_list -> LPAREN . condition_list RPAREN
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -1960,7 +1960,7 @@ state 61
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 61
@@ -1984,7 +1984,7 @@ state 63
     (20) condition_list -> condition_list AND . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -2003,7 +2003,7 @@ state 63
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -2015,7 +2015,7 @@ state 64
     (21) condition_list -> condition_list OR . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -2034,7 +2034,7 @@ state 64
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -2122,7 +2122,7 @@ state 70
     (18) expr_list -> expr_list COMMA . expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -2141,7 +2141,7 @@ state 70
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -2150,7 +2150,7 @@ state 70
 
 state 71
 
-    (9) stmt -> FOR ID IN range . COLON stmt_print SPLIT
+    (9) stmt -> FOR VAR IN range . COLON stmt_print SPLIT
 
     COLON           shift and go to state 84
 
@@ -2164,36 +2164,36 @@ state 72
 
 state 73
 
-    (15) stmt -> ID ASSIGN expression SPLIT .
+    (15) stmt -> VAR ASSIGN expression SPLIT .
 
-    PRINT           reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    SPLIT           reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    FOR             reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    IF              reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    ID              reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    TRUE            reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    FALSE           reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    NUMBER          reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    STRING          reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    LPAREN          reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
-    $end            reduce using rule 15 (stmt -> ID ASSIGN expression SPLIT .)
+    PRINT           reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    SPLIT           reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    FOR             reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    IF              reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    VAR             reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    TRUE            reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    FALSE           reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    NUMBER          reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    STRING          reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    LPAREN          reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
+    $end            reduce using rule 15 (stmt -> VAR ASSIGN expression SPLIT .)
 
 
 state 74
 
-    (16) stmt -> ID ASSIGN condition_list SPLIT .
+    (16) stmt -> VAR ASSIGN condition_list SPLIT .
 
-    PRINT           reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    SPLIT           reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    FOR             reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    IF              reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    ID              reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    TRUE            reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    FALSE           reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    NUMBER          reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    STRING          reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    LPAREN          reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
-    $end            reduce using rule 16 (stmt -> ID ASSIGN condition_list SPLIT .)
+    PRINT           reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    SPLIT           reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    FOR             reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    IF              reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    VAR             reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    TRUE            reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    FALSE           reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    NUMBER          reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    STRING          reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    LPAREN          reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    $end            reduce using rule 16 (stmt -> VAR ASSIGN condition_list SPLIT .)
 
 
 state 75
@@ -2338,7 +2338,7 @@ state 81
     (12) stmt -> if_assign IF condition_list ELSE . expression SPLIT
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -2357,7 +2357,7 @@ state 81
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -2405,7 +2405,7 @@ state 83
 
 state 84
 
-    (9) stmt -> FOR ID IN range COLON . stmt_print SPLIT
+    (9) stmt -> FOR VAR IN range COLON . stmt_print SPLIT
     (7) stmt_print -> . PRINT LPAREN expr_list RPAREN
 
     PRINT           shift and go to state 7
@@ -2419,7 +2419,7 @@ state 85
     (18) expr_list -> . expr_list COMMA expression
     (23) expression -> . TRUE
     (24) expression -> . FALSE
-    (25) expression -> . ID
+    (25) expression -> . VAR
     (26) expression -> . NUMBER
     (27) expression -> . STRING
     (28) expression -> . expression ADD expression
@@ -2438,7 +2438,7 @@ state 85
 
     TRUE            shift and go to state 14
     FALSE           shift and go to state 15
-    ID              shift and go to state 22
+    VAR             shift and go to state 22
     NUMBER          shift and go to state 16
     STRING          shift and go to state 17
     LPAREN          shift and go to state 8
@@ -2454,7 +2454,7 @@ state 86
     SPLIT           reduce using rule 13 (stmt -> IF condition_list COLON stmt_print SPLIT .)
     FOR             reduce using rule 13 (stmt -> IF condition_list COLON stmt_print SPLIT .)
     IF              reduce using rule 13 (stmt -> IF condition_list COLON stmt_print SPLIT .)
-    ID              reduce using rule 13 (stmt -> IF condition_list COLON stmt_print SPLIT .)
+    VAR             reduce using rule 13 (stmt -> IF condition_list COLON stmt_print SPLIT .)
     TRUE            reduce using rule 13 (stmt -> IF condition_list COLON stmt_print SPLIT .)
     FALSE           reduce using rule 13 (stmt -> IF condition_list COLON stmt_print SPLIT .)
     NUMBER          reduce using rule 13 (stmt -> IF condition_list COLON stmt_print SPLIT .)
@@ -2509,7 +2509,7 @@ state 89
     SPLIT           reduce using rule 10 (stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT .)
     FOR             reduce using rule 10 (stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT .)
     IF              reduce using rule 10 (stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT .)
-    ID              reduce using rule 10 (stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT .)
+    VAR             reduce using rule 10 (stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT .)
     TRUE            reduce using rule 10 (stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT .)
     FALSE           reduce using rule 10 (stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT .)
     NUMBER          reduce using rule 10 (stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT .)
@@ -2520,7 +2520,7 @@ state 89
 
 state 90
 
-    (9) stmt -> FOR ID IN range COLON stmt_print . SPLIT
+    (9) stmt -> FOR VAR IN range COLON stmt_print . SPLIT
 
     SPLIT           shift and go to state 94
 
@@ -2542,7 +2542,7 @@ state 92
     SPLIT           reduce using rule 14 (stmt -> IF condition_list COLON SPLIT stmt_print SPLIT .)
     FOR             reduce using rule 14 (stmt -> IF condition_list COLON SPLIT stmt_print SPLIT .)
     IF              reduce using rule 14 (stmt -> IF condition_list COLON SPLIT stmt_print SPLIT .)
-    ID              reduce using rule 14 (stmt -> IF condition_list COLON SPLIT stmt_print SPLIT .)
+    VAR             reduce using rule 14 (stmt -> IF condition_list COLON SPLIT stmt_print SPLIT .)
     TRUE            reduce using rule 14 (stmt -> IF condition_list COLON SPLIT stmt_print SPLIT .)
     FALSE           reduce using rule 14 (stmt -> IF condition_list COLON SPLIT stmt_print SPLIT .)
     NUMBER          reduce using rule 14 (stmt -> IF condition_list COLON SPLIT stmt_print SPLIT .)
@@ -2559,7 +2559,7 @@ state 93
     SPLIT           reduce using rule 12 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     FOR             reduce using rule 12 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     IF              reduce using rule 12 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
-    ID              reduce using rule 12 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
+    VAR             reduce using rule 12 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     TRUE            reduce using rule 12 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     FALSE           reduce using rule 12 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     NUMBER          reduce using rule 12 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
@@ -2570,19 +2570,19 @@ state 93
 
 state 94
 
-    (9) stmt -> FOR ID IN range COLON stmt_print SPLIT .
+    (9) stmt -> FOR VAR IN range COLON stmt_print SPLIT .
 
-    PRINT           reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    SPLIT           reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    FOR             reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    IF              reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    ID              reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    TRUE            reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    FALSE           reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    NUMBER          reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    STRING          reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    LPAREN          reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
-    $end            reduce using rule 9 (stmt -> FOR ID IN range COLON stmt_print SPLIT .)
+    PRINT           reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    SPLIT           reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    FOR             reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    IF              reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    VAR             reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    TRUE            reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    FALSE           reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    NUMBER          reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    STRING          reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    LPAREN          reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
+    $end            reduce using rule 9 (stmt -> FOR VAR IN range COLON stmt_print SPLIT .)
 
 
 state 95

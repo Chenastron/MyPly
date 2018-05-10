@@ -2,11 +2,12 @@
 __author__ = 'daiyaquan'
 __date__ = '2018/4/5 19:37'
 
+
 from ply import lex, yacc
 
-import dlexer
-import dparser
-from dexecute import DyqExecute
+from interpreter.myLex import dlexer
+from interpreter import dparser
+from interpreter.dexecute import DyqExecute
 
 # 读入词法分析器和语法分析器
 lexs = lex.lex(module=dlexer)
@@ -33,8 +34,11 @@ def show_exe():
 
 
 # 读入要执行的代码
-with open('test_code.py', 'r') as f:
+with open('sub_test', 'r') as f:
     data = f.read()
+
+# with open('test_code.py', 'r') as f:
+#     data = f.read()
 
 show_dict = {
     1: show_lex,
@@ -42,5 +46,5 @@ show_dict = {
     3: show_exe
 }
 
-choice = 3
+choice = 2
 show_dict[choice]()

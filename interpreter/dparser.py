@@ -1,6 +1,6 @@
-from dlexer import tokens
+from .myLex.dlexer import tokens
 
-from dexecute import DyqExecute
+from .dexecute import DyqExecute
 
 exelist = []
 
@@ -54,7 +54,7 @@ def p_range(p):
 
 
 def p_stmt_print_for(p):
-    'stmt : FOR ID IN range COLON stmt_print SPLIT'
+    'stmt : FOR VAR IN range COLON stmt_print SPLIT'
     p[0] = DyqExecute(action='loop', params=[p[2], p[4], p[6]])
 
 
@@ -64,7 +64,7 @@ def p_stmt_print_cond_postfix_else(p):
 
 
 def p_ifassign(p):
-    'if_assign : ID ASSIGN expression'
+    'if_assign : VAR ASSIGN expression'
     p[0] = [p[1], p[3]]
 
 
@@ -91,8 +91,8 @@ def p_stmt_print_cond(p):
 # 赋值语句
 def p_stmt_print_assign(p):
     '''
-    stmt : ID ASSIGN expression SPLIT
-                   | ID ASSIGN condition_list SPLIT
+    stmt : VAR ASSIGN expression SPLIT
+                   | VAR ASSIGN condition_list SPLIT
     '''
     p[0] = DyqExecute(action='assign', params=[p[1], p[3]])
 
@@ -143,7 +143,7 @@ def p_expression_false(p):
 
 # 变量
 def p_expression_var(p):
-    'expression : ID'
+    'expression : VAR'
     p[0] = DyqExecute(action='get', params=[p[1]])
 
 

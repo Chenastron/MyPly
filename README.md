@@ -28,7 +28,7 @@ python版本为3.6。
 #### 四. 词法分析
 1. 标识符
     1. NUMBER 整数类型
-    2. ID 变量
+    2. VAR 变量
     3. STRING 字符串类型
     4. SPLIT 语句间的分隔符
 2. 保留字
@@ -68,16 +68,16 @@ Rule 6     stmt -> expression SPLIT
 Rule 7     stmt_print -> PRINT LPAREN expr_list RPAREN
 # for
 Rule 8     range -> RANGE LPAREN expr_list RPAREN
-Rule 9     stmt -> FOR ID IN range COLON stmt_print SPLIT
+Rule 9     stmt -> FOR VAR IN range COLON stmt_print SPLIT
 # if-else
 Rule 10    stmt -> stmt_print IF condition_list ELSE stmt_print SPLIT
-Rule 11    if_assign -> ID ASSIGN expression
+Rule 11    if_assign -> VAR ASSIGN expression
 Rule 12    stmt -> if_assign IF condition_list ELSE expression SPLIT
 Rule 13    stmt -> IF condition_list COLON stmt_print SPLIT
 Rule 14    stmt -> IF condition_list COLON SPLIT stmt_print SPLIT
 # 赋值
-Rule 15    stmt -> ID ASSIGN expression SPLIT
-Rule 16    stmt -> ID ASSIGN condition_list SPLIT
+Rule 15    stmt -> VAR ASSIGN expression SPLIT
+Rule 16    stmt -> VAR ASSIGN condition_list SPLIT
 # 一行多个表达式
 Rule 17    expr_list -> expression
 Rule 18    expr_list -> expr_list COMMA expression
@@ -89,7 +89,7 @@ Rule 22    condition_list -> LPAREN condition_list RPAREN
 # 标识符
 Rule 23    expression -> TRUE
 Rule 24    expression -> FALSE
-Rule 25    expression -> ID
+Rule 25    expression -> VAR
 Rule 26    expression -> NUMBER
 Rule 27    expression -> STRING
 # 二元运算
