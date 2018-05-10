@@ -15,6 +15,19 @@ python版本为3.6。
 
 #### 二. 项目结构介绍
 
+```
+三个文件夹
+- interpreter 解释器的代码
+  1. 分为三个文件夹lex yacc exe 分别存放了对应的代码
+  2. 将配置项放入settings
+  3. 将rule的配置放入rules文件夹中
+  4. 整个module向外提供一个outputRes.py
+  5. 使用方式是创建OutputRes的实例
+  6. 构造时传入待解析的字符串(data参数)
+  7. 使用get_res()获得结果
+- preview 预览图
+- test 使用样例
+```
 
 #### 三. 使用方式
 1. 首先创建一个文件用于写测试代码(自带的测试文件为test_code.py)
