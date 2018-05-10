@@ -31,6 +31,7 @@ def show_exe():
     """显示最终执行的结果"""
     for x in parses.parse(data):
         DyqExecute.resolve(x)
+    print('\n'.join(DyqExecute.res_string))
 
 file_choice = 2
 file_path = 'sub_test' if file_choice == 1 else 'test_code.py'
@@ -45,5 +46,5 @@ show_dict = {
     3: show_exe
 }
 
-choice = 2
+choice = 3
 show_dict[choice]()

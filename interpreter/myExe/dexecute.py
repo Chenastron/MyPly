@@ -2,11 +2,14 @@ var_context = {}
 
 
 class DyqExecute:
+    res_string = []
+
     def __init__(self, action=None, params=None):
         self.action = action
         self.params = params
 
     def execute(self):
+        """执行"""
         action_dict = {
             'print': self._print,
             'assign': self._assign,
@@ -16,26 +19,12 @@ class DyqExecute:
             'binop': self._binop,
             'loop': self._loop,
         }
-        result = action_dict.get(self.action, self._error)()
+        # 返回本次执行的结果
+        result = action_dict.get(self.action, self._operation_error)()
         return result
 
-    def __str__(self):
-        return '[DEXE] %s %s' % (self.action, ';'.join(str(x) for x in self.params))
-
-    @staticmethod
-    def isADelayedAction(x=None):
-        return ('x' is not None and isinstance(x, DyqExecute))
-
-    @staticmethod
-    def resolve(x):
-        if not DyqExecute.isADelayedAction(x):
-            return x
-        else:
-            return x.execute()
-
     def _print(self):
-        print(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
-        return None
+        DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
 
     def _assign(self):
         result = var_context[self.params[0]] = DyqExecute.resolve(self.params[1])
@@ -92,8 +81,19 @@ class DyqExecute:
             var_context[self.params[0]] = i
             DyqExecute.resolve(self.params[2])
 
-    def _error(self):
+    @staticmethod
+    def isDyqExecuteObj(obj=None):
+        """判断是否是这个类的实例"""
+        return obj is not None and isinstance(obj, DyqExecute)
+
+    @staticmethod
+    def resolve(x):
+        """如果是这个类的实例则执行"""
+        return x.execute() if DyqExecute.isDyqExecuteObj(x) else x
+
+    def __str__(self):
+        return '[DEXE] %s %s' % (self.action, ';'.join(str(x) for x in self.params))
+
+    def _operation_error(self):
+        """判断是否支持这个操作"""
         print("Error, unsupported operation:", str(self))
-        return None
-
-
