@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d40fdb43-78e2-420d-9e48-dd068d87b07e" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/dparser.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/run.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -69,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/interpreter/myYacc/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="250">
-              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -78,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/test/sub_test">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="25">
-              <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -139,8 +138,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="110" />
-    <option name="y" value="25" />
+    <option name="x" value="559" />
+    <option name="y" value="380" />
     <option name="width" value="1430" />
     <option name="height" value="977" />
   </component>
@@ -155,6 +154,17 @@
             <path>
               <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPly" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPly" type="462c0819:PsiDirectoryNode" />
+              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPly" type="462c0819:PsiDirectoryNode" />
+              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
+              <item name="myLex" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -296,7 +306,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="110" y="25" width="1430" height="977" extended-state="0" />
+    <frame x="14" y="16" width="1430" height="977" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
@@ -457,14 +467,14 @@
     <entry file="file://$PROJECT_DIR$/test/sub_test">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
-          <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interpreter/myYacc/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
         </state>
       </provider>
     </entry>
