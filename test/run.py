@@ -6,8 +6,8 @@ __date__ = '2018/4/5 19:37'
 from ply import lex, yacc
 
 from interpreter.myLex import dlexer
-from interpreter import dparser
-from interpreter.dexecute import DyqExecute
+from interpreter.myYacc import dparser
+from interpreter.myExe.dexecute import DyqExecute
 
 # 读入词法分析器和语法分析器
 lexs = lex.lex(module=dlexer)
@@ -32,13 +32,12 @@ def show_exe():
     for x in parses.parse(data):
         DyqExecute.resolve(x)
 
-
+file_choice = 2
+file_path = 'sub_test' if file_choice == 1 else 'test_code.py'
 # 读入要执行的代码
-with open('sub_test', 'r') as f:
+with open(file_path, 'r') as f:
     data = f.read()
 
-# with open('test_code.py', 'r') as f:
-#     data = f.read()
 
 show_dict = {
     1: show_lex,

@@ -1,17 +1,13 @@
-from .myLex.dlexer import tokens
+from interpreter.myLex.dlexer import tokens
+from interpreter.myExe.dexecute import DyqExecute
 
-from .dexecute import DyqExecute
+from .settings import settingObj
+from .rules.expressionEndRule import expressionEndRulesObj
 
 exelist = []
 
-precedence = (
-    # ('nonassoc', 'IFX', 'SPLIT'),
-    # ('left', 'CONDLIST'),
-    ('left', 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE'),
-    ('left', 'REM', 'ADD'),
-    ('left', 'MUL', 'DIV', 'MOD'),
-    ('left', 'POW'),
-)
+# 读取配置, 目前只有优先级
+precedence, *_ = settingObj
 
 
 def p_entry(p):
@@ -129,36 +125,6 @@ def p_condition_parens(p):
     p[0] = p[2]
 
 
-# true
-def p_expression_true(p):
-    'expression : TRUE'
-    p[0] = True
-
-
-# False
-def p_expression_false(p):
-    'expression : FALSE'
-    p[0] = False
-
-
-# 变量
-def p_expression_var(p):
-    'expression : VAR'
-    p[0] = DyqExecute(action='get', params=[p[1]])
-
-
-# 标识符NUMBER
-def p_expression_num(p):
-    'expression : NUMBER'
-    p[0] = int(p[1])
-
-
-# 标识符STRING
-def p_expression_string(p):
-    'expression : STRING'
-    p[0] = p[1]
-
-
 # 二元操作符
 def p_expression_two_operator(p):
     '''
@@ -183,15 +149,19 @@ def p_expression_parens(p):
     'expression : LPAREN expression RPAREN'
     p[0] = p[2]
 
+# 表达式: 终结符的语法
+p_expression_true, p_expression_false, p_expression_num, p_expression_string, p_expression_var = expressionEndRulesObj
 
-# 出错功能
+
+"""
+非语法配置
+"""
+# 出错
 def p_error(p):
     print("Syntax error in input!", p)
-
-
+# 必须品
 def p_empty(p):
     'empty :'
-
 
 def debug(*params):
     print("[DBG] %s" % (' : '.join(str(x) for x in params),))

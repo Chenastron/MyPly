@@ -15,7 +15,6 @@ class DyqExecute:
             'logop': self._logop,
             'binop': self._binop,
             'loop': self._loop,
-            # '': self._,
         }
         result = action_dict.get(self.action, self._error)()
         return result
