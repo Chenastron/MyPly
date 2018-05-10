@@ -11,7 +11,7 @@ with open(file_path, 'r') as f:
     data = f.read()
 
 output_res = OutputRes(data)
-res = output_res.get_Res()
+res = output_res.get_res()
 
 # 输出相应的值
 # print(res['lex'])

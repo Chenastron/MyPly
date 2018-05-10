@@ -14,11 +14,7 @@ python版本为3.6。
 模仿python语法完成一小部分功能，例如注释，二元运算符，逻辑运算符，print语句，for语句，if语句，if-else语句，基本数据类型有int，string，boolean，变量。
 
 #### 二. 项目结构介绍
-1. dlexer.py 实现了词法分析
-2. dparser.py 实现了语法分析
-3. dexecute.py 实现了执行语法的功能
-4. test_code.py 要进行测试的代码
-5. run.py 执行文件，从test_code中读入代码，可调整choice变量，执行1-3的功能
+
 
 #### 三. 使用方式
 1. 首先创建一个文件用于写测试代码(自带的测试文件为test_code.py)

@@ -38,7 +38,7 @@ class OutputRes:
             DyqExecute.resolve(x)
         return '\n'.join(DyqExecute.res_string)
 
-    def get_Res(self):
+    def get_res(self):
         """返回结果"""
         return {
             'lex': self._evaluate_lex(),
