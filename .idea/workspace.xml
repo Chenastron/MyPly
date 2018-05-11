@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d40fdb43-78e2-420d-9e48-dd068d87b07e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,8 +57,8 @@
       <file leaf-file-name="run.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="425">
+              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -136,11 +136,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="468" />
-    <option name="y" value="26" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="62" />
+    <option name="y" value="226" />
     <option name="width" value="1430" />
-    <option name="height" value="970" />
+    <option name="height" value="1025" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -153,16 +153,6 @@
             <path>
               <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPly" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyPly" type="462c0819:PsiDirectoryNode" />
-              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyPly" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -304,17 +294,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="468" y="26" width="1430" height="970" extended-state="1" />
-    <editor active="true" />
+    <frame x="62" y="226" width="1430" height="1025" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.37906137" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.37906137" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32816228" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.16861314" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.16861314" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="2" />
       <window_info anchor="right" id="SciView" order="0" />
@@ -514,8 +503,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="425">
+          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
         </state>
       </provider>
     </entry>
