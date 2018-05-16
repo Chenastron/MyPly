@@ -32,10 +32,14 @@ class OutputRes:
 
     def _evaluate_yacc(self):
         """计算语法分析器的结果"""
+        # 重置语法分析结果
+        dyacc.exelist = []
         return '\n'.join([str(single_yacc) for single_yacc in self.yaccor.parse(self.data, lexer=self.lexor)])
 
     def _evaluate_exe(self):
         """计算最终执行的结果"""
+        # 重置语法分析结果
+        dyacc.exelist = []
         for x in self.yaccor.parse(self.data, lexer=self.lexor):
             DyqExecute.resolve(x)
         return '\n'.join(DyqExecute.res_string)

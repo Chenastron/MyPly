@@ -16,9 +16,10 @@ data = 'print(1)'
 
 # OutputRes(data)
 output_res = OutputRes(data)
+# output_res._evaluate_exe()
 res = output_res.get_res()
 
 # 输出相应的值
-print(res['lex'])
-print(res['yacc'])
+# print(res['lex'])
+# print(res['yacc'])
 print(res['exe'])
