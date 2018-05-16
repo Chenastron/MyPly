@@ -33,6 +33,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import qs from 'qs'
+
 export default {
   name: 'Content',
   data () {
@@ -44,7 +47,7 @@ export default {
         },
         {
           label: '语法分析',
-          value: 'parse'
+          value: 'yacc'
         },
         {
           label: '执行结果',
@@ -53,13 +56,29 @@ export default {
       ],
       selectedValue: 'exe',
       inputArea: '',
-      outputArea: ''
+      outputAreaDatas: ''
+    }
+  },
+  computed: {
+    outputArea () {
+      return this.outputAreaDatas[this.selectedValue]
     }
   },
   methods: {
     commitInput () {
-      console.log(this.inputArea)
-      console.log(this.selectedValue)
+      axios({
+        method: 'post',
+        url: 'api/',
+        data: qs.stringify({
+          string: this.inputArea
+        }),
+        headers: {
+          'Content-type': 'application/x-www-form-urlencoded'
+        }
+      }).then(this.getInfoSucc)
+    },
+    getInfoSucc (res) {
+      this.outputAreaDatas = res.data
     }
   }
 }
