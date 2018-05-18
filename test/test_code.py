@@ -64,8 +64,6 @@ if 2 < 1:
 print("*************")
 print("test for if-else")
 print("*************")
-print('1') if 1 > 2 else print('2')
-print('2') if 1 > 2 else print('1')
 
 a = 1 if 1 > 2 else 2
 b = 2 if 1 > 2 else 1

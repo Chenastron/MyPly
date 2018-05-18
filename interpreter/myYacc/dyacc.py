@@ -36,65 +36,12 @@ def p_stmt_print_expr(p):
     p[0] = p[1]
 
 
-# print语句
+"""print语句"""
 def p_stmt_print_print(p):
     '''
     stmt_print : PRINT LPAREN expr_list RPAREN
     '''
     p[0] = DyqExecute(action='print', params=p[3])
-
-
-# 生成一个list对象记录着每个迭代的次数
-def p_range(p):
-    'range : RANGE LPAREN expr_list RPAREN'
-    p[0] = list(range(p[3][0], p[3][1]))
-
-
-def p_stmt_print_for(p):
-    'stmt : FOR VAR IN range COLON stmt_print SPLIT'
-    p[0] = DyqExecute(action='loop', params=[p[2], p[4], p[6]])
-
-
-def p_stmt_print_cond_postfix_else(p):
-    'stmt : stmt_print IF condition_list ELSE stmt_print SPLIT'
-    p[0] = DyqExecute(action='condition', params=[p[3], p[1], p[5]])
-
-
-def p_ifassign(p):
-    'if_assign : VAR ASSIGN expression'
-    p[0] = [p[1], p[3]]
-
-
-def p_stmt_print_cond_postfix_assign(p):
-    'stmt : if_assign IF condition_list ELSE expression SPLIT'
-    p[0] = DyqExecute(action='assign', params=[
-        p[1][0], DyqExecute(action='condition', params=[p[3], p[1][1], p[5]])
-    ])
-
-
-# IF语句(少两个优先级的判定)
-def p_stmt_print_cond(p):
-    '''
-    stmt : IF condition_list COLON stmt_print SPLIT
-                   | IF condition_list COLON SPLIT stmt_print SPLIT
-    '''
-    # 分为上面两种情况，一个stmt的位置在4,一个在5(0开始计数)
-    if len(p) < 7:
-        p[0] = DyqExecute(action='condition', params=[p[2], p[4]])
-    else:
-        p[0] = DyqExecute(action='condition', params=[p[2], p[5]])
-
-
-# 赋值语句
-def p_stmt_print_assign(p):
-    '''
-    stmt : VAR ASSIGN expression SPLIT
-                   | VAR ASSIGN condition_list SPLIT
-    '''
-    p[0] = DyqExecute(action='assign', params=[p[1], p[3]])
-
-
-# print功能扩展-多变量
 def p_expression_list(p):
     '''
     expr_list : expression
@@ -105,6 +52,50 @@ def p_expression_list(p):
     else:
         p[0] = p[1] + [p[3]]
 
+
+"""两条语法for循环的语句"""
+def p_range(p):
+    'range : RANGE LPAREN expr_list RPAREN'
+    p[0] = list(range(p[3][0], p[3][1]))
+def p_stmt_print_for(p):
+    'stmt : FOR VAR IN range COLON stmt_print SPLIT'
+    p[0] = DyqExecute(action='loop', params=[p[2], p[4], p[6]])
+
+
+"""两条语法为三元表达式赋值的语句"""
+def p_stmt_print_cond_postfix_assign(p):
+    'stmt : if_assign IF condition_list ELSE expression SPLIT'
+    p[0] = DyqExecute(action='assign', params=[
+        p[1][0], DyqExecute(action='condition', params=[p[3], p[1][1], p[5]])
+    ])
+def p_ifassign(p):
+    'if_assign : VAR ASSIGN expression'
+    p[0] = [p[1], p[3]]
+
+
+"""if语句"""
+def p_stmt_print_cond(p):
+    '''
+    stmt : IF condition_list COLON stmt_print SPLIT
+         | IF condition_list COLON SPLIT stmt_print SPLIT
+    '''
+    # 分为上面两种情况，一个stmt的位置在4,一个在5(0开始计数)
+    if len(p) < 7:
+        p[0] = DyqExecute(action='condition', params=[p[2], p[4]])
+    else:
+        p[0] = DyqExecute(action='condition', params=[p[2], p[5]])
+
+
+"""赋值语句"""
+def p_stmt_print_assign(p):
+    '''
+    stmt : VAR ASSIGN expression SPLIT
+         | VAR ASSIGN condition_list SPLIT
+    '''
+    p[0] = DyqExecute(action='assign', params=[p[1], p[3]])
+
+
+"""下面开始是表达式"""
 
 # 逻辑控制语句(少一个优先级)
 def p_condition_list(p):
@@ -149,6 +140,7 @@ def p_expression_two_operator(p):
 def p_expression_parens(p):
     'expression : LPAREN expression RPAREN'
     p[0] = p[2]
+
 
 # 表达式: 终结符的语法
 p_expression_true, p_expression_false, p_expression_num, p_expression_string, p_expression_var = expressionEndRulesObj
