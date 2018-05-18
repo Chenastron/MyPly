@@ -27,16 +27,30 @@ class DyqExecute:
         DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
 
     def _assign(self):
-        result = DyqExecute.var_context[self.params[0]] = DyqExecute.resolve(self.params[1])
-        return result
+        """
+        1. params: [0(变量名), 1(一个此类的实例)]
+        """
+        # 获取变量名
+        var_name, exe_instance = self.params
+        # 获取变量值
+        var_value = DyqExecute.resolve(exe_instance)
+        # 存入环境
+        DyqExecute.var_context[var_name] = var_value
 
     def _get(self):
-        geted_var = DyqExecute.var_context.get(self.params[0])
+        """
+        1. params: [0(变量名)]
+        2. 从var_context获取值
+        3. 成功则返回值
+        4. 失败则报错
+        """
+        var_name = self.params[0]
+        geted_var = DyqExecute.var_context.get(var_name)
 
         # 变量名不存在(None)则停止运行
         if geted_var is None:
             DyqExecute.has_error = True
-            DyqExecute.errors.append(f'[VAR_ERROR]: {self.params[0]} is not exist')
+            DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
         # 变量名存在则返回对应的值
         else:
             return geted_var
@@ -64,6 +78,11 @@ class DyqExecute:
         return result
 
     def _binop(self):
+        
+        """
+        1. 二元运算
+        2. params: [0(左执行实例), 1(操作符), 2(右执行实例)]
+        """
         a = DyqExecute.resolve(self.params[0])
         b = DyqExecute.resolve(self.params[2])
         op = self.params[1]

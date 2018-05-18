@@ -8,11 +8,11 @@ file_choice = 2
 file_path = 'sub_test' if file_choice == 1 else 'test_code.py'
 
 # # 从文件读入要执行的代码, 也可以直接写字符串
-# with open(file_path, 'r') as f:
-#     data = f.read()
+with open(file_path, 'r') as f:
+    data = f.read()
 
 # 直接写字符串
-data = 'a=2\nprint(a)\nprint(b)'
+# data = 'a=2\nprint(a)\nprint(b)'
 
 # OutputRes(data)
 output_res = OutputRes(data)

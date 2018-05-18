@@ -7,4 +7,5 @@ test_dict = {
 }
 
 a = test_dict.get('b', 'default')
-print(a)
+b = test_dict['c'] = 0
+print(b, test_dict['c'])
