@@ -78,7 +78,7 @@ class DyqExecute:
         return result
 
     def _binop(self):
-        
+
         """
         1. 二元运算
         2. params: [0(左执行实例), 1(操作符), 2(右执行实例)]
