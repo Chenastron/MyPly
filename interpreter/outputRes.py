@@ -47,7 +47,6 @@ class OutputRes:
     def get_res(self):
         """返回结果"""
         # 将之前保存语法分析器的数据重置为空
-        dyacc.exelist = []
         return {
             'lex': self._evaluate_lex(),
             'yacc': self._evaluate_yacc(),

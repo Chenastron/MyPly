@@ -3,11 +3,13 @@ var_context = {}
 
 class DyqExecute:
     res_string = []
+    has_error = False
 
     def __init__(self, action=None, params=None):
         self.action = action
         self.params = params
         DyqExecute.res_string = []
+        DyqExecute.has_error = False
 
     def execute(self):
         """执行"""
@@ -32,8 +34,16 @@ class DyqExecute:
         return result
 
     def _get(self):
-        result = var_context.get(self.params[0], 0)
-        return result
+        # TODO 修正get报错
+        geted_var = var_context.get(self.params[0])
+
+        # 变量名不存在则停止运行
+        if not geted_var:
+            # TODO 终止本次执行, 并向最终结果中增加报错信息
+            pass
+        # 变量名存在则返回对应的值
+        else:
+            return geted_var
 
     def _condition(self):
         result = None

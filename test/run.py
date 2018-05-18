@@ -7,16 +7,15 @@ from interpreter.outputRes import OutputRes
 file_choice = 2
 file_path = 'sub_test' if file_choice == 1 else 'test_code.py'
 
-# 从文件读入要执行的代码, 也可以直接写字符串
+# # 从文件读入要执行的代码, 也可以直接写字符串
 # with open(file_path, 'r') as f:
 #     data = f.read()
 
 # 直接写字符串
-data = 'print(1)'
+data = 'print(a)'
 
 # OutputRes(data)
 output_res = OutputRes(data)
-# output_res._evaluate_exe()
 res = output_res.get_res()
 
 # 输出相应的值
