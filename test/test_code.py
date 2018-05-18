@@ -47,9 +47,9 @@ print("*************")
 print("test for log operator")
 print("*************")
 and1 = 3 > 2 and 3 > 1 and 3 > 0
-or1 = 3 < 2 or 3 < 1
+or_test = 3 < 2 or 3 < 1
 print(and1)
-print(or1)
+print(or_test)
 
 print("*************")
 print("test for if")

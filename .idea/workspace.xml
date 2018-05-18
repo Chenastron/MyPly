@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/interpreter/myExe/dexecute.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myExe/dexecute.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/outputRes.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/outputRes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_code.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,28 +16,33 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/MyPly$dexecute.coverage" NAME="dexecute Coverage Results" MODIFIED="1526610928585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter/myExe" />
     <SUITE FILE_PATH="coverage/MyPly$run.coverage" NAME="run Coverage Results" MODIFIED="1525946019726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
     <SUITE FILE_PATH="coverage/MyPly$run2.coverage" NAME="run2 Coverage Results" MODIFIED="1525960091930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MyPly$dlexer.coverage" NAME="dlexer Coverage Results" MODIFIED="1525946015591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter/myLex" />
     <SUITE FILE_PATH="coverage/MyPly$test_base.coverage" NAME="test_base Coverage Results" MODIFIED="1526607448020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/MyPly$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1526608213118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MyPly$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1526611136856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MyPly$outputRes.coverage" NAME="outputRes Coverage Results" MODIFIED="1526609932399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="run.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="100">
+              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dexecute.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dexecute.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="41" column="40" lean-forward="true" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+            <state relative-caret-position="136">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+              <folding>
+                <element signature="e#292#689#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,8 +50,8 @@
       <file leaf-file-name="outputRes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="950">
-              <caret line="42" column="64" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="64" />
+            <state relative-caret-position="422">
+              <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
               <folding>
                 <element signature="e#77#102#0" expanded="true" />
               </folding>
@@ -53,32 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_base.py">
+      <file leaf-file-name="test_code.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test_code.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dyacc.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2600">
-              <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="expressionEndRule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interpreter/myYacc/rules/expressionEndRule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+            <state relative-caret-position="400">
+              <caret line="55" column="22" lean-forward="true" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -96,9 +81,12 @@
     <findStrings>
       <find>ID</find>
       <find>_error</find>
+      <find>DyqExecute</find>
+      <find>var_context</find>
     </findStrings>
     <replaceStrings>
       <replace>VAR</replace>
+      <replace>self</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -110,7 +98,6 @@
         <option value="$PROJECT_DIR$/interpreter/run.py" />
         <option value="$PROJECT_DIR$/interpreter/dlexer.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/settings.py" />
-        <option value="$PROJECT_DIR$/test/test_code.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/baseRule.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/stringRule.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/idRule.py" />
@@ -125,10 +112,11 @@
         <option value="$PROJECT_DIR$/test/run2.py" />
         <option value="$PROJECT_DIR$/backend/index/views.py" />
         <option value="$PROJECT_DIR$/backend/utils/interpreter/outputRes.py" />
-        <option value="$PROJECT_DIR$/test/run.py" />
-        <option value="$PROJECT_DIR$/interpreter/outputRes.py" />
         <option value="$PROJECT_DIR$/test/test_base.py" />
+        <option value="$PROJECT_DIR$/interpreter/outputRes.py" />
+        <option value="$PROJECT_DIR$/test/test_code.py" />
         <option value="$PROJECT_DIR$/interpreter/myExe/dexecute.py" />
+        <option value="$PROJECT_DIR$/test/run.py" />
       </list>
     </option>
   </component>
@@ -147,8 +135,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="691" />
-    <option name="y" value="9" />
+    <option name="x" value="572" />
+    <option name="y" value="3" />
     <option name="width" value="1540" />
     <option name="height" value="1025" />
   </component>
@@ -218,7 +206,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.run (1)">
-    <configuration name="dlexer" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="dexecute" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="MyPly" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -226,12 +214,31 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interpreter/myLex" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interpreter/myExe" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/interpreter/myLex/dlexer.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/interpreter/myExe/dexecute.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="outputRes" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="MyPly" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interpreter" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/interpreter/outputRes.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -251,25 +258,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/run.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="MyPly" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interpreter" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="F:\2018\python\interpreter\MyPly\test\run.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -314,19 +302,19 @@
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list>
-      <item itemvalue="Python.run" />
       <item itemvalue="Python.run (1)" />
-      <item itemvalue="Python.dlexer" />
       <item itemvalue="Python.run2" />
       <item itemvalue="Python.test_base" />
+      <item itemvalue="Python.outputRes" />
+      <item itemvalue="Python.dexecute" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run (1)" />
+        <item itemvalue="Python.dexecute" />
+        <item itemvalue="Python.outputRes" />
         <item itemvalue="Python.test_base" />
         <item itemvalue="Python.run2" />
-        <item itemvalue="Python.run" />
-        <item itemvalue="Python.dlexer" />
       </list>
     </recent_temporary>
   </component>
@@ -353,19 +341,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="642" y="39" width="1540" height="1025" extended-state="0" />
+    <frame x="572" y="3" width="1540" height="1025" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="12" weight="0.3291536" />
+      <window_info anchor="bottom" id="TODO" order="12" weight="0.32844242" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.34988713" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.47968397" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.25282168" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.13378379" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="2" />
+      <window_info anchor="bottom" id="Find" order="7" />
       <window_info anchor="right" id="SciView" order="0" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -376,7 +365,6 @@
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="7" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +382,7 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -681,13 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/sub_test">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/index/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -703,24 +684,10 @@
         <state relative-caret-position="-1393" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_code.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="70" column="21" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/utils/interpreter/outputRes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
           <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -741,20 +708,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="950">
-          <caret line="42" column="64" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="64" />
-          <folding>
-            <element signature="e#77#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/typing.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
           <caret line="336" column="8" selection-start-line="336" selection-start-column="8" selection-end-line="336" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/sub_test">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -765,10 +729,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_code.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="55" column="22" lean-forward="true" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+          <folding>
+            <element signature="e#77#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="41" column="40" lean-forward="true" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+        <state relative-caret-position="136">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#292#689#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
         </state>
       </provider>
     </entry>

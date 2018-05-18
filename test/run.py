@@ -12,7 +12,7 @@ file_path = 'sub_test' if file_choice == 1 else 'test_code.py'
 #     data = f.read()
 
 # 直接写字符串
-data = 'print(a)'
+data = 'a=2\nprint(a)\nprint(b)'
 
 # OutputRes(data)
 output_res = OutputRes(data)

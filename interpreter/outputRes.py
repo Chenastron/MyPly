@@ -41,8 +41,13 @@ class OutputRes:
         # 重置语法分析结果
         dyacc.exelist = []
         for x in self.yaccor.parse(self.data, lexer=self.lexor):
-            DyqExecute.resolve(x)
-        return '\n'.join(DyqExecute.res_string)
+            # 如果执行没有报错则再继续执行
+            if not DyqExecute.has_error:
+                DyqExecute.resolve(x)
+        # 将所有错误信息与结果信息相加
+        res = DyqExecute.res_string + DyqExecute.errors
+        # 将结果变成字符串返回
+        return '\n'.join(res)
 
     def get_res(self):
         """返回结果"""

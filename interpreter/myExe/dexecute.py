@@ -1,15 +1,12 @@
-var_context = {}
-
-
 class DyqExecute:
     res_string = []
     has_error = False
+    errors = []
+    var_context = {}
 
     def __init__(self, action=None, params=None):
         self.action = action
         self.params = params
-        DyqExecute.res_string = []
-        DyqExecute.has_error = False
 
     def execute(self):
         """执行"""
@@ -30,17 +27,16 @@ class DyqExecute:
         DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
 
     def _assign(self):
-        result = var_context[self.params[0]] = DyqExecute.resolve(self.params[1])
+        result = DyqExecute.var_context[self.params[0]] = DyqExecute.resolve(self.params[1])
         return result
 
     def _get(self):
-        # TODO 修正get报错
-        geted_var = var_context.get(self.params[0])
+        geted_var = DyqExecute.var_context.get(self.params[0])
 
-        # 变量名不存在则停止运行
-        if not geted_var:
-            # TODO 终止本次执行, 并向最终结果中增加报错信息
-            pass
+        # 变量名不存在(None)则停止运行
+        if geted_var is None:
+            DyqExecute.has_error = True
+            DyqExecute.errors.append(f'[VAR_ERROR]: {self.params[0]} is not exist')
         # 变量名存在则返回对应的值
         else:
             return geted_var
@@ -89,7 +85,7 @@ class DyqExecute:
 
     def _loop(self):
         for i in self.params[1]:
-            var_context[self.params[0]] = i
+            DyqExecute.var_context[self.params[0]] = i
             DyqExecute.resolve(self.params[2])
 
     @staticmethod
