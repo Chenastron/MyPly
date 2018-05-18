@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d40fdb43-78e2-420d-9e48-dd068d87b07e" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/interpreter/myLex/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myLex/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/myYacc/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/parser.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/myYacc/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/parsetab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/sub_test" beforeDir="false" afterPath="$PROJECT_DIR$/test/sub_test" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,43 +22,69 @@
     <SUITE FILE_PATH="coverage/MyPly$run2.coverage" NAME="run2 Coverage Results" MODIFIED="1525960091930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MyPly$dlexer.coverage" NAME="dlexer Coverage Results" MODIFIED="1525946015591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter/myLex" />
     <SUITE FILE_PATH="coverage/MyPly$test_base.coverage" NAME="test_base Coverage Results" MODIFIED="1526611652801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/MyPly$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1526615971485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MyPly$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1526634058525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MyPly$outputRes.coverage" NAME="outputRes Coverage Results" MODIFIED="1526609932399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/run.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dlexer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interpreter/myLex/dlexer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interpreter/myLex/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sub_test" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/sub_test">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="8" selection-start-column="8" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="dyacc.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-498">
-              <caret line="97" column="14" lean-forward="true" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
+            <state relative-caret-position="205">
+              <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
                 <element signature="e#343#504#0" />
                 <element signature="e#537#551#0" />
                 <element signature="e#584#625#0" />
-                <element signature="e#669#778#0" />
-                <element signature="e#829#991#0" />
-                <element signature="e#824#904#0" />
-                <element signature="e#936#1048#0" />
-                <element signature="e#1355#1546#0" />
-                <element signature="e#1331#1390#0" />
-                <element signature="e#1597#1930#0" />
-                <element signature="e#1972#2135#0" />
-                <element signature="e#2395#2645#0" />
-                <element signature="e#2694#2757#0" />
-                <element signature="e#2806#3379#0" />
-                <element signature="e#3428#3483#0" />
+                <element signature="e#673#782#0" />
+                <element signature="e#813#975#0" />
+                <element signature="e#1017#1097#0" />
+                <element signature="e#1127#1239#0" />
+                <element signature="e#1309#1500#0" />
+                <element signature="e#1524#1583#0" />
+                <element signature="e#1996#2089#1" />
+                <element signature="e#2214#2464#0" />
+                <element signature="e#2513#2576#0" />
+                <element signature="e#2625#3198#0" />
+                <element signature="e#3247#3302#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_code.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_code.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -90,7 +118,6 @@
       <list>
         <option value="$PROJECT_DIR$/interpreter/run.py" />
         <option value="$PROJECT_DIR$/interpreter/dlexer.py" />
-        <option value="$PROJECT_DIR$/interpreter/myLex/settings.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/baseRule.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/stringRule.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/idRule.py" />
@@ -99,7 +126,6 @@
         <option value="$PROJECT_DIR$/interpreter/dparser.py" />
         <option value="$PROJECT_DIR$/interpreter/myYacc/settings.py" />
         <option value="$PROJECT_DIR$/interpreter/myYacc/rules/expressionRule.py" />
-        <option value="$PROJECT_DIR$/test/sub_test" />
         <option value="$PROJECT_DIR$/interpreter/myYacc/rules/expressionEndRule.py" />
         <option value="$PROJECT_DIR$/interpreter/myYacc/dparser.py" />
         <option value="$PROJECT_DIR$/test/run2.py" />
@@ -107,9 +133,11 @@
         <option value="$PROJECT_DIR$/backend/utils/interpreter/outputRes.py" />
         <option value="$PROJECT_DIR$/interpreter/outputRes.py" />
         <option value="$PROJECT_DIR$/test/test_base.py" />
-        <option value="$PROJECT_DIR$/test/run.py" />
         <option value="$PROJECT_DIR$/interpreter/myExe/dexecute.py" />
         <option value="$PROJECT_DIR$/test/test_code.py" />
+        <option value="$PROJECT_DIR$/interpreter/myLex/settings.py" />
+        <option value="$PROJECT_DIR$/test/sub_test" />
+        <option value="$PROJECT_DIR$/test/run.py" />
         <option value="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" />
       </list>
     </option>
@@ -128,9 +156,9 @@
       <path value="$PROJECT_DIR$/frontend/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="748" />
-    <option name="y" value="35" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="159" />
+    <option name="y" value="43" />
     <option name="width" value="1270" />
     <option name="height" value="1017" />
   </component>
@@ -150,6 +178,12 @@
               <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPly" type="462c0819:PsiDirectoryNode" />
               <item name="interpreter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPly" type="462c0819:PsiDirectoryNode" />
+              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
+              <item name="myLex" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
@@ -335,7 +369,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="748" y="35" width="1270" height="1017" extended-state="0" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" weight="0.32844242" />
@@ -343,9 +377,9 @@
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.38382688" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.35214213" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.25282168" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14876033" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.099228226" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="2" />
       <window_info anchor="right" id="SciView" order="0" />
@@ -376,7 +410,7 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -447,18 +481,17 @@
             <element signature="e#343#504#0" />
             <element signature="e#537#551#0" />
             <element signature="e#584#625#0" />
-            <element signature="e#669#778#0" />
-            <element signature="e#829#991#0" />
-            <element signature="e#824#904#0" />
-            <element signature="e#936#1048#0" />
-            <element signature="e#1355#1546#0" />
-            <element signature="e#1331#1390#0" />
-            <element signature="e#1597#1930#0" />
-            <element signature="e#1972#2135#0" />
-            <element signature="e#2395#2645#0" />
-            <element signature="e#2694#2757#0" />
-            <element signature="e#2806#3379#0" />
-            <element signature="e#3428#3483#0" />
+            <element signature="e#673#782#0" />
+            <element signature="e#813#975#0" />
+            <element signature="e#1017#1097#0" />
+            <element signature="e#1127#1239#0" />
+            <element signature="e#1309#1500#0" />
+            <element signature="e#1524#1583#0" />
+            <element signature="e#1996#2089#1" />
+            <element signature="e#2214#2464#0" />
+            <element signature="e#2513#2576#0" />
+            <element signature="e#2625#3198#0" />
+            <element signature="e#3247#3302#0" />
           </folding>
         </state>
       </provider>
@@ -643,13 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myLex/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interpreter/myYacc/parser.out">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -661,13 +687,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-512">
           <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myLex/dlexer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
@@ -714,10 +733,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/sub_test">
+    <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        <state relative-caret-position="138">
+          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_code.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -730,56 +756,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+        <state relative-caret-position="-150">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
           <folding>
             <element signature="e#77#102#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
+    <entry file="file://$PROJECT_DIR$/interpreter/myLex/dlexer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+        <state relative-caret-position="100">
+          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/myLex/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="341">
+          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_code.py">
+    <entry file="file://$PROJECT_DIR$/test/sub_test">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+        <state>
+          <caret column="8" selection-start-column="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-498">
-          <caret line="97" column="14" lean-forward="true" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
+        <state relative-caret-position="205">
+          <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
             <element signature="e#343#504#0" />
             <element signature="e#537#551#0" />
             <element signature="e#584#625#0" />
-            <element signature="e#669#778#0" />
-            <element signature="e#829#991#0" />
-            <element signature="e#824#904#0" />
-            <element signature="e#936#1048#0" />
-            <element signature="e#1355#1546#0" />
-            <element signature="e#1331#1390#0" />
-            <element signature="e#1597#1930#0" />
-            <element signature="e#1972#2135#0" />
-            <element signature="e#2395#2645#0" />
-            <element signature="e#2694#2757#0" />
-            <element signature="e#2806#3379#0" />
-            <element signature="e#3428#3483#0" />
+            <element signature="e#673#782#0" />
+            <element signature="e#813#975#0" />
+            <element signature="e#1017#1097#0" />
+            <element signature="e#1127#1239#0" />
+            <element signature="e#1309#1500#0" />
+            <element signature="e#1524#1583#0" />
+            <element signature="e#1996#2089#1" />
+            <element signature="e#2214#2464#0" />
+            <element signature="e#2513#2576#0" />
+            <element signature="e#2625#3198#0" />
+            <element signature="e#3247#3302#0" />
           </folding>
         </state>
       </provider>

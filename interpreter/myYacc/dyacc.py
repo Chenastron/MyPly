@@ -86,8 +86,16 @@ def p_stmt_print_cond(p):
         p[0] = DyqExecute(action='condition', params=[p[2], p[5]])
 
 
+"""if-block语句"""
+def p_stmt_if_block(p):
+    '''
+    stmt : IF condition_list START_BLOCK SPLIT stmt_print SPLIT END_BLOCK SPLIT
+    '''
+    p[0] = DyqExecute(action='condition', params=[p[2], p[5]])
+
+
 """赋值语句"""
-def p_stmt_print_assign(p):
+def p_stmt_assign(p):
     '''
     stmt : VAR ASSIGN expression SPLIT
          | VAR ASSIGN condition_list SPLIT

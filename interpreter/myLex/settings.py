@@ -38,6 +38,8 @@ operator_single = {
     '=': 'ASSIGN',
     ',': 'COMMA',
     ':': 'COLON',
+    '{': 'START_BLOCK',
+    '}': 'END_BLOCK'
 }
 
 # 双字符的操作符 >= <= == != **

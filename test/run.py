@@ -17,8 +17,11 @@ with open(file_path, 'r') as f:
 # OutputRes(data)
 output_res = OutputRes(data)
 res = output_res.get_res()
+# res = output_res._evaluate_lex()
 
 # 输出相应的值
 # print(res['lex'])
 # print(res['yacc'])
 print(res['exe'])
+
+# print(res)
