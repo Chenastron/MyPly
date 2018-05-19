@@ -54,12 +54,9 @@ print(or_test)
 print("*************")
 print("test for if")
 print("*************")
-if 2 > 1: print('2>1 yes!')
-if 2 < 1: print('2<1 no!')
-if 2 > 1:
+if 2 > 1 {
     print('2>1 yes!')
-if 2 < 1:
-    print('2<1 no!')
+}
 
 print("*************")
 print("test for if-else")
@@ -72,4 +69,6 @@ print(a, b)
 print("*************")
 print("test for for")
 print("*************")
-for i in range(1, 5): print(i ** 2)
+for i in range(1, 5) {
+    print(i ** 2)
+}

@@ -2,7 +2,7 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    COLON
+    FUNC
 
 Grammar
 
@@ -60,7 +60,6 @@ Terminals, with rules where they appear
 ADD                  : 34
 AND                  : 31
 ASSIGN               : 11 12 24 25 27
-COLON                : 
 COMMA                : 14 29
 DIV                  : 37
 ELSE                 : 26
@@ -68,6 +67,7 @@ END_BLOCK            : 21
 EQ                   : 43
 FALSE                : 3
 FOR                  : 18
+FUNC                 : 
 GE                   : 41
 GT                   : 39
 IF                   : 20 26
