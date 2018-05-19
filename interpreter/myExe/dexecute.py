@@ -18,6 +18,7 @@ class DyqExecute:
             'logop': self._logop,
             'binop': self._binop,
             'loop': self._loop,
+            'new_condition': self._new_condition
         }
         # 返回本次执行的结果
         result = action_dict.get(self.action, self._operation_error)()
@@ -63,6 +64,16 @@ class DyqExecute:
         elif len(self.params) > 2:
             result = DyqExecute.resolve(self.params[2])
         return result
+
+    def _new_condition(self):
+        """
+        1. params: [0(条件语句-交由logop执行), 1(一组待执行的实例)]
+        """
+        condition_is_true = DyqExecute.resolve(self.params[0])
+        # 如果是true, 则执行所有实例
+        if condition_is_true:
+            for single_exe in self.params[1]:
+                DyqExecute.resolve(single_exe)
 
     def _logop(self):
         params = list(self.params)

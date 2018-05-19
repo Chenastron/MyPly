@@ -18,28 +18,28 @@ def p_entry(p):
 
 def p_start(p):
     '''
-    start : start stmt_print SPLIT
-             | start stmt
-             | empty
+    start : start stmt_print
+          | start stmt
+          | empty
     '''
     if len(p) > 2:
         exelist.append(p[2])
         p[0] = p[2]
 
 
-def p_stmt_print_none(p):
+def p_stmt_none(p):
     'stmt : SPLIT'
 
 
-def p_stmt_print_expr(p):
+def p_stmt_expr(p):
     'stmt : expression SPLIT'
     p[0] = p[1]
 
 
 """print语句"""
-def p_stmt_print_print(p):
+def p_stmt_print(p):
     '''
-    stmt_print : PRINT LPAREN expr_list RPAREN
+    stmt_print : PRINT LPAREN expr_list RPAREN SPLIT
     '''
     p[0] = DyqExecute(action='print', params=p[3])
 def p_expression_list(p):
@@ -58,7 +58,7 @@ def p_range(p):
     'range : RANGE LPAREN expr_list RPAREN'
     p[0] = list(range(p[3][0], p[3][1]))
 def p_stmt_print_for(p):
-    'stmt : FOR VAR IN range COLON stmt_print SPLIT'
+    'stmt : FOR VAR IN range COLON stmt_print'
     p[0] = DyqExecute(action='loop', params=[p[2], p[4], p[6]])
 
 
@@ -76,8 +76,8 @@ def p_ifassign(p):
 """if语句"""
 def p_stmt_print_cond(p):
     '''
-    stmt : IF condition_list COLON stmt_print SPLIT
-         | IF condition_list COLON SPLIT stmt_print SPLIT
+    stmt : IF condition_list COLON stmt_print
+         | IF condition_list COLON SPLIT stmt_print
     '''
     # 分为上面两种情况，一个stmt的位置在4,一个在5(0开始计数)
     if len(p) < 7:
@@ -89,9 +89,19 @@ def p_stmt_print_cond(p):
 """if-block语句"""
 def p_stmt_if_block(p):
     '''
-    stmt : IF condition_list START_BLOCK SPLIT stmt_print SPLIT END_BLOCK SPLIT
+    stmt : IF condition_list START_BLOCK SPLIT block END_BLOCK SPLIT
     '''
-    p[0] = DyqExecute(action='condition', params=[p[2], p[5]])
+    p[0] = DyqExecute(action='new_condition', params=[p[2], p[5]])
+
+def p_block(p):
+    '''
+    block : stmt_print
+          | block stmt_print
+    '''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[2]]
 
 
 """赋值语句"""

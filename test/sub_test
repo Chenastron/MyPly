@@ -1,3 +1,4 @@
-if true {
+if false {
     print(3)
+    print(2)
 }
