@@ -34,6 +34,21 @@ def p_stmt_expr(p):
     'stmt : expression SPLIT'
     p[0] = p[1]
 
+"""函数语句"""
+def p_stmt_func_define(p):
+    '''
+    stmt : VAR ASSIGN LPAREN RPAREN block_format
+    '''
+    var_name, block_stmt_list = p[1], p[5]
+    p[0] = DyqExecute(action='assign_func', params=[
+        var_name, block_stmt_list
+    ])
+def p_stmt_func_exe(p):
+    '''
+    stmt : VAR LPAREN RPAREN SPLIT
+    '''
+    p[0] = DyqExecute(action='exe_func', params=[p[1]])
+
 
 """print语句"""
 def p_stmt_print(p):

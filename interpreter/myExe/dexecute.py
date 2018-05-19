@@ -29,11 +29,25 @@ class DyqExecute:
             'condition': self._condition,
             'logop': self._logop,
             'binop': self._binop,
-            'loop': self._loop
+            'loop': self._loop,
+            'assign_func': self._assign_func,
+            'exe_func': self._exe_func
         }
         # 返回本次执行的结果
         result = action_dict.get(self.action, self._operation_error)()
         return result
+
+    def _assign_func(self):
+        # 将函数名和之后要执行的代码块存储到环境中
+        var_name, block_stmt_list = self.params
+        self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field)
+
+    def _exe_func(self):
+        var = self.params[0]
+        # 获取要执行的实例列表
+        exe_list = self._get(var)
+        # 执行
+        self._resolve_block(exe_list)
 
     def _print(self):
         DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
@@ -121,14 +135,14 @@ class DyqExecute:
         # 存入环境
         self._resolve_save_var(var_name, var_value, DyqExecute.cur_field)
 
-    def _get(self):
+    def _get(self, var=None):
         """
         1. params: [0(变量名)]
         2. 从var_context获取值
         3. 成功则返回值
         4. 失败则报错
         """
-        var_name = self.params[0]
+        var_name = self.params[0] if var is None else var
 
         # 当前搜索的作用域
         search_filed_name = DyqExecute.cur_field
@@ -172,7 +186,7 @@ class DyqExecute:
         if parent_field_name is not None:
             DyqExecute.cur_field = DyqExecute.var_context[DyqExecute.cur_field]['parent_field_name']
 
-    def _resolve_save_var(self, var_name, var_value, field_name='global'):
+    def _resolve_save_var(self, var_name, var_value, field_name='global', is_func=False):
         """根据作用域存储变量"""
         # 获取作用域, 如果没有则生成新的作用域
         field = DyqExecute.var_context[field_name]

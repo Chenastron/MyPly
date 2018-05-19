@@ -1,3 +1,12 @@
 a = () {
-    print(1)
+    for i in range(1, 5) {
+    a = i + 10
+    j = 'cur-j'
+        if a % 2 == 0 {
+            print('a : ', a)
+            print('j : ', j)
+        }
+    }
 }
+
+a()
