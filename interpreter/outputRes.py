@@ -7,7 +7,7 @@ from ply import lex, yacc
 
 from interpreter.myLex import dlexer
 from interpreter.myYacc import dyacc
-from interpreter.myExe.dexecute import DyqExecute
+from interpreter.myExe.dexecute import DyqExecute, MyVarException
 
 
 class OutputRes:
@@ -42,8 +42,11 @@ class OutputRes:
         dyacc.exelist = []
         for x in self.yaccor.parse(self.data, lexer=self.lexor):
             # 如果执行没有报错则再继续执行
-            if not DyqExecute.has_error:
+            try:
                 DyqExecute.resolve(x)
+            except MyVarException as e:
+                break
+
         # 将所有错误信息与结果信息相加
         res = DyqExecute.res_string + DyqExecute.errors
         # 将结果变成字符串返回

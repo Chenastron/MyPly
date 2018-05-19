@@ -1,3 +1,6 @@
+class MyVarException(Exception):
+    pass
+
 class DyqExecute:
     res_string = []
     has_error = False
@@ -48,24 +51,25 @@ class DyqExecute:
             self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field, True, func_params)
 
     def _exe_func(self):
-        # 1个参数就是无函数参数的, 2个参数就是有函数参数的
+        """
+        1. params只有一个就是无函数参数的, params有两个参数就是有函数参数的
+        """
         if len(self.params) == 1:
             var = self.params[0]
-            # 获取要执行的变量对象(存放一些信息, 值在value中)
-            var_dict = self._get(var, True)
-            # 执行列表
-            exe_list = var_dict['value']
+            var_dict = self._get(var, is_func=True)
 
-            # 执行
+            # 获取执行列表, 并执行
+            exe_list = var_dict['value']
             self._resolve_block(exe_list)
-        else:
+
+        else: # len(self.params) == 2
             # 变量, 函数实参数值
             var, func_params = self.params
             # 将实参执行, 可能有一些简单的逻辑运算
             func_params = [DyqExecute.resolve(param) for param in func_params]
 
             # 获取要执行的变量对象(存放一些信息, 值在value中)
-            var_dict = self._get(var, True)
+            var_dict = self._get(var, is_func=True)
             # 获取执行列表, 函数定义参数值
             # TODO 函数的参数检验
             exe_list, func_def_params = var_dict['value'], var_dict['params_name']
@@ -206,11 +210,12 @@ class DyqExecute:
                 # 如果是函数则返回整个var-dict
                 return geted_var['value']
             search_filed_name = DyqExecute.var_context[search_filed_name]['parent_field_name']
-        # 如果所有父作用域都没有则报错
+        # 如果所有父作用域都没有
         else:
             if raise_error:
-                DyqExecute.has_error = True
+                # DyqExecute.has_error = True
                 DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
+                raise MyVarException(f'[VAR_ERROR]: {var_name} is not exist')
             else:
                 return None
 

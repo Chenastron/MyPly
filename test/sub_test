@@ -1,11 +1,1 @@
-a = () {
-    print('it is a')
-}
-a()
-func b (a, b) {
-    print('it is b', a, b)
-}
-c = b
-d = 'aaa' + 'bbb'
-c(d, 222+333)
-
+a = 1
