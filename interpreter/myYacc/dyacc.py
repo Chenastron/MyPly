@@ -44,11 +44,29 @@ def p_stmt_func_define_non_params(p):
         var_name, block_stmt_list
     ])
 
+def p_stmt_func_define_non_params_func(p):
+    '''
+    stmt : FUNC VAR LPAREN RPAREN block_format
+    '''
+    var_name, block_stmt_list = p[2], p[5]
+    p[0] = DyqExecute(action='assign_func', params=[
+        var_name, block_stmt_list
+    ])
+
 def p_stmt_func_define_params(p):
     '''
     stmt : VAR ASSIGN LPAREN func_params RPAREN block_format
     '''
     var_name, func_params, block_stmt_list = p[1], p[4], p[6]
+    p[0] = DyqExecute(action='assign_func', params=[
+        var_name, func_params, block_stmt_list
+    ])
+
+def p_stmt_func_define_params_func(p):
+    '''
+    stmt : FUNC VAR LPAREN func_params RPAREN block_format
+    '''
+    var_name, func_params, block_stmt_list = p[2], p[4], p[6]
     p[0] = DyqExecute(action='assign_func', params=[
         var_name, func_params, block_stmt_list
     ])

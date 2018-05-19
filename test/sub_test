@@ -2,7 +2,7 @@ a = () {
     print('it is a')
 }
 a()
-b = (a, b) {
+func b (a, b) {
     print('it is b', a, b)
 }
 c = b
