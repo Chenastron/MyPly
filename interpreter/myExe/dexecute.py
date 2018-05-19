@@ -71,8 +71,10 @@ class DyqExecute:
             func_params = [DyqExecute.resolve(param) for param in func_params]
 
             # 获取函数定义时的参数名(形参)
-            # TODO 函数的参数检验
             func_def_params = var_dict['params_name']
+
+            if len(func_def_params) != len(func_params):
+                raise MyVarException(f'function {var} params is error')
 
             # 形参与实参组合成函数的环境变量
             env_dict = {k: v for k, v in zip(func_def_params, func_params)}
@@ -213,7 +215,7 @@ class DyqExecute:
         # 如果所有父作用域都没有
         else:
             if raise_error:
-                raise MyVarException(f'[VAR_ERROR]: {var_name} is not exist')
+                raise MyVarException(f'{var_name} is not exist')
             else:
                 return None
 

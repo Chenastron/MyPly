@@ -7,6 +7,6 @@ func b (a, b) {
 }
 c = b
 d = 'aaa' + 'bbb'
-c(d, 222+333)
+c(d, 222+333, 'ee')
 d()
 
