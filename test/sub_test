@@ -1,4 +1,4 @@
 if true {
-    a = 3
+    a = 33 if true else 2
     print(a, 2)
 }

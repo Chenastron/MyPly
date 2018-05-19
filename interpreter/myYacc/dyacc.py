@@ -61,42 +61,21 @@ def p_stmt_for(p):
     p[0] = DyqExecute(action='loop', params=[p[2], p[4], p[6]])
 
 
-"""两条语法为三元表达式赋值的语句"""
-def p_stmt_triple_assign(p):
-    'stmt : if_assign IF condition_list ELSE expression SPLIT'
-    p[0] = DyqExecute(action='assign', params=[
-        p[1][0], DyqExecute(action='condition', params=[p[3], p[1][1], p[5]])
-    ])
-def p_ifassign(p):
-    'if_assign : VAR ASSIGN expression'
-    p[0] = [p[1], p[3]]
-
-
 """if语句"""
-def p_stmt_cond(p):
-    '''
-    stmt : IF condition_list COLON stmt
-         | IF condition_list COLON SPLIT stmt
-    '''
-    # 分为上面两种情况，一个stmt的位置在4,一个在5(0开始计数)
-    if len(p) < 7:
-        p[0] = DyqExecute(action='condition', params=[p[2], p[4]])
-    else:
-        p[0] = DyqExecute(action='condition', params=[p[2], p[5]])
-
-
-"""if-block语句"""
 def p_stmt_if_block(p):
     '''
     stmt : IF condition_list START_BLOCK SPLIT block END_BLOCK SPLIT
     '''
-    p[0] = DyqExecute(action='new_condition', params=[p[2], p[5]])
+    p[0] = DyqExecute(action='condition', params=[p[2], p[5]])
 
+
+"""语句块"""
 def p_block(p):
     '''
     block : stmt
           | block stmt
     '''
+    # [第一条语句, 第二条语句, ···, 最后一条语句]
     if len(p) == 2:
         p[0] = [p[1]]
     else:
@@ -112,7 +91,25 @@ def p_stmt_assign(p):
     p[0] = DyqExecute(action='assign', params=[p[1], p[3]])
 
 
-"""下面开始是表达式"""
+"""两条语法为三元表达式赋值的语句"""
+def p_stmt_triple_assign(p):
+    'stmt : if_assign IF condition_list ELSE expression SPLIT'
+    var_name = p[1][0]
+    condtion_expr = p[3]
+    if_expr = p[1][1]
+    else_expr = p[5]
+    p[0] = DyqExecute(action='triple_assign', params=[
+        var_name, condtion_expr, if_expr, else_expr
+    ])
+def p_ifassign(p):
+    'if_assign : VAR ASSIGN expression'
+    p[0] = [p[1], p[3]]
+
+
+"""
+--------------------
+下面开始是表达式
+"""
 
 # 逻辑控制语句(少一个优先级)
 def p_condition_list(p):

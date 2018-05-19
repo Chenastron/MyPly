@@ -13,12 +13,12 @@ class DyqExecute:
         action_dict = {
             'print': self._print,
             'assign': self._assign,
+            'triple_assign': self._triple_assign,
             'get': self._get,
             'condition': self._condition,
             'logop': self._logop,
             'binop': self._binop,
-            'loop': self._loop,
-            'new_condition': self._new_condition
+            'loop': self._loop
         }
         # 返回本次执行的结果
         result = action_dict.get(self.action, self._operation_error)()
@@ -28,15 +28,6 @@ class DyqExecute:
         DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
 
     def _condition(self):
-        result = None
-        if DyqExecute.resolve(self.params[0]):
-            result = DyqExecute.resolve(self.params[1])
-        # 如果失败了则执行else后面的参数
-        elif len(self.params) > 2:
-            result = DyqExecute.resolve(self.params[2])
-        return result
-
-    def _new_condition(self):
         """
         1. params: [0(条件语句-交由logop执行), 1(一组待执行的实例)]
         """
@@ -88,6 +79,21 @@ class DyqExecute:
             '!=': lambda a, b: (a != b),
         }[op](a, b)
         return result
+
+    def _triple_assign(self):
+        """
+        1. 三元赋值
+        2. params: [var_name, condtion_expr, if_expr, else_expr]
+        """
+        var_name, condtion_expr, if_expr, else_expr = self.params
+
+        # 判断执行条件
+        condition_is_true = DyqExecute.resolve(condtion_expr)
+        # 获取变量值
+        var_value = DyqExecute.resolve(if_expr) if condition_is_true else DyqExecute.resolve(else_expr)
+        # 存入变量
+        DyqExecute.var_context[var_name] = var_value
+
 
     def _assign(self):
         """
