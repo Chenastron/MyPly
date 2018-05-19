@@ -151,7 +151,7 @@ class DyqExecute:
         geted_var = DyqExecute.var_context[search_filed_name]['var'].get(var_name)
         # 如果找到了则返回值
         if geted_var is not None:
-            return geted_var
+            return geted_var['value']
 
         # 如果没找到则改变作用域
         # 作用域变为父作用域
@@ -161,7 +161,7 @@ class DyqExecute:
             # 从相应环境下获得值,
             geted_var = DyqExecute.var_context[search_filed_name]['var'].get(var_name)
             if geted_var is not None:
-                return geted_var
+                return geted_var['value']
             search_filed_name = DyqExecute.var_context[search_filed_name]['parent_field_name']
         # 如果所有父作用域都没有则报错
         else:
@@ -186,12 +186,18 @@ class DyqExecute:
         if parent_field_name is not None:
             DyqExecute.cur_field = DyqExecute.var_context[DyqExecute.cur_field]['parent_field_name']
 
-    def _resolve_save_var(self, var_name, var_value, field_name='global', is_func=False):
+    def _resolve_save_var(self, var_name, var_value, field_name='global', is_func=False, params_name=None):
         """根据作用域存储变量"""
         # 获取作用域, 如果没有则生成新的作用域
         field = DyqExecute.var_context[field_name]
         # 在对应的作用域的key(var)中存储值
-        field['var'][var_name] = var_value
+        field['var'][var_name] = {
+            'value': var_value
+        }
+
+        # 如果是函数则将参数名存入变量
+        if is_func:
+            field['var'][var_name]['params_name'] = params_name
 
     @classmethod
     def _add_change_field(cls):

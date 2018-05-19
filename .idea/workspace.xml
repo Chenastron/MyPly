@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d40fdb43-78e2-420d-9e48-dd068d87b07e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/interpreter/myExe/dexecute.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myExe/dexecute.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/parser.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/parsetab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sub_test" beforeDir="false" afterPath="$PROJECT_DIR$/test/sub_test" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +18,7 @@
     <SUITE FILE_PATH="coverage/MyPly$dlexer.coverage" NAME="dlexer Coverage Results" MODIFIED="1525946015591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter/myLex" />
     <SUITE FILE_PATH="coverage/MyPly$test_base.coverage" NAME="test_base Coverage Results" MODIFIED="1526703872182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MyPly$dyacc.coverage" NAME="dyacc Coverage Results" MODIFIED="1526700876171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter/myYacc" />
-    <SUITE FILE_PATH="coverage/MyPly$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1526717109076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MyPly$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1526719644961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MyPly$outputRes.coverage" NAME="outputRes Coverage Results" MODIFIED="1526609932399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
   </component>
   <component name="FileEditorManager">
@@ -37,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dyacc.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dyacc.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="39" column="48" lean-forward="true" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
+              <caret line="39" column="29" lean-forward="true" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
                 <element signature="e#268#320#0" />
@@ -67,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dexecute.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dexecute.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="193" column="42" selection-start-line="193" selection-start-column="42" selection-end-line="193" selection-end-column="42" />
+            <state relative-caret-position="458">
+              <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
               <folding>
                 <element signature="e#1398#1690#0" />
                 <element signature="e#1722#2133#0" />
@@ -172,10 +167,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="723" />
-    <option name="y" value="25" />
+    <option name="x" value="548" />
     <option name="width" value="1270" />
-    <option name="height" value="1017" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -373,7 +367,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="723" y="25" width="1270" height="1017" extended-state="0" />
+    <frame x="548" y="0" width="1270" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" weight="0.32844242" />
@@ -381,7 +375,7 @@
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.32004556" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.22529224" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.25282168" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15123966" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -779,13 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/run.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
@@ -793,10 +780,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/sub_test">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+          <folding>
+            <element signature="e#1398#1690#0" />
+            <element signature="e#1722#2133#0" />
+            <element signature="e#2166#2894#0" />
+            <element signature="e#2934#3385#0" />
+            <element signature="e#3418#3692#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="39" column="48" lean-forward="true" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
+          <caret line="39" column="29" lean-forward="true" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
             <element signature="e#268#320#0" />
@@ -817,27 +832,6 @@
             <element signature="e#2822#2885#0" />
             <element signature="e#2934#3507#0" />
             <element signature="e#3556#3611#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/sub_test">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="193" column="42" selection-start-line="193" selection-start-column="42" selection-end-line="193" selection-end-column="42" />
-          <folding>
-            <element signature="e#1398#1690#0" />
-            <element signature="e#1722#2133#0" />
-            <element signature="e#2166#2894#0" />
-            <element signature="e#2934#3385#0" />
-            <element signature="e#3418#3692#0" />
           </folding>
         </state>
       </provider>
