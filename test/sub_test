@@ -1,4 +1,6 @@
-if true {
-    a = 33 if true else 2
-    print(a, 2)
+for i in range(1, 13) {
+    a = i + 10
+    if a % 2 == 0 {
+        print(a)
+    }
 }

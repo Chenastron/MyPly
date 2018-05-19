@@ -38,9 +38,18 @@ class DyqExecute:
                 DyqExecute.resolve(single_exe)
 
     def _loop(self):
-        for i in self.params[1]:
-            DyqExecute.var_context[self.params[0]] = i
-            DyqExecute.resolve(self.params[2])
+        """
+        1. for-range循环
+        2. params: [for循环中循环的变量名, 循环的数组, 一组待执行的实例]
+        """
+        for_var_name, for_array, exe_list = self.params
+        # 遍历整个数组
+        for num in for_array:
+            # 将当前数组的值存入环境变量
+            DyqExecute.var_context[for_var_name] = num
+            # 执行所有实例
+            for single_exe in exe_list:
+                DyqExecute.resolve(single_exe)
 
     def _logop(self):
         params = list(self.params)

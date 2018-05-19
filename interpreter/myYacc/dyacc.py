@@ -45,8 +45,13 @@ def p_stmt_print(p):
 
 """两条语法for循环的语句"""
 def p_stmt_for(p):
-    'stmt : FOR VAR IN range COLON stmt'
-    p[0] = DyqExecute(action='loop', params=[p[2], p[4], p[6]])
+    'stmt : FOR VAR IN range block_format'
+    for_var_name = p[2]
+    for_range = p[4]
+    block_stmt_list = p[5]
+    p[0] = DyqExecute(action='loop', params=[
+        for_var_name, for_range, block_stmt_list
+    ])
 def p_range(p):
     'range : RANGE LPAREN expr_list RPAREN'
     p[0] = list(range(p[3][0], p[3][1]))
