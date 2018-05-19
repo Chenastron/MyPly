@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d40fdb43-78e2-420d-9e48-dd068d87b07e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/interpreter/myExe/dexecute.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myExe/dexecute.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/myYacc/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/parser.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/parsetab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/sub_test" beforeDir="false" afterPath="$PROJECT_DIR$/test/sub_test" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,7 +21,7 @@
     <SUITE FILE_PATH="coverage/MyPly$dlexer.coverage" NAME="dlexer Coverage Results" MODIFIED="1525946015591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter/myLex" />
     <SUITE FILE_PATH="coverage/MyPly$test_base.coverage" NAME="test_base Coverage Results" MODIFIED="1526611652801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MyPly$dyacc.coverage" NAME="dyacc Coverage Results" MODIFIED="1526700876171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter/myYacc" />
-    <SUITE FILE_PATH="coverage/MyPly$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1526701791622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MyPly$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1526702779798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MyPly$outputRes.coverage" NAME="outputRes Coverage Results" MODIFIED="1526609932399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
   </component>
   <component name="FileEditorManager">
@@ -33,14 +35,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dyacc.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dyacc.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="21" column="22" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="-267">
+              <caret line="59" column="40" lean-forward="true" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
                 <element signature="e#268#320#0" />
+                <element signature="e#343#492#0" />
                 <element signature="e#519#533#0" />
                 <element signature="e#560#601#0" />
                 <element signature="e#789#951#0" />
@@ -92,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sub_test" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sub_test" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/sub_test">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            <state relative-caret-position="50">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -116,8 +119,8 @@
       <find>_error</find>
       <find>DyqExecute</find>
       <find>var_context</find>
-      <find>stmt_print</find>
       <find>stmt_print SPLIT</find>
+      <find>stmt_print</find>
     </findStrings>
     <replaceStrings>
       <replace>VAR</replace>
@@ -149,11 +152,11 @@
         <option value="$PROJECT_DIR$/test/test_base.py" />
         <option value="$PROJECT_DIR$/test/test_code.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/settings.py" />
-        <option value="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" />
         <option value="$PROJECT_DIR$/test/run.py" />
-        <option value="$PROJECT_DIR$/test/sub_test" />
         <option value="$PROJECT_DIR$/interpreter/myYacc/settings.py" />
         <option value="$PROJECT_DIR$/interpreter/myExe/dexecute.py" />
+        <option value="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" />
+        <option value="$PROJECT_DIR$/test/sub_test" />
       </list>
     </option>
   </component>
@@ -392,7 +395,7 @@
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.18906605" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.33257404" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.25282168" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15123966" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -494,6 +497,7 @@
           <folding>
             <element signature="e#0#43#0" expanded="true" />
             <element signature="e#268#320#0" />
+            <element signature="e#343#492#0" />
             <element signature="e#519#533#0" />
             <element signature="e#560#601#0" />
             <element signature="e#789#951#0" />
@@ -777,26 +781,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myYacc/settings.py">
+    <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/sub_test">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="38" column="28" lean-forward="true" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+        <state relative-caret-position="-267">
+          <caret line="59" column="40" lean-forward="true" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
           <folding>
-            <element signature="e#77#102#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#268#320#0" />
+            <element signature="e#343#492#0" />
+            <element signature="e#519#533#0" />
+            <element signature="e#560#601#0" />
+            <element signature="e#789#951#0" />
+            <element signature="e#2523#2773#0" />
+            <element signature="e#2822#2885#0" />
+            <element signature="e#2934#3507#0" />
+            <element signature="e#3556#3611#0" />
           </folding>
         </state>
       </provider>
@@ -817,21 +816,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
+    <entry file="file://$PROJECT_DIR$/interpreter/myYacc/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="175">
+          <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="38" column="28" lean-forward="true" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
-            <element signature="e#268#320#0" />
-            <element signature="e#519#533#0" />
-            <element signature="e#560#601#0" />
-            <element signature="e#789#951#0" />
-            <element signature="e#2523#2773#0" />
-            <element signature="e#2822#2885#0" />
-            <element signature="e#2934#3507#0" />
-            <element signature="e#3556#3611#0" />
+            <element signature="e#77#102#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/sub_test">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
