@@ -157,17 +157,27 @@ class DyqExecute:
         """
         # 获取变量名
         var_name, exe_instance = self.params
-        # 获取变量值
-        var_value = DyqExecute.resolve(exe_instance)
-        # 存入环境
-        self._resolve_save_var(var_name, var_value, DyqExecute.cur_field)
+        # 判断exe_instance是否是一个变量的名字
+        obj = self._get(exe_instance.params[0], is_func=True, raise_error=False) if isinstance(exe_instance, DyqExecute) else None
+        if obj is not None:
+            # 是否为函数, 不是就是普通的变量
+            if 'params_name' in obj:
+                self._resolve_save_var(var_name, obj['value'], DyqExecute.cur_field, True, obj['params_name'])
+            else:
+                self._resolve_save_var(var_name, obj['value'], DyqExecute.cur_field)
+        else:
+            # 如果不是变量
+            # 获取变量值
+            var_value = DyqExecute.resolve(exe_instance)
+            # 存入环境
+            self._resolve_save_var(var_name, var_value, DyqExecute.cur_field)
 
-    def _get(self, var=None, is_func=False):
+    def _get(self, var=None, is_func=False, raise_error=True):
         """
         1. params: [0(变量名)]
         2. 从var_context获取值
         3. 成功则返回值
-        4. 失败则报错
+        4. 从所有父作用域获取变量失败则, 报错(如果raise_error为True), 返回None(为False)
         """
         var_name = self.params[0] if var is None else var
 
@@ -191,13 +201,18 @@ class DyqExecute:
             # 从相应环境下获得值,
             geted_var = DyqExecute.var_context[search_filed_name]['var'].get(var_name)
             if geted_var is not None:
+                if is_func:
+                    return geted_var
                 # 如果是函数则返回整个var-dict
                 return geted_var['value']
             search_filed_name = DyqExecute.var_context[search_filed_name]['parent_field_name']
         # 如果所有父作用域都没有则报错
         else:
-            DyqExecute.has_error = True
-            DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
+            if raise_error:
+                DyqExecute.has_error = True
+                DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
+            else:
+                return None
 
     def _resolve_block(self, exe_list, unsaved_var=None):
         # 创建一个新的环境, 并且切换环境

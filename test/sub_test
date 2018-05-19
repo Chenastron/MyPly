@@ -5,4 +5,7 @@ a()
 b = (a, b) {
     print('it is b', a, b)
 }
-b('aaa'+'bbb', 222+333)
+c = b
+d = 'aaa' + 'bbb'
+c(d, 222+333)
+
