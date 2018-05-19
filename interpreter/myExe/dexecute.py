@@ -2,8 +2,18 @@ class DyqExecute:
     res_string = []
     has_error = False
     errors = []
-    var_context = {}
+    """
+    1. 第一层, var_context, key: 作用域名 value: 作用域相关的属性
+    2. 第二层, 作用域相关的属性, key: parent_field_name, var, value: 父作用域名, 该作用域下的变量
+    """
+    var_context = {
+        'global': {
+            'parent_field_name': None,
+            'var': {}
+        }
+    }
     cur_field = 'global'
+    field_name_index = 0
 
     def __init__(self, action=None, params=None):
         self.action = action
@@ -119,18 +129,35 @@ class DyqExecute:
         4. 失败则报错
         """
         var_name = self.params[0]
-        # 在当前环境下去获取值
-        geted_var = DyqExecute.var_context[DyqExecute.cur_field].get(var_name)
 
-        # 变量名不存在(None)则停止运行
-        if geted_var is None:
-            DyqExecute.has_error = True
-            DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
-        # 变量名存在则返回对应的值
-        else:
+        # 当前搜索的作用域
+        search_filed_name = DyqExecute.cur_field
+
+        # 在当前环境下去获取值
+        geted_var = DyqExecute.var_context[search_filed_name]['var'].get(var_name)
+        # 如果找到了则返回值
+        if geted_var is not None:
             return geted_var
 
+        # 如果没找到则改变作用域
+        # 作用域变为父作用域
+        search_filed_name = DyqExecute.var_context[search_filed_name]['parent_field_name']
+
+        while search_filed_name is not None:
+            # 从相应环境下获得值,
+            geted_var = DyqExecute.var_context[search_filed_name]['var'].get(var_name)
+            if geted_var is not None:
+                return geted_var
+            search_filed_name = DyqExecute.var_context[search_filed_name]['parent_field_name']
+        # 如果所有父作用域都没有则报错
+        else:
+            DyqExecute.has_error = True
+            DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
+
     def _resolve_block(self, exe_list, unsaved_var=None):
+        # 创建一个新的环境, 并且切换环境
+        DyqExecute._add_change_field()
+
         # 如果有未存入环境的变量
         if unsaved_var:
             for var_name, var_value in unsaved_var.items():
@@ -140,11 +167,37 @@ class DyqExecute:
         for single_exe in exe_list:
             DyqExecute.resolve(single_exe)
 
+        # 将环境变为父环境(global没有父环境)
+        parent_field_name = DyqExecute.var_context[DyqExecute.cur_field]['parent_field_name']
+        if parent_field_name is not None:
+            DyqExecute.cur_field = DyqExecute.var_context[DyqExecute.cur_field]['parent_field_name']
+
     def _resolve_save_var(self, var_name, var_value, field_name='global'):
         """根据作用域存储变量"""
-        field = DyqExecute.var_context.setdefault(field_name, {})
-        field[var_name] = var_value
+        # 获取作用域, 如果没有则生成新的作用域
+        field = DyqExecute.var_context[field_name]
+        # 在对应的作用域的key(var)中存储值
+        field['var'][var_name] = var_value
 
+    @classmethod
+    def _add_change_field(cls):
+        # 记录当前的环境作为新环境的父环境
+        parent_field_name = DyqExecute.cur_field
+        # 获取一个新环境, 并将当前环境变成新环境
+        cur_field_name = DyqExecute.getFieldName()
+        DyqExecute.cur_field = cur_field_name
+
+        # 生成新的作用域
+        DyqExecute.var_context[cur_field_name] = {
+            'parent_field_name': parent_field_name,
+            'var': {}
+        }
+
+    @classmethod
+    def getFieldName(cls):
+        """返回一个新的作用域名"""
+        DyqExecute.field_name_index += 1
+        return 'field' + str(DyqExecute.field_name_index)
 
     @staticmethod
     def isDyqExecuteObj(obj=None):
