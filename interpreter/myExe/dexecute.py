@@ -27,35 +27,6 @@ class DyqExecute:
     def _print(self):
         DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
 
-    def _assign(self):
-        """
-        1. params: [0(变量名), 1(一个此类的实例)]
-        """
-        # 获取变量名
-        var_name, exe_instance = self.params
-        # 获取变量值
-        var_value = DyqExecute.resolve(exe_instance)
-        # 存入环境
-        DyqExecute.var_context[var_name] = var_value
-
-    def _get(self):
-        """
-        1. params: [0(变量名)]
-        2. 从var_context获取值
-        3. 成功则返回值
-        4. 失败则报错
-        """
-        var_name = self.params[0]
-        geted_var = DyqExecute.var_context.get(var_name)
-
-        # 变量名不存在(None)则停止运行
-        if geted_var is None:
-            DyqExecute.has_error = True
-            DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
-        # 变量名存在则返回对应的值
-        else:
-            return geted_var
-
     def _condition(self):
         result = None
         if DyqExecute.resolve(self.params[0]):
@@ -74,6 +45,11 @@ class DyqExecute:
         if condition_is_true:
             for single_exe in self.params[1]:
                 DyqExecute.resolve(single_exe)
+
+    def _loop(self):
+        for i in self.params[1]:
+            DyqExecute.var_context[self.params[0]] = i
+            DyqExecute.resolve(self.params[2])
 
     def _logop(self):
         params = list(self.params)
@@ -113,10 +89,34 @@ class DyqExecute:
         }[op](a, b)
         return result
 
-    def _loop(self):
-        for i in self.params[1]:
-            DyqExecute.var_context[self.params[0]] = i
-            DyqExecute.resolve(self.params[2])
+    def _assign(self):
+        """
+        1. params: [0(变量名), 1(一个此类的实例)]
+        """
+        # 获取变量名
+        var_name, exe_instance = self.params
+        # 获取变量值
+        var_value = DyqExecute.resolve(exe_instance)
+        # 存入环境
+        DyqExecute.var_context[var_name] = var_value
+
+    def _get(self):
+        """
+        1. params: [0(变量名)]
+        2. 从var_context获取值
+        3. 成功则返回值
+        4. 失败则报错
+        """
+        var_name = self.params[0]
+        geted_var = DyqExecute.var_context.get(var_name)
+
+        # 变量名不存在(None)则停止运行
+        if geted_var is None:
+            DyqExecute.has_error = True
+            DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
+        # 变量名存在则返回对应的值
+        else:
+            return geted_var
 
     @staticmethod
     def isDyqExecuteObj(obj=None):
