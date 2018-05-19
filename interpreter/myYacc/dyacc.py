@@ -41,35 +41,31 @@ def p_stmt_print(p):
     stmt : PRINT LPAREN expr_list RPAREN SPLIT
     '''
     p[0] = DyqExecute(action='print', params=p[3])
-def p_expression_list(p):
-    '''
-    expr_list : expression
-              | expr_list COMMA expression
-    '''
-    if len(p) <= 3:
-        p[0] = [p[1]]
-    else:
-        p[0] = p[1] + [p[3]]
 
 
 """两条语法for循环的语句"""
-def p_range(p):
-    'range : RANGE LPAREN expr_list RPAREN'
-    p[0] = list(range(p[3][0], p[3][1]))
 def p_stmt_for(p):
     'stmt : FOR VAR IN range COLON stmt'
     p[0] = DyqExecute(action='loop', params=[p[2], p[4], p[6]])
+def p_range(p):
+    'range : RANGE LPAREN expr_list RPAREN'
+    p[0] = list(range(p[3][0], p[3][1]))
 
 
 """if语句"""
 def p_stmt_if_block(p):
     '''
-    stmt : IF condition_list START_BLOCK SPLIT block END_BLOCK SPLIT
+    stmt : IF condition_list block_format
     '''
-    p[0] = DyqExecute(action='condition', params=[p[2], p[5]])
+    p[0] = DyqExecute(action='condition', params=[p[2], p[3]])
 
 
-"""语句块"""
+"""语句块, 分别为控制block的样式, block真正代表的语句块"""
+def p_block_format(p):
+    '''
+    block_format : START_BLOCK SPLIT block END_BLOCK SPLIT
+    '''
+    p[0] = p[3]
 def p_block(p):
     '''
     block : stmt
@@ -110,6 +106,17 @@ def p_ifassign(p):
 --------------------
 下面开始是表达式
 """
+# 用逗号分隔的多表达式
+def p_expression_list(p):
+    '''
+    expr_list : expression
+              | expr_list COMMA expression
+    '''
+    if len(p) <= 3:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[3]]
+
 
 # 逻辑控制语句(少一个优先级)
 def p_condition_list(p):
