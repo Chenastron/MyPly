@@ -3,6 +3,6 @@ a = () {
 }
 a()
 b = (a, b) {
-    print('it is b')
+    print('it is b', a, b)
 }
-b()
+b('aaa'+'bbb', 222+333)

@@ -38,22 +38,43 @@ class DyqExecute:
         return result
 
     def _assign_func(self):
-        # 将函数名和之后要执行的代码块存储到环境中
+        # 2个参数就是无函数参数的, 3个参数就是有函数参数的
         if len(self.params) == 2:
             var_name, block_stmt_list = self.params
             self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field)
+        # 如果是有函数参数就要进行特殊处理
         else:
             var_name, func_params, block_stmt_list = self.params
             self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field, True, func_params)
 
     def _exe_func(self):
-        var = self.params[0]
-        # 获取要执行的变量对象(存放一些信息, 值在value中)
-        var_dict = self._get(var, True)
-        # 执行列表
-        exe_list = var_dict['value']
-        # 执行
-        self._resolve_block(exe_list)
+        # 1个参数就是无函数参数的, 2个参数就是有函数参数的
+        if len(self.params) == 1:
+            var = self.params[0]
+            # 获取要执行的变量对象(存放一些信息, 值在value中)
+            var_dict = self._get(var, True)
+            # 执行列表
+            exe_list = var_dict['value']
+
+            # 执行
+            self._resolve_block(exe_list)
+        else:
+            # 变量, 函数实参数值
+            var, func_params = self.params
+            # 将实参执行, 可能有一些简单的逻辑运算
+            func_params = [DyqExecute.resolve(param) for param in func_params]
+
+            # 获取要执行的变量对象(存放一些信息, 值在value中)
+            var_dict = self._get(var, True)
+            # 获取执行列表, 函数定义参数值
+            # TODO 函数的参数检验
+            exe_list, func_def_params = var_dict['value'], var_dict['params_name']
+
+            # 要加入block的环境变量(也就是函数的参数)
+            env_dict = {k: v for k, v in zip(func_def_params, func_params)}
+            # 执行
+            self._resolve_block(exe_list, unsaved_var=env_dict)
+
 
     def _print(self):
         DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))

@@ -63,12 +63,17 @@ def p_func_params_list(p):
     else:
         p[0] = p[1] + [p[3]]
 
-def p_stmt_func_exe(p):
+def p_stmt_func_exe_non_params(p):
     '''
     stmt : VAR LPAREN RPAREN SPLIT
     '''
     p[0] = DyqExecute(action='exe_func', params=[p[1]])
 
+def p_stmt_func_exe_params(p):
+    '''
+    stmt : VAR LPAREN expr_list RPAREN SPLIT
+    '''
+    p[0] = DyqExecute(action='exe_func', params=[p[1], p[3]])
 
 """print语句"""
 def p_stmt_print(p):
