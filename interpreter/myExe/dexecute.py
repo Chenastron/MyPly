@@ -3,6 +3,7 @@ class DyqExecute:
     has_error = False
     errors = []
     var_context = {}
+    cur_field = 'global'
 
     def __init__(self, action=None, params=None):
         self.action = action
@@ -34,8 +35,7 @@ class DyqExecute:
         condition_is_true = DyqExecute.resolve(self.params[0])
         # 如果是true, 则执行所有实例
         if condition_is_true:
-            for single_exe in self.params[1]:
-                DyqExecute.resolve(single_exe)
+            self._resolve_block(self.params[1])
 
     def _loop(self):
         """
@@ -45,11 +45,8 @@ class DyqExecute:
         for_var_name, for_array, exe_list = self.params
         # 遍历整个数组
         for num in for_array:
-            # 将当前数组的值存入环境变量
-            DyqExecute.var_context[for_var_name] = num
-            # 执行所有实例
-            for single_exe in exe_list:
-                DyqExecute.resolve(single_exe)
+            # 将num存入对应的环境变量, 执行所有的实例
+            self._resolve_block(exe_list, {for_var_name: num})
 
     def _logop(self):
         params = list(self.params)
@@ -101,8 +98,7 @@ class DyqExecute:
         # 获取变量值
         var_value = DyqExecute.resolve(if_expr) if condition_is_true else DyqExecute.resolve(else_expr)
         # 存入变量
-        DyqExecute.var_context[var_name] = var_value
-
+        self._resolve_save_var(var_name, var_value, DyqExecute.cur_field)
 
     def _assign(self):
         """
@@ -113,7 +109,7 @@ class DyqExecute:
         # 获取变量值
         var_value = DyqExecute.resolve(exe_instance)
         # 存入环境
-        DyqExecute.var_context[var_name] = var_value
+        self._resolve_save_var(var_name, var_value, DyqExecute.cur_field)
 
     def _get(self):
         """
@@ -123,7 +119,8 @@ class DyqExecute:
         4. 失败则报错
         """
         var_name = self.params[0]
-        geted_var = DyqExecute.var_context.get(var_name)
+        # 在当前环境下去获取值
+        geted_var = DyqExecute.var_context[DyqExecute.cur_field].get(var_name)
 
         # 变量名不存在(None)则停止运行
         if geted_var is None:
@@ -132,6 +129,22 @@ class DyqExecute:
         # 变量名存在则返回对应的值
         else:
             return geted_var
+
+    def _resolve_block(self, exe_list, unsaved_var=None):
+        # 如果有未存入环境的变量
+        if unsaved_var:
+            for var_name, var_value in unsaved_var.items():
+                self._resolve_save_var(var_name, var_value, DyqExecute.cur_field)
+
+        # 执行所有实例
+        for single_exe in exe_list:
+            DyqExecute.resolve(single_exe)
+
+    def _resolve_save_var(self, var_name, var_value, field_name='global'):
+        """根据作用域存储变量"""
+        field = DyqExecute.var_context.setdefault(field_name, {})
+        field[var_name] = var_value
+
 
     @staticmethod
     def isDyqExecuteObj(obj=None):

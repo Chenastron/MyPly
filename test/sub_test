@@ -1,6 +1,11 @@
-for i in range(1, 13) {
+j = 'global-j'
+print('there is global: ', j)
+for i in range(1, 5) {
     a = i + 10
+    j = 'cur-j'
     if a % 2 == 0 {
-        print(a)
+        print('a : ', a)
+        print('j : ', j)
     }
 }
+print('there is global: ', j)
