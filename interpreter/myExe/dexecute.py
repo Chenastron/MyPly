@@ -44,7 +44,7 @@ class DyqExecute:
         # 2个参数就是无函数参数的, 3个参数就是有函数参数的
         if len(self.params) == 2:
             var_name, block_stmt_list = self.params
-            self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field)
+            self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field, is_func=True)
         # 如果是有函数参数就要进行特殊处理
         else:
             var_name, func_params, block_stmt_list = self.params
@@ -53,28 +53,28 @@ class DyqExecute:
     def _exe_func(self):
         """
         1. params只有一个就是无函数参数的, params有两个参数就是有函数参数的
+        2. 两种情况的第一个参数都是变量名
         """
-        if len(self.params) == 1:
-            var = self.params[0]
-            var_dict = self._get(var, is_func=True)
+        var = self.params[0]
+        var_dict = self._get(var, is_func=True)
+        if var_dict['type'] != 'func':
+            raise MyVarException(f'{var} is not a function object')
+        exe_list = var_dict['value']
 
+        if len(self.params) == 1:
             # 获取执行列表, 并执行
-            exe_list = var_dict['value']
             self._resolve_block(exe_list)
 
         else: # len(self.params) == 2
-            # 变量, 函数实参数值
-            var, func_params = self.params
-            # 将实参执行, 可能有一些简单的逻辑运算
+            # 获取函数实参数值并执行, 可能有一些简单的逻辑运算
+            func_params = self.params[1]
             func_params = [DyqExecute.resolve(param) for param in func_params]
 
-            # 获取要执行的变量对象(存放一些信息, 值在value中)
-            var_dict = self._get(var, is_func=True)
-            # 获取执行列表, 函数定义参数值
+            # 获取函数定义时的参数名(形参)
             # TODO 函数的参数检验
-            exe_list, func_def_params = var_dict['value'], var_dict['params_name']
+            func_def_params = var_dict['params_name']
 
-            # 要加入block的环境变量(也就是函数的参数)
+            # 形参与实参组合成函数的环境变量
             env_dict = {k: v for k, v in zip(func_def_params, func_params)}
             # 执行
             self._resolve_block(exe_list, unsaved_var=env_dict)
@@ -213,8 +213,6 @@ class DyqExecute:
         # 如果所有父作用域都没有
         else:
             if raise_error:
-                # DyqExecute.has_error = True
-                DyqExecute.errors.append(f'[VAR_ERROR]: {var_name} is not exist')
                 raise MyVarException(f'[VAR_ERROR]: {var_name} is not exist')
             else:
                 return None
@@ -248,7 +246,11 @@ class DyqExecute:
 
         # 如果是函数则将参数名存入变量
         if is_func:
-            field['var'][var_name]['params_name'] = params_name
+            if params_name is not None:
+                field['var'][var_name]['params_name'] = params_name
+            field['var'][var_name]['type'] = 'func'
+        else:
+            field['var'][var_name]['type'] = 'var'
 
     @classmethod
     def _add_change_field(cls):

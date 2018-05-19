@@ -45,6 +45,8 @@ class OutputRes:
             try:
                 DyqExecute.resolve(x)
             except MyVarException as e:
+                # 报错后将错误信息存入, 取消之后的执行
+                DyqExecute.errors.append(str(e))
                 break
 
         # 将所有错误信息与结果信息相加
