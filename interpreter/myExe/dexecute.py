@@ -39,13 +39,19 @@ class DyqExecute:
 
     def _assign_func(self):
         # 将函数名和之后要执行的代码块存储到环境中
-        var_name, block_stmt_list = self.params
-        self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field)
+        if len(self.params) == 2:
+            var_name, block_stmt_list = self.params
+            self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field)
+        else:
+            var_name, func_params, block_stmt_list = self.params
+            self._resolve_save_var(var_name, block_stmt_list, DyqExecute.cur_field, True, func_params)
 
     def _exe_func(self):
         var = self.params[0]
-        # 获取要执行的实例列表
-        exe_list = self._get(var)
+        # 获取要执行的变量对象(存放一些信息, 值在value中)
+        var_dict = self._get(var, True)
+        # 执行列表
+        exe_list = var_dict['value']
         # 执行
         self._resolve_block(exe_list)
 
@@ -135,7 +141,7 @@ class DyqExecute:
         # 存入环境
         self._resolve_save_var(var_name, var_value, DyqExecute.cur_field)
 
-    def _get(self, var=None):
+    def _get(self, var=None, is_func=False):
         """
         1. params: [0(变量名)]
         2. 从var_context获取值
@@ -151,6 +157,9 @@ class DyqExecute:
         geted_var = DyqExecute.var_context[search_filed_name]['var'].get(var_name)
         # 如果找到了则返回值
         if geted_var is not None:
+            # 如果是函数则返回整个var-dict
+            if is_func:
+                return geted_var
             return geted_var['value']
 
         # 如果没找到则改变作用域
@@ -161,6 +170,7 @@ class DyqExecute:
             # 从相应环境下获得值,
             geted_var = DyqExecute.var_context[search_filed_name]['var'].get(var_name)
             if geted_var is not None:
+                # 如果是函数则返回整个var-dict
                 return geted_var['value']
             search_filed_name = DyqExecute.var_context[search_filed_name]['parent_field_name']
         # 如果所有父作用域都没有则报错

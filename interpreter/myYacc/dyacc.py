@@ -35,7 +35,7 @@ def p_stmt_expr(p):
     p[0] = p[1]
 
 """函数语句"""
-def p_stmt_func_define(p):
+def p_stmt_func_define_non_params(p):
     '''
     stmt : VAR ASSIGN LPAREN RPAREN block_format
     '''
@@ -43,6 +43,26 @@ def p_stmt_func_define(p):
     p[0] = DyqExecute(action='assign_func', params=[
         var_name, block_stmt_list
     ])
+
+def p_stmt_func_define_params(p):
+    '''
+    stmt : VAR ASSIGN LPAREN func_params RPAREN block_format
+    '''
+    var_name, func_params, block_stmt_list = p[1], p[4], p[6]
+    p[0] = DyqExecute(action='assign_func', params=[
+        var_name, func_params, block_stmt_list
+    ])
+
+def p_func_params_list(p):
+    '''
+    func_params : VAR
+                | func_params COMMA VAR
+    '''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[3]]
+
 def p_stmt_func_exe(p):
     '''
     stmt : VAR LPAREN RPAREN SPLIT
