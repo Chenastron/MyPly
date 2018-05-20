@@ -40,6 +40,8 @@ class OutputRes:
         """计算最终执行的结果"""
         # 重置语法分析结果
         dyacc.exelist = []
+        DyqExecute.res_string = []
+        DyqExecute.errors = []
         for x in self.yaccor.parse(self.data, lexer=self.lexor):
             # 如果执行没有报错则再继续执行
             try:

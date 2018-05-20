@@ -9,6 +9,12 @@ __date__ = "2018/5/10 18:06"
  - 比如token-NUMBER就对应t_NUMBER
  - 目前只支持 NUMBER, SPLIT
 """
+
+def t_FLOAT(t):
+    r'(0|[1-9]\d*)\.([1-9]\d*|0\d+)'
+    t.value = float(t.value)
+    return t
+
 # 数字的规则(只支持int类型)
 def t_NUMBER(t):
     r'(0|[1-9]\d*)'
@@ -23,4 +29,4 @@ def t_SPLIT(t):
     return t
 
 
-baseRulesObj = t_NUMBER, t_SPLIT
+baseRulesObj = t_FLOAT, t_NUMBER, t_SPLIT
