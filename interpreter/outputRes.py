@@ -7,7 +7,7 @@ from ply import lex, yacc
 
 from interpreter.myLex import dlexer
 from interpreter.myYacc import dyacc
-from interpreter.myExe.dexecute import DyqExecute
+from interpreter.myExe.dexecute import DyqExecute, MyVarException
 
 
 class OutputRes:
@@ -32,18 +32,31 @@ class OutputRes:
 
     def _evaluate_yacc(self):
         """计算语法分析器的结果"""
+        # 重置语法分析结果
+        dyacc.exelist = []
         return '\n'.join([str(single_yacc) for single_yacc in self.yaccor.parse(self.data, lexer=self.lexor)])
 
     def _evaluate_exe(self):
         """计算最终执行的结果"""
+        # 重置语法分析结果
+        dyacc.exelist = []
         for x in self.yaccor.parse(self.data, lexer=self.lexor):
-            DyqExecute.resolve(x)
-        return '\n'.join(DyqExecute.res_string)
+            # 如果执行没有报错则再继续执行
+            try:
+                DyqExecute.resolve(x)
+            except MyVarException as e:
+                # 报错后将错误信息存入, 取消之后的执行
+                DyqExecute.errors.append('[EXE_ERROR]' + str(e))
+                break
+
+        # 将所有错误信息与结果信息相加
+        res = DyqExecute.res_string + DyqExecute.errors
+        # 将结果变成字符串返回
+        return '\n'.join(res)
 
     def get_res(self):
         """返回结果"""
         # 将之前保存语法分析器的数据重置为空
-        dyacc.exelist = []
         return {
             'lex': self._evaluate_lex(),
             'yacc': self._evaluate_yacc(),
