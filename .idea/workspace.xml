@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d40fdb43-78e2-420d-9e48-dd068d87b07e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myLex/dlexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myLex/dlexer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myLex/rules/baseRule.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myLex/rules/baseRule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myLex/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myLex/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/parser.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/myYacc/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myYacc/parsetab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/note/Untitled.md" beforeDir="false" afterPath="$PROJECT_DIR$/note/Untitled.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sub_test" beforeDir="false" afterPath="$PROJECT_DIR$/test/sub_test" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/myExe/dexecute.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/myExe/dexecute.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/note/Untitled.md" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,61 +25,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/run.py">
+      <file leaf-file-name="dexecute.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dyacc.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="251" column="11" lean-forward="true" selection-start-line="251" selection-start-column="11" selection-end-line="251" selection-end-column="11" />
+            <state relative-caret-position="336">
+              <caret line="144" column="62" lean-forward="true" selection-start-line="144" selection-start-column="62" selection-end-line="144" selection-end-column="62" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#486#535#0" />
+                <element signature="e#568#1100#0" />
+                <element signature="e#1110#1203#0" />
+                <element signature="e#1235#1646#0" />
+                <element signature="e#1679#2407#0" />
+                <element signature="e#1138#1559#0" />
+                <element signature="e#1594#2613#0" />
+                <element signature="e#2775#3135#0" />
+                <element signature="e#4702#5153#0" />
+                <element signature="e#5186#5987#0" />
+                <element signature="e#6060#7372#0" />
+                <element signature="e#7440#8053#0" />
+                <element signature="e#8171#8645#0" />
+                <element signature="e#8704#9053#0" />
+                <element signature="e#9107#9222#0" />
+                <element signature="e#9285#9365#0" />
+                <element signature="e#9413#9498#0" />
+                <element signature="e#9649#9723#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="baseRule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/baseRule.py">
+      <file leaf-file-name="outputRes.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-19">
-              <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sub_test" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/sub_test">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interpreter/myLex/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dlexer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interpreter/myLex/dlexer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+            <state relative-caret-position="-375">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
               <folding>
-                <element signature="e#78#111#0" expanded="true" />
+                <element signature="e#77#102#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,6 +85,8 @@
       <find>stmt_print</find>
       <find>print</find>
       <find>_resolve_save_var</find>
+      <find>res_string</find>
+      <find>has_error</find>
     </findStrings>
     <replaceStrings>
       <replace>VAR</replace>
@@ -125,7 +102,6 @@
       <list>
         <option value="$PROJECT_DIR$/interpreter/run.py" />
         <option value="$PROJECT_DIR$/interpreter/dlexer.py" />
-        <option value="$PROJECT_DIR$/interpreter/myLex/rules/stringRule.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/idRule.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/operatorRule.py" />
         <option value="$PROJECT_DIR$/interpreter/dparser.py" />
@@ -140,13 +116,14 @@
         <option value="$PROJECT_DIR$/test/test_code.py" />
         <option value="$PROJECT_DIR$/interpreter/outputRes.py" />
         <option value="$PROJECT_DIR$/interpreter/myYacc/parser.out" />
-        <option value="$PROJECT_DIR$/interpreter/myExe/dexecute.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/settings.py" />
-        <option value="$PROJECT_DIR$/interpreter/myLex/dlexer.py" />
         <option value="$PROJECT_DIR$/interpreter/myLex/rules/baseRule.py" />
         <option value="$PROJECT_DIR$/interpreter/myYacc/dyacc.py" />
         <option value="$PROJECT_DIR$/test/run.py" />
         <option value="$PROJECT_DIR$/test/sub_test" />
+        <option value="$PROJECT_DIR$/interpreter/myLex/rules/stringRule.py" />
+        <option value="$PROJECT_DIR$/interpreter/myLex/dlexer.py" />
+        <option value="$PROJECT_DIR$/interpreter/myExe/dexecute.py" />
       </list>
     </option>
   </component>
@@ -165,10 +142,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="860" />
-    <option name="y" value="6" />
+    <option name="x" value="701" />
+    <option name="y" value="20" />
     <option name="width" value="1353" />
-    <option name="height" value="1063" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -192,20 +169,7 @@
               <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPly" type="462c0819:PsiDirectoryNode" />
               <item name="interpreter" type="462c0819:PsiDirectoryNode" />
-              <item name="myLex" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyPly" type="462c0819:PsiDirectoryNode" />
-              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
-              <item name="myLex" type="462c0819:PsiDirectoryNode" />
-              <item name="rules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyPly" type="462c0819:PsiDirectoryNode" />
-              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
-              <item name="myYacc" type="462c0819:PsiDirectoryNode" />
+              <item name="myExe" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MyPly" type="b2602c69:ProjectViewProjectNode" />
@@ -384,7 +348,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="860" y="6" width="1353" height="1063" extended-state="0" />
+    <frame x="701" y="20" width="1353" height="1049" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" weight="0.32844242" />
@@ -392,11 +356,12 @@
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.32575756" />
+      <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.33076924" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.25282168" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1438515" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1438515" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="2" />
+      <window_info anchor="bottom" id="Find" order="7" />
       <window_info anchor="right" id="SciView" order="0" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -407,7 +372,6 @@
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="7" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +396,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -637,27 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/idRule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" selection-start-line="10" selection-end-line="21" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/stringRule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/operatorRule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/run.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-512">
@@ -717,16 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#77#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../environment/Ply/Lib/site-packages/ply/yacc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -744,26 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2059">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myLex/dlexer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding>
-            <element signature="e#78#111#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myYacc/parsetab.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/interpreter/myYacc/parser.out">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -771,41 +684,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myLex/settings.py">
+    <entry file="file://$PROJECT_DIR$/test/sub_test">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/baseRule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-19">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+        <state relative-caret-position="25">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interpreter/myYacc/dyacc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="251" column="11" lean-forward="true" selection-start-line="251" selection-start-column="11" selection-end-line="251" selection-end-column="11" />
+        <state relative-caret-position="1348">
+          <caret line="251" column="11" selection-start-line="251" selection-start-column="11" selection-end-line="251" selection-end-column="11" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/run.py">
+    <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/stringRule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="125">
+          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/sub_test">
+    <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/baseRule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="547">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/idRule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/myLex/rules/operatorRule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/myLex/dlexer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="33" column="3" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
+          <folding>
+            <element signature="e#78#111#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/myLex/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/myYacc/parsetab.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/outputRes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-375">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#77#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpreter/myExe/dexecute.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="144" column="62" lean-forward="true" selection-start-line="144" selection-start-column="62" selection-end-line="144" selection-end-column="62" />
+          <folding>
+            <element signature="e#486#535#0" />
+            <element signature="e#568#1100#0" />
+            <element signature="e#1110#1203#0" />
+            <element signature="e#1235#1646#0" />
+            <element signature="e#1679#2407#0" />
+            <element signature="e#1138#1559#0" />
+            <element signature="e#1594#2613#0" />
+            <element signature="e#2775#3135#0" />
+            <element signature="e#4702#5153#0" />
+            <element signature="e#5186#5987#0" />
+            <element signature="e#6060#7372#0" />
+            <element signature="e#7440#8053#0" />
+            <element signature="e#8171#8645#0" />
+            <element signature="e#8704#9053#0" />
+            <element signature="e#9107#9222#0" />
+            <element signature="e#9285#9365#0" />
+            <element signature="e#9413#9498#0" />
+            <element signature="e#9649#9723#0" />
+          </folding>
         </state>
       </provider>
     </entry>

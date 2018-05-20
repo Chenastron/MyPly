@@ -153,6 +153,7 @@ Rule 44    expression -> REM NUMBER
 Rule 46    expression -> TRUE
 Rule 47    expression -> FALSE
 Rule 48    expression -> NUMBER
+		   expression -> FLOAT
 Rule 49    expression -> STRING
 Rule 50    expression -> VAR
 ```

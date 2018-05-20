@@ -3,7 +3,6 @@ class MyVarException(Exception):
 
 class DyqExecute:
     res_string = []
-    has_error = False
     errors = []
     """
     1. 第一层, var_context, key: 作用域名 value: 作用域相关的属性
@@ -38,6 +37,47 @@ class DyqExecute:
         }
         # 返回本次执行的结果
         result = action_dict.get(self.action, self._operation_error)()
+        return result
+
+    def _print(self):
+        DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
+
+    def _logop(self):
+        params = list(self.params)
+        result = DyqExecute.resolve(params.pop())
+        while len(params) >= 2:
+            prev = result
+            op = DyqExecute.resolve(params.pop()).upper()
+            comp = DyqExecute.resolve(params.pop())
+            result = {
+                'AND': lambda a, b: (a and b),
+                'OR': lambda a, b: (a or b),
+            }[op](prev, comp)
+        return result
+
+    def _binop(self):
+
+        """
+        1. 二元运算
+        2. params: [0(左执行实例), 1(操作符), 2(右执行实例)]
+        """
+        a = DyqExecute.resolve(self.params[0])
+        b = DyqExecute.resolve(self.params[2])
+        op = self.params[1]
+        result = {
+            '+': lambda a, b: a + b,
+            '-': lambda a, b: a - b,
+            '*': lambda a, b: a * b,
+            '/': lambda a, b: a / b,
+            '%': lambda a, b: a % b,
+            '**': lambda a, b: a ** b,
+            '>': lambda a, b: (a > b),
+            '>=': lambda a, b: (a >= b),
+            '<': lambda a, b: (a < b),
+            '<=': lambda a, b: (a <= b),
+            '==': lambda a, b: (a == b),
+            '!=': lambda a, b: (a != b),
+        }[op](a, b)
         return result
 
     def _assign_func(self):
@@ -81,10 +121,6 @@ class DyqExecute:
             # 执行
             self._resolve_block(exe_list, unsaved_var=env_dict)
 
-
-    def _print(self):
-        DyqExecute.res_string.append(' '.join(str(DyqExecute.resolve(x)) for x in list(self.params)))
-
     def _condition(self):
         """
         1. params: [0(条件语句-交由logop执行), 1(一组待执行的实例)]
@@ -108,49 +144,12 @@ class DyqExecute:
             # 将num存入对应的环境变量, 执行所有的实例
             self._resolve_block(exe_list, {for_var_name: num})
 
-    def _logop(self):
-        params = list(self.params)
-        result = DyqExecute.resolve(params.pop())
-        while len(params) >= 2:
-            prev = result
-            op = DyqExecute.resolve(params.pop()).upper()
-            comp = DyqExecute.resolve(params.pop())
-            result = {
-                'AND': lambda a, b: (a and b),
-                'OR': lambda a, b: (a or b),
-            }[op](prev, comp)
-        return result
-
-    def _binop(self):
-
-        """
-        1. 二元运算
-        2. params: [0(左执行实例), 1(操作符), 2(右执行实例)]
-        """
-        a = DyqExecute.resolve(self.params[0])
-        b = DyqExecute.resolve(self.params[2])
-        op = self.params[1]
-        result = {
-            '+': lambda a, b: a + b,
-            '-': lambda a, b: a - b,
-            '*': lambda a, b: a * b,
-            '/': lambda a, b: a / b,
-            '%': lambda a, b: a % b,
-            '**': lambda a, b: a ** b,
-            '>': lambda a, b: (a > b),
-            '>=': lambda a, b: (a >= b),
-            '<': lambda a, b: (a < b),
-            '<=': lambda a, b: (a <= b),
-            '==': lambda a, b: (a == b),
-            '!=': lambda a, b: (a != b),
-        }[op](a, b)
-        return result
-
     def _triple_assign(self):
         """
         1. 三元赋值
         2. params: [var_name, condtion_expr, if_expr, else_expr]
         """
+        # TODO 不能赋值已有的变量
         var_name, condtion_expr, if_expr, else_expr = self.params
 
         # 判断执行条件
