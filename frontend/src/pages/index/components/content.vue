@@ -1,7 +1,7 @@
 <template>
   <div id="content-wrapper">
     <div class="input-title">
-      <el-select v-model="selectedValue" placeholder="请选择">
+      <el-select v-model="selectedValue" class="input-select" placeholder="请选择">
         <el-option
           v-for="item in inputOptions"
           :key="item.value"
@@ -85,6 +85,16 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+#content-wrapper >>> .el-input__inner
+  background-color rgba(44, 44, 44, 0.83)
+  color rgba(255, 255, 255, 0.78)
+#content-wrapper >>> .el-button--primary
+  background-color rgba(44, 44, 44, 0.83)
+  color rgba(255, 255, 255, 0.78)
+#content-wrapper >>> .el-textarea__inner
+  background-color rgba(44, 44, 44, 0.83)
+  color rgba(255, 255, 255, 0.78)
+  font-size 20px
 #content-wrapper
   padding 0 10vw
   display flex
@@ -95,6 +105,8 @@ export default {
     display flex
     justify-content space-between
     margin-bottom 2vh
+    .input-select
+      background-color rgba(44, 44, 44, 0.83)
   .input-wrapper
     display flex
     justify-content space-between

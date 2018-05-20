@@ -1,6 +1,6 @@
 <template>
   <div id="index-wrapper">
-    <div id="cover"></div>
+    <!--<div id="cover"></div>-->
     <Header/>
     <Content/>
     <Footer/>

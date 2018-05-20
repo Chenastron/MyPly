@@ -287,7 +287,8 @@ class DyqExecute:
         return x.execute() if DyqExecute.isDyqExecuteObj(x) else x
 
     def __str__(self):
-        return '[DEXE] %s %s' % (self.action, ';'.join(str(x) for x in self.params))
+        params_format = ' | '.join('stmt-block' if isinstance(x, list) and isinstance(x[0], DyqExecute) else str(x) for x in self.params)
+        return '[DEXE] action: (%s) params: (%s)' % (self.action, params_format)
 
     def _operation_error(self):
         """判断是否支持这个操作"""
