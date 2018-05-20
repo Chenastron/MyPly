@@ -2,7 +2,6 @@ from interpreter.myLex.dlexer import tokens
 from interpreter.myExe.dexecute import DyqExecute
 
 from .settings import settingObj
-from .rules.expressionEndRule import expressionEndRulesObj
 
 exelist = []
 
@@ -219,6 +218,10 @@ def p_expression_two_operator(p):
     '''
     p[0] = DyqExecute(action='binop', params=p[1:])
 
+# 负数
+def p_negative_number(p):
+    'expression : REM NUMBER'
+    p[0] = -p[2]
 
 # 增加括号(表达式)功能
 def p_expression_parens(p):
@@ -226,8 +229,30 @@ def p_expression_parens(p):
     p[0] = p[2]
 
 
-# 表达式: 终结符的语法
-p_expression_true, p_expression_false, p_expression_num, p_expression_string, p_expression_var = expressionEndRulesObj
+# true
+def p_expression_true(p):
+    'expression : TRUE'
+    p[0] = True
+
+# False
+def p_expression_false(p):
+    'expression : FALSE'
+    p[0] = False
+
+# 标识符NUMBER
+def p_expression_num(p):
+    'expression : NUMBER'
+    p[0] = int(p[1])
+
+# 标识符STRING
+def p_expression_string(p):
+    'expression : STRING'
+    p[0] = p[1]
+
+# 变量
+def p_expression_var(p):
+    'expression : VAR'
+    p[0] = DyqExecute(action='get', params=[p[1]])
 
 
 """

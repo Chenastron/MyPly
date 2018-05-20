@@ -19,7 +19,6 @@ output_res = OutputRes(data)
 # res = output_res.get_res()
 # res = output_res._evaluate_lex()
 # res = output_res._evaluate_yacc()
-
 res = output_res._evaluate_exe()
 
 # 输出相应的值

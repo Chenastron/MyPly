@@ -10,13 +10,10 @@
 myYacc
   - dyacc.py
   - settings.py
-  - rules/
-    - xx.py
 ```
 - dyacc.py是主出口
 - settings是配置文件（目前配置了优先级）
-- rules文件夹中存放了一些语法规则
-- 除了dyacc.py, 其他py文件都会向外提供一个tuple供dyacc.py引入
+
 
 
 ### 2. 语法介绍
