@@ -67,3 +67,93 @@ range -> RANGE LPAREN expr_list RPAREN
 ```
 1.  生成一个执行类的实例，action是loop, 参数为for循环中的变量, range的list ,语句块
 2. range是通过start, stop step生成一个列表, 不包含stop(可以由大变小, 也可以由小变大)
+
+- if-else语句
+
+```
+stmt -> IF condition_list block_format
+     -> IF condition_list block_format ELSE block_format
+```
+1.  生成一个执行类的实例，action是condition, 如果没有else则传入两个参数为别为条件语句, 代码块, 如果有else则在多传入一个代码块 
+
+- block语句
+
+```
+block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT
+block -> stmt
+      -> block stmt
+```
+1. block_format规定了{xxx}代码块的格式
+2. block语法则由多个语法形成, 最终生成一个新的多个语句的list
+
+- 赋值语法
+
+```
+stmt -> VAR ASSIGN expression SPLIT
+     -> VAR ASSIGN condition_list SPLIT
+     -> if_assign IF condition_list ELSE expression SPLIT
+if_assign -> VAR ASSIGN expression
+```
+1. 将表达式的值赋值给变量
+2. 将逻辑表达式的值赋值给变量
+3. 三元表达式赋值
+4. 前两种会生成一个执行类的实例，action是assign, 参数是变量名和表达式的实例
+5. 三元表达式会生成一个执行类的实例，action是triple_assign, 参数是变量名和逻辑表达式的实例, 逻辑表达式为true时执行的表达式实例, 和false时执行的表达式实例
+
+- 多个表达式连接
+
+```
+Rule 26    expr_list -> expression
+Rule 27    expr_list -> expr_list COMMA expression
+```
+1. 由逗号进行连接的表达式
+2. 生成一个表达式的列表
+
+- 逻辑语句
+
+```
+Rule 28    condition_list -> expression
+Rule 29    condition_list -> condition_list AND expression
+Rule 30    condition_list -> condition_list OR expression
+```
+1. 由and或or组成的表达式构成逻辑表达式
+2. 生成一个类似栈的容器, 存放着每个表达式和逻辑操作符
+3. 生成一个执行类的实例，action是logop, 参数是2中提到的栈
+
+- 括号
+
+```
+Rule 31    condition_list -> LPAREN condition_list RPAREN
+Rule 45    expression -> LPAREN expression RPAREN
+```
+1. 两个表达式的括号用法
+
+
+- 表达式间的二元操作
+
+```
+Rule 32    expression -> expression ADD expression
+Rule 33    expression -> expression REM expression
+Rule 34    expression -> expression MUL expression
+Rule 35    expression -> expression DIV expression
+Rule 36    expression -> expression MOD expression
+Rule 37    expression -> expression GT expression
+Rule 38    expression -> expression LT expression
+Rule 39    expression -> expression GE expression
+Rule 40    expression -> expression LE expression
+Rule 41    expression -> expression EQ expression
+Rule 42    expression -> expression NE expression
+Rule 43    expression -> expression POW expression
+```
+1. 生成一个执行类的实例，action是binop, 参数是两个表达式和中间的操作符
+
+- 表达式的终结符
+```
+Rule 44    expression -> REM NUMBER
+Rule 46    expression -> TRUE
+Rule 47    expression -> FALSE
+Rule 48    expression -> NUMBER
+Rule 49    expression -> STRING
+Rule 50    expression -> VAR
+```
+

@@ -114,7 +114,7 @@ def p_range(p):
     p[0] = list(range(p[3][0], p[3][1], p[3][2]))
 
 
-"""if语句"""
+"""if-else语句"""
 def p_stmt_if_block(p):
     '''
     stmt : IF condition_list block_format
@@ -132,6 +132,7 @@ def p_block_format(p):
     block_format : START_BLOCK SPLIT block END_BLOCK SPLIT
     '''
     p[0] = p[3]
+
 def p_block(p):
     '''
     block : stmt
