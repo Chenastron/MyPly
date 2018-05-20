@@ -112,7 +112,7 @@ def p_stmt_for(p):
     ])
 def p_range(p):
     'range : RANGE LPAREN expr_list RPAREN'
-    p[0] = list(range(p[3][0], p[3][1]))
+    p[0] = list(range(p[3][0], p[3][1], p[3][2]))
 
 
 """if语句"""
