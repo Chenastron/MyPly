@@ -12,8 +12,7 @@ myYacc
   - settings.py
 ```
 - dyacc.py是主出口
-- settings是配置文件（目前配置了优先级）
-
+- settings是配置文件（目前配置了优先级）， 会向外提供一个tuple供dyacc.py引入
 
 
 ### 2. 语法介绍
@@ -67,4 +66,4 @@ stmt -> FOR VAR IN range block_format
 range -> RANGE LPAREN expr_list RPAREN
 ```
 1.  生成一个执行类的实例，action是loop, 参数为for循环中的变量, range的list ,语句块
-2. range是通过start, stop step生成一个列表, 不包含stop
+2. range是通过start, stop step生成一个列表, 不包含stop(可以由大变小, 也可以由小变大)

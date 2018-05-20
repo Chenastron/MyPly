@@ -93,6 +93,9 @@ class DyqExecute:
         # 如果是true, 则执行所有实例
         if condition_is_true:
             self._resolve_block(self.params[1])
+        # 也就是结果是false, 并且有else的语句(有三个参数)
+        elif len(self.params) == 3:
+            self._resolve_block(self.params[2])
 
     def _loop(self):
         """

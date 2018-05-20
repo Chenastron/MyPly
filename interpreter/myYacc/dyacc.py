@@ -118,8 +118,12 @@ def p_range(p):
 def p_stmt_if_block(p):
     '''
     stmt : IF condition_list block_format
+         | IF condition_list block_format ELSE block_format
     '''
-    p[0] = DyqExecute(action='condition', params=[p[2], p[3]])
+    if len(p) == 4:
+        p[0] = DyqExecute(action='condition', params=[p[2], p[3]])
+    else:
+        p[0] = DyqExecute(action='condition', params=[p[2], p[3], p[5]])
 
 
 """语句块, 分别为控制block的样式, block真正代表的语句块"""
