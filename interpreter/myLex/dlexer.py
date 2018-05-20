@@ -21,7 +21,7 @@ tokens = list(identify) + list(reserved.values()) + \
 2. 为token配置规则 
 """
 # 配置基础型token的规则
-t_NUMBER, t_SPLIT = baseRulesObj
+t_FLOAT, t_NUMBER, t_SPLIT = baseRulesObj
 # 配置string的token规则
 t_STRING, t_string_content, t_string_end = stringRuleObj
 # 配置var和reserved的token规则

@@ -156,4 +156,5 @@ Rule 48    expression -> NUMBER
 Rule 49    expression -> STRING
 Rule 50    expression -> VAR
 ```
-
+1. 终结符
+2. 在VAR的情况下会生成一个执行类的实例，action是get, 参数是变量名

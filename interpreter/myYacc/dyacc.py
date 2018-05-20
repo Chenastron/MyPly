@@ -249,6 +249,11 @@ def p_expression_num(p):
     'expression : NUMBER'
     p[0] = int(p[1])
 
+# 标识符NUMBER
+def p_expression_float(p):
+    'expression : FLOAT'
+    p[0] = float(p[1])
+
 # 标识符STRING
 def p_expression_string(p):
     'expression : STRING'

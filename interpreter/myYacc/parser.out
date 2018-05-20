@@ -51,9 +51,10 @@ Rule 45    expression -> LPAREN expression RPAREN
 Rule 46    expression -> TRUE
 Rule 47    expression -> FALSE
 Rule 48    expression -> NUMBER
-Rule 49    expression -> STRING
-Rule 50    expression -> VAR
-Rule 51    empty -> <empty>
+Rule 49    expression -> FLOAT
+Rule 50    expression -> STRING
+Rule 51    expression -> VAR
+Rule 52    empty -> <empty>
 
 Terminals, with rules where they appear
 
@@ -66,6 +67,7 @@ ELSE                 : 18 24
 END_BLOCK            : 19
 EQ                   : 41
 FALSE                : 47
+FLOAT                : 49
 FOR                  : 15
 FUNC                 : 7 9
 GE                   : 39
@@ -87,9 +89,9 @@ REM                  : 33 44
 RPAREN               : 6 7 8 9 12 13 14 16 31 45
 SPLIT                : 4 5 12 13 14 19 19 22 23 24
 START_BLOCK          : 19
-STRING               : 49
+STRING               : 50
 TRUE                 : 46
-VAR                  : 6 7 8 9 10 11 12 13 15 22 23 25 50
+VAR                  : 6 7 8 9 10 11 12 13 15 22 23 25 51
 error                : 
 
 Nonterminals, with rules where they appear
@@ -115,21 +117,22 @@ state 0
     (1) entry -> . start
     (2) start -> . start stmt
     (3) start -> . empty
-    (51) empty -> .
+    (52) empty -> .
 
-    SPLIT           reduce using rule 51 (empty -> .)
-    VAR             reduce using rule 51 (empty -> .)
-    FUNC            reduce using rule 51 (empty -> .)
-    PRINT           reduce using rule 51 (empty -> .)
-    FOR             reduce using rule 51 (empty -> .)
-    IF              reduce using rule 51 (empty -> .)
-    REM             reduce using rule 51 (empty -> .)
-    LPAREN          reduce using rule 51 (empty -> .)
-    TRUE            reduce using rule 51 (empty -> .)
-    FALSE           reduce using rule 51 (empty -> .)
-    NUMBER          reduce using rule 51 (empty -> .)
-    STRING          reduce using rule 51 (empty -> .)
-    $end            reduce using rule 51 (empty -> .)
+    SPLIT           reduce using rule 52 (empty -> .)
+    VAR             reduce using rule 52 (empty -> .)
+    FUNC            reduce using rule 52 (empty -> .)
+    PRINT           reduce using rule 52 (empty -> .)
+    FOR             reduce using rule 52 (empty -> .)
+    IF              reduce using rule 52 (empty -> .)
+    REM             reduce using rule 52 (empty -> .)
+    LPAREN          reduce using rule 52 (empty -> .)
+    TRUE            reduce using rule 52 (empty -> .)
+    FALSE           reduce using rule 52 (empty -> .)
+    NUMBER          reduce using rule 52 (empty -> .)
+    FLOAT           reduce using rule 52 (empty -> .)
+    STRING          reduce using rule 52 (empty -> .)
+    $end            reduce using rule 52 (empty -> .)
 
     entry                          shift and go to state 1
     start                          shift and go to state 2
@@ -177,8 +180,9 @@ state 2
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
     (25) if_assign -> . VAR ASSIGN expression
 
     $end            reduce using rule 1 (entry -> start .)
@@ -193,7 +197,8 @@ state 2
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
 
     stmt                           shift and go to state 4
     expression                     shift and go to state 6
@@ -214,6 +219,7 @@ state 3
     TRUE            reduce using rule 3 (start -> empty .)
     FALSE           reduce using rule 3 (start -> empty .)
     NUMBER          reduce using rule 3 (start -> empty .)
+    FLOAT           reduce using rule 3 (start -> empty .)
     STRING          reduce using rule 3 (start -> empty .)
     $end            reduce using rule 3 (start -> empty .)
 
@@ -233,6 +239,7 @@ state 4
     TRUE            reduce using rule 2 (start -> start stmt .)
     FALSE           reduce using rule 2 (start -> start stmt .)
     NUMBER          reduce using rule 2 (start -> start stmt .)
+    FLOAT           reduce using rule 2 (start -> start stmt .)
     STRING          reduce using rule 2 (start -> start stmt .)
     $end            reduce using rule 2 (start -> start stmt .)
 
@@ -252,6 +259,7 @@ state 5
     TRUE            reduce using rule 4 (stmt -> SPLIT .)
     FALSE           reduce using rule 4 (stmt -> SPLIT .)
     NUMBER          reduce using rule 4 (stmt -> SPLIT .)
+    FLOAT           reduce using rule 4 (stmt -> SPLIT .)
     STRING          reduce using rule 4 (stmt -> SPLIT .)
     $end            reduce using rule 4 (stmt -> SPLIT .)
     END_BLOCK       reduce using rule 4 (stmt -> SPLIT .)
@@ -273,19 +281,19 @@ state 6
     (42) expression -> expression . NE expression
     (43) expression -> expression . POW expression
 
-    SPLIT           shift and go to state 19
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    SPLIT           shift and go to state 20
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
 
 state 7
@@ -296,24 +304,24 @@ state 7
     (13) stmt -> VAR . LPAREN expr_list RPAREN SPLIT
     (22) stmt -> VAR . ASSIGN expression SPLIT
     (23) stmt -> VAR . ASSIGN condition_list SPLIT
-    (50) expression -> VAR .
+    (51) expression -> VAR .
     (25) if_assign -> VAR . ASSIGN expression
 
-    ASSIGN          shift and go to state 32
-    LPAREN          shift and go to state 33
-    SPLIT           reduce using rule 50 (expression -> VAR .)
-    ADD             reduce using rule 50 (expression -> VAR .)
-    REM             reduce using rule 50 (expression -> VAR .)
-    MUL             reduce using rule 50 (expression -> VAR .)
-    DIV             reduce using rule 50 (expression -> VAR .)
-    MOD             reduce using rule 50 (expression -> VAR .)
-    GT              reduce using rule 50 (expression -> VAR .)
-    LT              reduce using rule 50 (expression -> VAR .)
-    GE              reduce using rule 50 (expression -> VAR .)
-    LE              reduce using rule 50 (expression -> VAR .)
-    EQ              reduce using rule 50 (expression -> VAR .)
-    NE              reduce using rule 50 (expression -> VAR .)
-    POW             reduce using rule 50 (expression -> VAR .)
+    ASSIGN          shift and go to state 33
+    LPAREN          shift and go to state 34
+    SPLIT           reduce using rule 51 (expression -> VAR .)
+    ADD             reduce using rule 51 (expression -> VAR .)
+    REM             reduce using rule 51 (expression -> VAR .)
+    MUL             reduce using rule 51 (expression -> VAR .)
+    DIV             reduce using rule 51 (expression -> VAR .)
+    MOD             reduce using rule 51 (expression -> VAR .)
+    GT              reduce using rule 51 (expression -> VAR .)
+    LT              reduce using rule 51 (expression -> VAR .)
+    GE              reduce using rule 51 (expression -> VAR .)
+    LE              reduce using rule 51 (expression -> VAR .)
+    EQ              reduce using rule 51 (expression -> VAR .)
+    NE              reduce using rule 51 (expression -> VAR .)
+    POW             reduce using rule 51 (expression -> VAR .)
 
 
 state 8
@@ -336,39 +344,41 @@ state 8
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 34
+    expression                     shift and go to state 35
 
 state 9
 
     (7) stmt -> FUNC . VAR LPAREN RPAREN block_format
     (9) stmt -> FUNC . VAR LPAREN func_params RPAREN block_format
 
-    VAR             shift and go to state 36
+    VAR             shift and go to state 37
 
 
 state 10
 
     (14) stmt -> PRINT . LPAREN expr_list RPAREN SPLIT
 
-    LPAREN          shift and go to state 37
+    LPAREN          shift and go to state 38
 
 
 state 11
 
     (15) stmt -> FOR . VAR IN range block_format
 
-    VAR             shift and go to state 38
+    VAR             shift and go to state 39
 
 
 state 12
@@ -396,32 +406,34 @@ state 12
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
-    LPAREN          shift and go to state 41
+    LPAREN          shift and go to state 42
     REM             shift and go to state 14
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    condition_list                 shift and go to state 39
-    expression                     shift and go to state 40
+    condition_list                 shift and go to state 40
+    expression                     shift and go to state 41
 
 state 13
 
     (24) stmt -> if_assign . IF condition_list ELSE expression SPLIT
 
-    IF              shift and go to state 42
+    IF              shift and go to state 43
 
 
 state 14
 
     (44) expression -> REM . NUMBER
 
-    NUMBER          shift and go to state 43
+    NUMBER          shift and go to state 44
 
 
 state 15
@@ -504,31 +516,57 @@ state 17
 
 state 18
 
-    (49) expression -> STRING .
+    (49) expression -> FLOAT .
 
-    SPLIT           reduce using rule 49 (expression -> STRING .)
-    ADD             reduce using rule 49 (expression -> STRING .)
-    REM             reduce using rule 49 (expression -> STRING .)
-    MUL             reduce using rule 49 (expression -> STRING .)
-    DIV             reduce using rule 49 (expression -> STRING .)
-    MOD             reduce using rule 49 (expression -> STRING .)
-    GT              reduce using rule 49 (expression -> STRING .)
-    LT              reduce using rule 49 (expression -> STRING .)
-    GE              reduce using rule 49 (expression -> STRING .)
-    LE              reduce using rule 49 (expression -> STRING .)
-    EQ              reduce using rule 49 (expression -> STRING .)
-    NE              reduce using rule 49 (expression -> STRING .)
-    POW             reduce using rule 49 (expression -> STRING .)
-    RPAREN          reduce using rule 49 (expression -> STRING .)
-    AND             reduce using rule 49 (expression -> STRING .)
-    OR              reduce using rule 49 (expression -> STRING .)
-    START_BLOCK     reduce using rule 49 (expression -> STRING .)
-    IF              reduce using rule 49 (expression -> STRING .)
-    COMMA           reduce using rule 49 (expression -> STRING .)
-    ELSE            reduce using rule 49 (expression -> STRING .)
+    SPLIT           reduce using rule 49 (expression -> FLOAT .)
+    ADD             reduce using rule 49 (expression -> FLOAT .)
+    REM             reduce using rule 49 (expression -> FLOAT .)
+    MUL             reduce using rule 49 (expression -> FLOAT .)
+    DIV             reduce using rule 49 (expression -> FLOAT .)
+    MOD             reduce using rule 49 (expression -> FLOAT .)
+    GT              reduce using rule 49 (expression -> FLOAT .)
+    LT              reduce using rule 49 (expression -> FLOAT .)
+    GE              reduce using rule 49 (expression -> FLOAT .)
+    LE              reduce using rule 49 (expression -> FLOAT .)
+    EQ              reduce using rule 49 (expression -> FLOAT .)
+    NE              reduce using rule 49 (expression -> FLOAT .)
+    POW             reduce using rule 49 (expression -> FLOAT .)
+    RPAREN          reduce using rule 49 (expression -> FLOAT .)
+    AND             reduce using rule 49 (expression -> FLOAT .)
+    OR              reduce using rule 49 (expression -> FLOAT .)
+    START_BLOCK     reduce using rule 49 (expression -> FLOAT .)
+    IF              reduce using rule 49 (expression -> FLOAT .)
+    COMMA           reduce using rule 49 (expression -> FLOAT .)
+    ELSE            reduce using rule 49 (expression -> FLOAT .)
 
 
 state 19
+
+    (50) expression -> STRING .
+
+    SPLIT           reduce using rule 50 (expression -> STRING .)
+    ADD             reduce using rule 50 (expression -> STRING .)
+    REM             reduce using rule 50 (expression -> STRING .)
+    MUL             reduce using rule 50 (expression -> STRING .)
+    DIV             reduce using rule 50 (expression -> STRING .)
+    MOD             reduce using rule 50 (expression -> STRING .)
+    GT              reduce using rule 50 (expression -> STRING .)
+    LT              reduce using rule 50 (expression -> STRING .)
+    GE              reduce using rule 50 (expression -> STRING .)
+    LE              reduce using rule 50 (expression -> STRING .)
+    EQ              reduce using rule 50 (expression -> STRING .)
+    NE              reduce using rule 50 (expression -> STRING .)
+    POW             reduce using rule 50 (expression -> STRING .)
+    RPAREN          reduce using rule 50 (expression -> STRING .)
+    AND             reduce using rule 50 (expression -> STRING .)
+    OR              reduce using rule 50 (expression -> STRING .)
+    START_BLOCK     reduce using rule 50 (expression -> STRING .)
+    IF              reduce using rule 50 (expression -> STRING .)
+    COMMA           reduce using rule 50 (expression -> STRING .)
+    ELSE            reduce using rule 50 (expression -> STRING .)
+
+
+state 20
 
     (5) stmt -> expression SPLIT .
 
@@ -543,12 +581,13 @@ state 19
     TRUE            reduce using rule 5 (stmt -> expression SPLIT .)
     FALSE           reduce using rule 5 (stmt -> expression SPLIT .)
     NUMBER          reduce using rule 5 (stmt -> expression SPLIT .)
+    FLOAT           reduce using rule 5 (stmt -> expression SPLIT .)
     STRING          reduce using rule 5 (stmt -> expression SPLIT .)
     $end            reduce using rule 5 (stmt -> expression SPLIT .)
     END_BLOCK       reduce using rule 5 (stmt -> expression SPLIT .)
 
 
-state 20
+state 21
 
     (32) expression -> expression ADD . expression
     (32) expression -> . expression ADD expression
@@ -568,20 +607,22 @@ state 20
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 44
+    expression                     shift and go to state 45
 
-state 21
+state 22
 
     (33) expression -> expression REM . expression
     (32) expression -> . expression ADD expression
@@ -601,20 +642,22 @@ state 21
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 45
+    expression                     shift and go to state 46
 
-state 22
+state 23
 
     (34) expression -> expression MUL . expression
     (32) expression -> . expression ADD expression
@@ -634,20 +677,22 @@ state 22
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 46
+    expression                     shift and go to state 47
 
-state 23
+state 24
 
     (35) expression -> expression DIV . expression
     (32) expression -> . expression ADD expression
@@ -667,20 +712,22 @@ state 23
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 47
+    expression                     shift and go to state 48
 
-state 24
+state 25
 
     (36) expression -> expression MOD . expression
     (32) expression -> . expression ADD expression
@@ -700,20 +747,22 @@ state 24
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 48
+    expression                     shift and go to state 49
 
-state 25
+state 26
 
     (37) expression -> expression GT . expression
     (32) expression -> . expression ADD expression
@@ -733,20 +782,22 @@ state 25
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 49
+    expression                     shift and go to state 50
 
-state 26
+state 27
 
     (38) expression -> expression LT . expression
     (32) expression -> . expression ADD expression
@@ -766,20 +817,22 @@ state 26
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 50
+    expression                     shift and go to state 51
 
-state 27
+state 28
 
     (39) expression -> expression GE . expression
     (32) expression -> . expression ADD expression
@@ -799,20 +852,22 @@ state 27
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 51
+    expression                     shift and go to state 52
 
-state 28
+state 29
 
     (40) expression -> expression LE . expression
     (32) expression -> . expression ADD expression
@@ -832,20 +887,22 @@ state 28
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 52
+    expression                     shift and go to state 53
 
-state 29
+state 30
 
     (41) expression -> expression EQ . expression
     (32) expression -> . expression ADD expression
@@ -865,20 +922,22 @@ state 29
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 53
+    expression                     shift and go to state 54
 
-state 30
+state 31
 
     (42) expression -> expression NE . expression
     (32) expression -> . expression ADD expression
@@ -898,20 +957,22 @@ state 30
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 54
+    expression                     shift and go to state 55
 
-state 31
+state 32
 
     (43) expression -> expression POW . expression
     (32) expression -> . expression ADD expression
@@ -931,20 +992,22 @@ state 31
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 55
+    expression                     shift and go to state 56
 
-state 32
+state 33
 
     (6) stmt -> VAR ASSIGN . LPAREN RPAREN block_format
     (8) stmt -> VAR ASSIGN . LPAREN func_params RPAREN block_format
@@ -968,25 +1031,27 @@ state 32
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
     (28) condition_list -> . expression
     (29) condition_list -> . condition_list AND expression
     (30) condition_list -> . condition_list OR expression
     (31) condition_list -> . LPAREN condition_list RPAREN
 
-    LPAREN          shift and go to state 56
+    LPAREN          shift and go to state 57
     REM             shift and go to state 14
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 57
-    condition_list                 shift and go to state 58
+    expression                     shift and go to state 58
+    condition_list                 shift and go to state 59
 
-state 33
+state 34
 
     (12) stmt -> VAR LPAREN . RPAREN SPLIT
     (13) stmt -> VAR LPAREN . expr_list RPAREN SPLIT
@@ -1009,22 +1074,24 @@ state 33
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
-    RPAREN          shift and go to state 59
+    RPAREN          shift and go to state 60
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expr_list                      shift and go to state 60
-    expression                     shift and go to state 61
+    expr_list                      shift and go to state 61
+    expression                     shift and go to state 62
 
-state 34
+state 35
 
     (45) expression -> LPAREN expression . RPAREN
     (32) expression -> expression . ADD expression
@@ -1040,56 +1107,56 @@ state 34
     (42) expression -> expression . NE expression
     (43) expression -> expression . POW expression
 
-    RPAREN          shift and go to state 62
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
-
-
-state 35
-
-    (50) expression -> VAR .
-
-    RPAREN          reduce using rule 50 (expression -> VAR .)
-    ADD             reduce using rule 50 (expression -> VAR .)
-    REM             reduce using rule 50 (expression -> VAR .)
-    MUL             reduce using rule 50 (expression -> VAR .)
-    DIV             reduce using rule 50 (expression -> VAR .)
-    MOD             reduce using rule 50 (expression -> VAR .)
-    GT              reduce using rule 50 (expression -> VAR .)
-    LT              reduce using rule 50 (expression -> VAR .)
-    GE              reduce using rule 50 (expression -> VAR .)
-    LE              reduce using rule 50 (expression -> VAR .)
-    EQ              reduce using rule 50 (expression -> VAR .)
-    NE              reduce using rule 50 (expression -> VAR .)
-    POW             reduce using rule 50 (expression -> VAR .)
-    AND             reduce using rule 50 (expression -> VAR .)
-    OR              reduce using rule 50 (expression -> VAR .)
-    START_BLOCK     reduce using rule 50 (expression -> VAR .)
-    SPLIT           reduce using rule 50 (expression -> VAR .)
-    IF              reduce using rule 50 (expression -> VAR .)
-    COMMA           reduce using rule 50 (expression -> VAR .)
-    ELSE            reduce using rule 50 (expression -> VAR .)
+    RPAREN          shift and go to state 63
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
 
 state 36
 
-    (7) stmt -> FUNC VAR . LPAREN RPAREN block_format
-    (9) stmt -> FUNC VAR . LPAREN func_params RPAREN block_format
+    (51) expression -> VAR .
 
-    LPAREN          shift and go to state 63
+    RPAREN          reduce using rule 51 (expression -> VAR .)
+    ADD             reduce using rule 51 (expression -> VAR .)
+    REM             reduce using rule 51 (expression -> VAR .)
+    MUL             reduce using rule 51 (expression -> VAR .)
+    DIV             reduce using rule 51 (expression -> VAR .)
+    MOD             reduce using rule 51 (expression -> VAR .)
+    GT              reduce using rule 51 (expression -> VAR .)
+    LT              reduce using rule 51 (expression -> VAR .)
+    GE              reduce using rule 51 (expression -> VAR .)
+    LE              reduce using rule 51 (expression -> VAR .)
+    EQ              reduce using rule 51 (expression -> VAR .)
+    NE              reduce using rule 51 (expression -> VAR .)
+    POW             reduce using rule 51 (expression -> VAR .)
+    AND             reduce using rule 51 (expression -> VAR .)
+    OR              reduce using rule 51 (expression -> VAR .)
+    START_BLOCK     reduce using rule 51 (expression -> VAR .)
+    SPLIT           reduce using rule 51 (expression -> VAR .)
+    IF              reduce using rule 51 (expression -> VAR .)
+    COMMA           reduce using rule 51 (expression -> VAR .)
+    ELSE            reduce using rule 51 (expression -> VAR .)
 
 
 state 37
+
+    (7) stmt -> FUNC VAR . LPAREN RPAREN block_format
+    (9) stmt -> FUNC VAR . LPAREN func_params RPAREN block_format
+
+    LPAREN          shift and go to state 64
+
+
+state 38
 
     (14) stmt -> PRINT LPAREN . expr_list RPAREN SPLIT
     (26) expr_list -> . expression
@@ -1111,28 +1178,30 @@ state 37
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expr_list                      shift and go to state 64
-    expression                     shift and go to state 61
+    expr_list                      shift and go to state 65
+    expression                     shift and go to state 62
 
-state 38
+state 39
 
     (15) stmt -> FOR VAR . IN range block_format
 
-    IN              shift and go to state 65
+    IN              shift and go to state 66
 
 
-state 39
+state 40
 
     (17) stmt -> IF condition_list . block_format
     (18) stmt -> IF condition_list . block_format ELSE block_format
@@ -1140,13 +1209,13 @@ state 39
     (30) condition_list -> condition_list . OR expression
     (19) block_format -> . START_BLOCK SPLIT block END_BLOCK SPLIT
 
-    AND             shift and go to state 67
-    OR              shift and go to state 68
-    START_BLOCK     shift and go to state 69
+    AND             shift and go to state 68
+    OR              shift and go to state 69
+    START_BLOCK     shift and go to state 70
 
-    block_format                   shift and go to state 66
+    block_format                   shift and go to state 67
 
-state 40
+state 41
 
     (28) condition_list -> expression .
     (32) expression -> expression . ADD expression
@@ -1166,21 +1235,21 @@ state 40
     OR              reduce using rule 28 (condition_list -> expression .)
     START_BLOCK     reduce using rule 28 (condition_list -> expression .)
     ELSE            reduce using rule 28 (condition_list -> expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
 
-state 41
+state 42
 
     (31) condition_list -> LPAREN . condition_list RPAREN
     (45) expression -> LPAREN . expression RPAREN
@@ -1205,21 +1274,23 @@ state 41
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
-    LPAREN          shift and go to state 41
+    LPAREN          shift and go to state 42
     REM             shift and go to state 14
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    condition_list                 shift and go to state 70
-    expression                     shift and go to state 71
+    condition_list                 shift and go to state 71
+    expression                     shift and go to state 72
 
-state 42
+state 43
 
     (24) stmt -> if_assign IF . condition_list ELSE expression SPLIT
     (28) condition_list -> . expression
@@ -1243,21 +1314,23 @@ state 42
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
-    LPAREN          shift and go to state 41
+    LPAREN          shift and go to state 42
     REM             shift and go to state 14
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    condition_list                 shift and go to state 72
-    expression                     shift and go to state 40
+    condition_list                 shift and go to state 73
+    expression                     shift and go to state 41
 
-state 43
+state 44
 
     (44) expression -> REM NUMBER .
 
@@ -1283,7 +1356,7 @@ state 43
     ELSE            reduce using rule 44 (expression -> REM NUMBER .)
 
 
-state 44
+state 45
 
     (32) expression -> expression ADD expression .
     (32) expression -> expression . ADD expression
@@ -1315,26 +1388,26 @@ state 44
     IF              reduce using rule 32 (expression -> expression ADD expression .)
     COMMA           reduce using rule 32 (expression -> expression ADD expression .)
     ELSE            reduce using rule 32 (expression -> expression ADD expression .)
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    POW             shift and go to state 31
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    POW             shift and go to state 32
 
   ! MUL             [ reduce using rule 32 (expression -> expression ADD expression .) ]
   ! DIV             [ reduce using rule 32 (expression -> expression ADD expression .) ]
   ! MOD             [ reduce using rule 32 (expression -> expression ADD expression .) ]
   ! POW             [ reduce using rule 32 (expression -> expression ADD expression .) ]
-  ! ADD             [ shift and go to state 20 ]
-  ! REM             [ shift and go to state 21 ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! ADD             [ shift and go to state 21 ]
+  ! REM             [ shift and go to state 22 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 45
+state 46
 
     (33) expression -> expression REM expression .
     (32) expression -> expression . ADD expression
@@ -1366,26 +1439,26 @@ state 45
     IF              reduce using rule 33 (expression -> expression REM expression .)
     COMMA           reduce using rule 33 (expression -> expression REM expression .)
     ELSE            reduce using rule 33 (expression -> expression REM expression .)
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    POW             shift and go to state 31
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    POW             shift and go to state 32
 
   ! MUL             [ reduce using rule 33 (expression -> expression REM expression .) ]
   ! DIV             [ reduce using rule 33 (expression -> expression REM expression .) ]
   ! MOD             [ reduce using rule 33 (expression -> expression REM expression .) ]
   ! POW             [ reduce using rule 33 (expression -> expression REM expression .) ]
-  ! ADD             [ shift and go to state 20 ]
-  ! REM             [ shift and go to state 21 ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! ADD             [ shift and go to state 21 ]
+  ! REM             [ shift and go to state 22 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 46
+state 47
 
     (34) expression -> expression MUL expression .
     (32) expression -> expression . ADD expression
@@ -1420,23 +1493,23 @@ state 46
     IF              reduce using rule 34 (expression -> expression MUL expression .)
     COMMA           reduce using rule 34 (expression -> expression MUL expression .)
     ELSE            reduce using rule 34 (expression -> expression MUL expression .)
-    POW             shift and go to state 31
+    POW             shift and go to state 32
 
   ! POW             [ reduce using rule 34 (expression -> expression MUL expression .) ]
-  ! ADD             [ shift and go to state 20 ]
-  ! REM             [ shift and go to state 21 ]
-  ! MUL             [ shift and go to state 22 ]
-  ! DIV             [ shift and go to state 23 ]
-  ! MOD             [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! ADD             [ shift and go to state 21 ]
+  ! REM             [ shift and go to state 22 ]
+  ! MUL             [ shift and go to state 23 ]
+  ! DIV             [ shift and go to state 24 ]
+  ! MOD             [ shift and go to state 25 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 47
+state 48
 
     (35) expression -> expression DIV expression .
     (32) expression -> expression . ADD expression
@@ -1471,23 +1544,23 @@ state 47
     IF              reduce using rule 35 (expression -> expression DIV expression .)
     COMMA           reduce using rule 35 (expression -> expression DIV expression .)
     ELSE            reduce using rule 35 (expression -> expression DIV expression .)
-    POW             shift and go to state 31
+    POW             shift and go to state 32
 
   ! POW             [ reduce using rule 35 (expression -> expression DIV expression .) ]
-  ! ADD             [ shift and go to state 20 ]
-  ! REM             [ shift and go to state 21 ]
-  ! MUL             [ shift and go to state 22 ]
-  ! DIV             [ shift and go to state 23 ]
-  ! MOD             [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! ADD             [ shift and go to state 21 ]
+  ! REM             [ shift and go to state 22 ]
+  ! MUL             [ shift and go to state 23 ]
+  ! DIV             [ shift and go to state 24 ]
+  ! MOD             [ shift and go to state 25 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 48
+state 49
 
     (36) expression -> expression MOD expression .
     (32) expression -> expression . ADD expression
@@ -1522,23 +1595,23 @@ state 48
     IF              reduce using rule 36 (expression -> expression MOD expression .)
     COMMA           reduce using rule 36 (expression -> expression MOD expression .)
     ELSE            reduce using rule 36 (expression -> expression MOD expression .)
-    POW             shift and go to state 31
+    POW             shift and go to state 32
 
   ! POW             [ reduce using rule 36 (expression -> expression MOD expression .) ]
-  ! ADD             [ shift and go to state 20 ]
-  ! REM             [ shift and go to state 21 ]
-  ! MUL             [ shift and go to state 22 ]
-  ! DIV             [ shift and go to state 23 ]
-  ! MOD             [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! ADD             [ shift and go to state 21 ]
+  ! REM             [ shift and go to state 22 ]
+  ! MUL             [ shift and go to state 23 ]
+  ! DIV             [ shift and go to state 24 ]
+  ! MOD             [ shift and go to state 25 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 49
+state 50
 
     (37) expression -> expression GT expression .
     (32) expression -> expression . ADD expression
@@ -1568,12 +1641,12 @@ state 49
     IF              reduce using rule 37 (expression -> expression GT expression .)
     COMMA           reduce using rule 37 (expression -> expression GT expression .)
     ELSE            reduce using rule 37 (expression -> expression GT expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    POW             shift and go to state 32
 
   ! ADD             [ reduce using rule 37 (expression -> expression GT expression .) ]
   ! REM             [ reduce using rule 37 (expression -> expression GT expression .) ]
@@ -1581,15 +1654,15 @@ state 49
   ! DIV             [ reduce using rule 37 (expression -> expression GT expression .) ]
   ! MOD             [ reduce using rule 37 (expression -> expression GT expression .) ]
   ! POW             [ reduce using rule 37 (expression -> expression GT expression .) ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 50
+state 51
 
     (38) expression -> expression LT expression .
     (32) expression -> expression . ADD expression
@@ -1619,12 +1692,12 @@ state 50
     IF              reduce using rule 38 (expression -> expression LT expression .)
     COMMA           reduce using rule 38 (expression -> expression LT expression .)
     ELSE            reduce using rule 38 (expression -> expression LT expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    POW             shift and go to state 32
 
   ! ADD             [ reduce using rule 38 (expression -> expression LT expression .) ]
   ! REM             [ reduce using rule 38 (expression -> expression LT expression .) ]
@@ -1632,15 +1705,15 @@ state 50
   ! DIV             [ reduce using rule 38 (expression -> expression LT expression .) ]
   ! MOD             [ reduce using rule 38 (expression -> expression LT expression .) ]
   ! POW             [ reduce using rule 38 (expression -> expression LT expression .) ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 51
+state 52
 
     (39) expression -> expression GE expression .
     (32) expression -> expression . ADD expression
@@ -1670,12 +1743,12 @@ state 51
     IF              reduce using rule 39 (expression -> expression GE expression .)
     COMMA           reduce using rule 39 (expression -> expression GE expression .)
     ELSE            reduce using rule 39 (expression -> expression GE expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    POW             shift and go to state 32
 
   ! ADD             [ reduce using rule 39 (expression -> expression GE expression .) ]
   ! REM             [ reduce using rule 39 (expression -> expression GE expression .) ]
@@ -1683,15 +1756,15 @@ state 51
   ! DIV             [ reduce using rule 39 (expression -> expression GE expression .) ]
   ! MOD             [ reduce using rule 39 (expression -> expression GE expression .) ]
   ! POW             [ reduce using rule 39 (expression -> expression GE expression .) ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 52
+state 53
 
     (40) expression -> expression LE expression .
     (32) expression -> expression . ADD expression
@@ -1721,12 +1794,12 @@ state 52
     IF              reduce using rule 40 (expression -> expression LE expression .)
     COMMA           reduce using rule 40 (expression -> expression LE expression .)
     ELSE            reduce using rule 40 (expression -> expression LE expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    POW             shift and go to state 32
 
   ! ADD             [ reduce using rule 40 (expression -> expression LE expression .) ]
   ! REM             [ reduce using rule 40 (expression -> expression LE expression .) ]
@@ -1734,15 +1807,15 @@ state 52
   ! DIV             [ reduce using rule 40 (expression -> expression LE expression .) ]
   ! MOD             [ reduce using rule 40 (expression -> expression LE expression .) ]
   ! POW             [ reduce using rule 40 (expression -> expression LE expression .) ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 53
+state 54
 
     (41) expression -> expression EQ expression .
     (32) expression -> expression . ADD expression
@@ -1772,12 +1845,12 @@ state 53
     IF              reduce using rule 41 (expression -> expression EQ expression .)
     COMMA           reduce using rule 41 (expression -> expression EQ expression .)
     ELSE            reduce using rule 41 (expression -> expression EQ expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    POW             shift and go to state 32
 
   ! ADD             [ reduce using rule 41 (expression -> expression EQ expression .) ]
   ! REM             [ reduce using rule 41 (expression -> expression EQ expression .) ]
@@ -1785,15 +1858,15 @@ state 53
   ! DIV             [ reduce using rule 41 (expression -> expression EQ expression .) ]
   ! MOD             [ reduce using rule 41 (expression -> expression EQ expression .) ]
   ! POW             [ reduce using rule 41 (expression -> expression EQ expression .) ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 54
+state 55
 
     (42) expression -> expression NE expression .
     (32) expression -> expression . ADD expression
@@ -1823,12 +1896,12 @@ state 54
     IF              reduce using rule 42 (expression -> expression NE expression .)
     COMMA           reduce using rule 42 (expression -> expression NE expression .)
     ELSE            reduce using rule 42 (expression -> expression NE expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    POW             shift and go to state 32
 
   ! ADD             [ reduce using rule 42 (expression -> expression NE expression .) ]
   ! REM             [ reduce using rule 42 (expression -> expression NE expression .) ]
@@ -1836,15 +1909,15 @@ state 54
   ! DIV             [ reduce using rule 42 (expression -> expression NE expression .) ]
   ! MOD             [ reduce using rule 42 (expression -> expression NE expression .) ]
   ! POW             [ reduce using rule 42 (expression -> expression NE expression .) ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
 
 
-state 55
+state 56
 
     (43) expression -> expression POW expression .
     (32) expression -> expression . ADD expression
@@ -1881,21 +1954,21 @@ state 55
     COMMA           reduce using rule 43 (expression -> expression POW expression .)
     ELSE            reduce using rule 43 (expression -> expression POW expression .)
 
-  ! ADD             [ shift and go to state 20 ]
-  ! REM             [ shift and go to state 21 ]
-  ! MUL             [ shift and go to state 22 ]
-  ! DIV             [ shift and go to state 23 ]
-  ! MOD             [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! LT              [ shift and go to state 26 ]
-  ! GE              [ shift and go to state 27 ]
-  ! LE              [ shift and go to state 28 ]
-  ! EQ              [ shift and go to state 29 ]
-  ! NE              [ shift and go to state 30 ]
-  ! POW             [ shift and go to state 31 ]
+  ! ADD             [ shift and go to state 21 ]
+  ! REM             [ shift and go to state 22 ]
+  ! MUL             [ shift and go to state 23 ]
+  ! DIV             [ shift and go to state 24 ]
+  ! MOD             [ shift and go to state 25 ]
+  ! GT              [ shift and go to state 26 ]
+  ! LT              [ shift and go to state 27 ]
+  ! GE              [ shift and go to state 28 ]
+  ! LE              [ shift and go to state 29 ]
+  ! EQ              [ shift and go to state 30 ]
+  ! NE              [ shift and go to state 31 ]
+  ! POW             [ shift and go to state 32 ]
 
 
-state 56
+state 57
 
     (6) stmt -> VAR ASSIGN LPAREN . RPAREN block_format
     (8) stmt -> VAR ASSIGN LPAREN . func_params RPAREN block_format
@@ -1920,27 +1993,29 @@ state 56
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
     (28) condition_list -> . expression
     (29) condition_list -> . condition_list AND expression
     (30) condition_list -> . condition_list OR expression
     (31) condition_list -> . LPAREN condition_list RPAREN
 
-    RPAREN          shift and go to state 75
-    VAR             shift and go to state 73
+    RPAREN          shift and go to state 76
+    VAR             shift and go to state 74
     REM             shift and go to state 14
-    LPAREN          shift and go to state 74
+    LPAREN          shift and go to state 75
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
 
-    func_params                    shift and go to state 76
-    expression                     shift and go to state 77
-    condition_list                 shift and go to state 70
+    func_params                    shift and go to state 77
+    expression                     shift and go to state 78
+    condition_list                 shift and go to state 71
 
-state 57
+state 58
 
     (22) stmt -> VAR ASSIGN expression . SPLIT
     (25) if_assign -> VAR ASSIGN expression .
@@ -1959,54 +2034,54 @@ state 57
     (28) condition_list -> expression .
 
   ! shift/reduce conflict for SPLIT resolved as shift
-    SPLIT           shift and go to state 78
+    SPLIT           shift and go to state 79
     IF              reduce using rule 25 (if_assign -> VAR ASSIGN expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
     AND             reduce using rule 28 (condition_list -> expression .)
     OR              reduce using rule 28 (condition_list -> expression .)
 
   ! SPLIT           [ reduce using rule 28 (condition_list -> expression .) ]
 
 
-state 58
+state 59
 
     (23) stmt -> VAR ASSIGN condition_list . SPLIT
     (29) condition_list -> condition_list . AND expression
     (30) condition_list -> condition_list . OR expression
 
-    SPLIT           shift and go to state 79
-    AND             shift and go to state 67
-    OR              shift and go to state 68
-
-
-state 59
-
-    (12) stmt -> VAR LPAREN RPAREN . SPLIT
-
     SPLIT           shift and go to state 80
+    AND             shift and go to state 68
+    OR              shift and go to state 69
 
 
 state 60
 
-    (13) stmt -> VAR LPAREN expr_list . RPAREN SPLIT
-    (27) expr_list -> expr_list . COMMA expression
+    (12) stmt -> VAR LPAREN RPAREN . SPLIT
 
-    RPAREN          shift and go to state 81
-    COMMA           shift and go to state 82
+    SPLIT           shift and go to state 81
 
 
 state 61
+
+    (13) stmt -> VAR LPAREN expr_list . RPAREN SPLIT
+    (27) expr_list -> expr_list . COMMA expression
+
+    RPAREN          shift and go to state 82
+    COMMA           shift and go to state 83
+
+
+state 62
 
     (26) expr_list -> expression .
     (32) expression -> expression . ADD expression
@@ -2024,21 +2099,21 @@ state 61
 
     RPAREN          reduce using rule 26 (expr_list -> expression .)
     COMMA           reduce using rule 26 (expr_list -> expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
 
-state 62
+state 63
 
     (45) expression -> LPAREN expression RPAREN .
 
@@ -2064,37 +2139,37 @@ state 62
     ELSE            reduce using rule 45 (expression -> LPAREN expression RPAREN .)
 
 
-state 63
+state 64
 
     (7) stmt -> FUNC VAR LPAREN . RPAREN block_format
     (9) stmt -> FUNC VAR LPAREN . func_params RPAREN block_format
     (10) func_params -> . VAR
     (11) func_params -> . func_params COMMA VAR
 
-    RPAREN          shift and go to state 84
-    VAR             shift and go to state 83
+    RPAREN          shift and go to state 85
+    VAR             shift and go to state 84
 
-    func_params                    shift and go to state 85
+    func_params                    shift and go to state 86
 
-state 64
+state 65
 
     (14) stmt -> PRINT LPAREN expr_list . RPAREN SPLIT
     (27) expr_list -> expr_list . COMMA expression
 
-    RPAREN          shift and go to state 86
-    COMMA           shift and go to state 82
+    RPAREN          shift and go to state 87
+    COMMA           shift and go to state 83
 
 
-state 65
+state 66
 
     (15) stmt -> FOR VAR IN . range block_format
     (16) range -> . RANGE LPAREN expr_list RPAREN
 
-    RANGE           shift and go to state 88
+    RANGE           shift and go to state 89
 
-    range                          shift and go to state 87
+    range                          shift and go to state 88
 
-state 66
+state 67
 
     (17) stmt -> IF condition_list block_format .
     (18) stmt -> IF condition_list block_format . ELSE block_format
@@ -2110,13 +2185,14 @@ state 66
     TRUE            reduce using rule 17 (stmt -> IF condition_list block_format .)
     FALSE           reduce using rule 17 (stmt -> IF condition_list block_format .)
     NUMBER          reduce using rule 17 (stmt -> IF condition_list block_format .)
+    FLOAT           reduce using rule 17 (stmt -> IF condition_list block_format .)
     STRING          reduce using rule 17 (stmt -> IF condition_list block_format .)
     $end            reduce using rule 17 (stmt -> IF condition_list block_format .)
     END_BLOCK       reduce using rule 17 (stmt -> IF condition_list block_format .)
-    ELSE            shift and go to state 89
+    ELSE            shift and go to state 90
 
 
-state 67
+state 68
 
     (29) condition_list -> condition_list AND . expression
     (32) expression -> . expression ADD expression
@@ -2136,20 +2212,22 @@ state 67
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 90
+    expression                     shift and go to state 91
 
-state 68
+state 69
 
     (30) condition_list -> condition_list OR . expression
     (32) expression -> . expression ADD expression
@@ -2169,38 +2247,40 @@ state 68
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 91
+    expression                     shift and go to state 92
 
-state 69
+state 70
 
     (19) block_format -> START_BLOCK . SPLIT block END_BLOCK SPLIT
 
-    SPLIT           shift and go to state 92
+    SPLIT           shift and go to state 93
 
 
-state 70
+state 71
 
     (31) condition_list -> LPAREN condition_list . RPAREN
     (29) condition_list -> condition_list . AND expression
     (30) condition_list -> condition_list . OR expression
 
-    RPAREN          shift and go to state 93
-    AND             shift and go to state 67
-    OR              shift and go to state 68
+    RPAREN          shift and go to state 94
+    AND             shift and go to state 68
+    OR              shift and go to state 69
 
 
-state 71
+state 72
 
     (45) expression -> LPAREN expression . RPAREN
     (28) condition_list -> expression .
@@ -2218,63 +2298,63 @@ state 71
     (43) expression -> expression . POW expression
 
   ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 62
+    RPAREN          shift and go to state 63
     AND             reduce using rule 28 (condition_list -> expression .)
     OR              reduce using rule 28 (condition_list -> expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
   ! RPAREN          [ reduce using rule 28 (condition_list -> expression .) ]
 
 
-state 72
+state 73
 
     (24) stmt -> if_assign IF condition_list . ELSE expression SPLIT
     (29) condition_list -> condition_list . AND expression
     (30) condition_list -> condition_list . OR expression
 
-    ELSE            shift and go to state 94
-    AND             shift and go to state 67
-    OR              shift and go to state 68
+    ELSE            shift and go to state 95
+    AND             shift and go to state 68
+    OR              shift and go to state 69
 
 
-state 73
+state 74
 
     (10) func_params -> VAR .
-    (50) expression -> VAR .
+    (51) expression -> VAR .
 
   ! reduce/reduce conflict for RPAREN resolved using rule 10 (func_params -> VAR .)
     RPAREN          reduce using rule 10 (func_params -> VAR .)
     COMMA           reduce using rule 10 (func_params -> VAR .)
-    ADD             reduce using rule 50 (expression -> VAR .)
-    REM             reduce using rule 50 (expression -> VAR .)
-    MUL             reduce using rule 50 (expression -> VAR .)
-    DIV             reduce using rule 50 (expression -> VAR .)
-    MOD             reduce using rule 50 (expression -> VAR .)
-    GT              reduce using rule 50 (expression -> VAR .)
-    LT              reduce using rule 50 (expression -> VAR .)
-    GE              reduce using rule 50 (expression -> VAR .)
-    LE              reduce using rule 50 (expression -> VAR .)
-    EQ              reduce using rule 50 (expression -> VAR .)
-    NE              reduce using rule 50 (expression -> VAR .)
-    POW             reduce using rule 50 (expression -> VAR .)
-    AND             reduce using rule 50 (expression -> VAR .)
-    OR              reduce using rule 50 (expression -> VAR .)
+    ADD             reduce using rule 51 (expression -> VAR .)
+    REM             reduce using rule 51 (expression -> VAR .)
+    MUL             reduce using rule 51 (expression -> VAR .)
+    DIV             reduce using rule 51 (expression -> VAR .)
+    MOD             reduce using rule 51 (expression -> VAR .)
+    GT              reduce using rule 51 (expression -> VAR .)
+    LT              reduce using rule 51 (expression -> VAR .)
+    GE              reduce using rule 51 (expression -> VAR .)
+    LE              reduce using rule 51 (expression -> VAR .)
+    EQ              reduce using rule 51 (expression -> VAR .)
+    NE              reduce using rule 51 (expression -> VAR .)
+    POW             reduce using rule 51 (expression -> VAR .)
+    AND             reduce using rule 51 (expression -> VAR .)
+    OR              reduce using rule 51 (expression -> VAR .)
 
-  ! RPAREN          [ reduce using rule 50 (expression -> VAR .) ]
+  ! RPAREN          [ reduce using rule 51 (expression -> VAR .) ]
 
 
-state 74
+state 75
 
     (45) expression -> LPAREN . expression RPAREN
     (31) condition_list -> LPAREN . condition_list RPAREN
@@ -2295,43 +2375,45 @@ state 74
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
     (28) condition_list -> . expression
     (29) condition_list -> . condition_list AND expression
     (30) condition_list -> . condition_list OR expression
     (31) condition_list -> . LPAREN condition_list RPAREN
 
     REM             shift and go to state 14
-    LPAREN          shift and go to state 74
+    LPAREN          shift and go to state 75
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 77
-    condition_list                 shift and go to state 70
+    expression                     shift and go to state 78
+    condition_list                 shift and go to state 71
 
-state 75
+state 76
 
     (6) stmt -> VAR ASSIGN LPAREN RPAREN . block_format
     (19) block_format -> . START_BLOCK SPLIT block END_BLOCK SPLIT
 
-    START_BLOCK     shift and go to state 69
+    START_BLOCK     shift and go to state 70
 
-    block_format                   shift and go to state 95
+    block_format                   shift and go to state 96
 
-state 76
+state 77
 
     (8) stmt -> VAR ASSIGN LPAREN func_params . RPAREN block_format
     (11) func_params -> func_params . COMMA VAR
 
-    RPAREN          shift and go to state 96
-    COMMA           shift and go to state 97
+    RPAREN          shift and go to state 97
+    COMMA           shift and go to state 98
 
 
-state 77
+state 78
 
     (45) expression -> LPAREN expression . RPAREN
     (32) expression -> expression . ADD expression
@@ -2349,26 +2431,26 @@ state 77
     (28) condition_list -> expression .
 
   ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 62
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    RPAREN          shift and go to state 63
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
     AND             reduce using rule 28 (condition_list -> expression .)
     OR              reduce using rule 28 (condition_list -> expression .)
 
   ! RPAREN          [ reduce using rule 28 (condition_list -> expression .) ]
 
 
-state 78
+state 79
 
     (22) stmt -> VAR ASSIGN expression SPLIT .
 
@@ -2383,12 +2465,13 @@ state 78
     TRUE            reduce using rule 22 (stmt -> VAR ASSIGN expression SPLIT .)
     FALSE           reduce using rule 22 (stmt -> VAR ASSIGN expression SPLIT .)
     NUMBER          reduce using rule 22 (stmt -> VAR ASSIGN expression SPLIT .)
+    FLOAT           reduce using rule 22 (stmt -> VAR ASSIGN expression SPLIT .)
     STRING          reduce using rule 22 (stmt -> VAR ASSIGN expression SPLIT .)
     $end            reduce using rule 22 (stmt -> VAR ASSIGN expression SPLIT .)
     END_BLOCK       reduce using rule 22 (stmt -> VAR ASSIGN expression SPLIT .)
 
 
-state 79
+state 80
 
     (23) stmt -> VAR ASSIGN condition_list SPLIT .
 
@@ -2403,12 +2486,13 @@ state 79
     TRUE            reduce using rule 23 (stmt -> VAR ASSIGN condition_list SPLIT .)
     FALSE           reduce using rule 23 (stmt -> VAR ASSIGN condition_list SPLIT .)
     NUMBER          reduce using rule 23 (stmt -> VAR ASSIGN condition_list SPLIT .)
+    FLOAT           reduce using rule 23 (stmt -> VAR ASSIGN condition_list SPLIT .)
     STRING          reduce using rule 23 (stmt -> VAR ASSIGN condition_list SPLIT .)
     $end            reduce using rule 23 (stmt -> VAR ASSIGN condition_list SPLIT .)
     END_BLOCK       reduce using rule 23 (stmt -> VAR ASSIGN condition_list SPLIT .)
 
 
-state 80
+state 81
 
     (12) stmt -> VAR LPAREN RPAREN SPLIT .
 
@@ -2423,19 +2507,20 @@ state 80
     TRUE            reduce using rule 12 (stmt -> VAR LPAREN RPAREN SPLIT .)
     FALSE           reduce using rule 12 (stmt -> VAR LPAREN RPAREN SPLIT .)
     NUMBER          reduce using rule 12 (stmt -> VAR LPAREN RPAREN SPLIT .)
+    FLOAT           reduce using rule 12 (stmt -> VAR LPAREN RPAREN SPLIT .)
     STRING          reduce using rule 12 (stmt -> VAR LPAREN RPAREN SPLIT .)
     $end            reduce using rule 12 (stmt -> VAR LPAREN RPAREN SPLIT .)
     END_BLOCK       reduce using rule 12 (stmt -> VAR LPAREN RPAREN SPLIT .)
 
 
-state 81
+state 82
 
     (13) stmt -> VAR LPAREN expr_list RPAREN . SPLIT
 
-    SPLIT           shift and go to state 98
+    SPLIT           shift and go to state 99
 
 
-state 82
+state 83
 
     (27) expr_list -> expr_list COMMA . expression
     (32) expression -> . expression ADD expression
@@ -2455,20 +2540,22 @@ state 82
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 99
+    expression                     shift and go to state 100
 
-state 83
+state 84
 
     (10) func_params -> VAR .
 
@@ -2476,57 +2563,57 @@ state 83
     COMMA           reduce using rule 10 (func_params -> VAR .)
 
 
-state 84
+state 85
 
     (7) stmt -> FUNC VAR LPAREN RPAREN . block_format
     (19) block_format -> . START_BLOCK SPLIT block END_BLOCK SPLIT
 
-    START_BLOCK     shift and go to state 69
+    START_BLOCK     shift and go to state 70
 
-    block_format                   shift and go to state 100
+    block_format                   shift and go to state 101
 
-state 85
+state 86
 
     (9) stmt -> FUNC VAR LPAREN func_params . RPAREN block_format
     (11) func_params -> func_params . COMMA VAR
 
-    RPAREN          shift and go to state 101
-    COMMA           shift and go to state 97
-
-
-state 86
-
-    (14) stmt -> PRINT LPAREN expr_list RPAREN . SPLIT
-
-    SPLIT           shift and go to state 102
+    RPAREN          shift and go to state 102
+    COMMA           shift and go to state 98
 
 
 state 87
 
-    (15) stmt -> FOR VAR IN range . block_format
-    (19) block_format -> . START_BLOCK SPLIT block END_BLOCK SPLIT
+    (14) stmt -> PRINT LPAREN expr_list RPAREN . SPLIT
 
-    START_BLOCK     shift and go to state 69
+    SPLIT           shift and go to state 103
 
-    block_format                   shift and go to state 103
 
 state 88
 
-    (16) range -> RANGE . LPAREN expr_list RPAREN
+    (15) stmt -> FOR VAR IN range . block_format
+    (19) block_format -> . START_BLOCK SPLIT block END_BLOCK SPLIT
 
-    LPAREN          shift and go to state 104
+    START_BLOCK     shift and go to state 70
 
+    block_format                   shift and go to state 104
 
 state 89
+
+    (16) range -> RANGE . LPAREN expr_list RPAREN
+
+    LPAREN          shift and go to state 105
+
+
+state 90
 
     (18) stmt -> IF condition_list block_format ELSE . block_format
     (19) block_format -> . START_BLOCK SPLIT block END_BLOCK SPLIT
 
-    START_BLOCK     shift and go to state 69
+    START_BLOCK     shift and go to state 70
 
-    block_format                   shift and go to state 105
+    block_format                   shift and go to state 106
 
-state 90
+state 91
 
     (29) condition_list -> condition_list AND expression .
     (32) expression -> expression . ADD expression
@@ -2548,21 +2635,21 @@ state 90
     SPLIT           reduce using rule 29 (condition_list -> condition_list AND expression .)
     RPAREN          reduce using rule 29 (condition_list -> condition_list AND expression .)
     ELSE            reduce using rule 29 (condition_list -> condition_list AND expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
 
-state 91
+state 92
 
     (30) condition_list -> condition_list OR expression .
     (32) expression -> expression . ADD expression
@@ -2584,21 +2671,21 @@ state 91
     SPLIT           reduce using rule 30 (condition_list -> condition_list OR expression .)
     RPAREN          reduce using rule 30 (condition_list -> condition_list OR expression .)
     ELSE            reduce using rule 30 (condition_list -> condition_list OR expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
 
-state 92
+state 93
 
     (19) block_format -> START_BLOCK SPLIT . block END_BLOCK SPLIT
     (20) block -> . stmt
@@ -2635,8 +2722,9 @@ state 92
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
     (25) if_assign -> . VAR ASSIGN expression
 
     SPLIT           shift and go to state 5
@@ -2650,14 +2738,15 @@ state 92
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
 
-    block                          shift and go to state 106
-    stmt                           shift and go to state 107
+    block                          shift and go to state 107
+    stmt                           shift and go to state 108
     expression                     shift and go to state 6
     if_assign                      shift and go to state 13
 
-state 93
+state 94
 
     (31) condition_list -> LPAREN condition_list RPAREN .
 
@@ -2669,7 +2758,7 @@ state 93
     ELSE            reduce using rule 31 (condition_list -> LPAREN condition_list RPAREN .)
 
 
-state 94
+state 95
 
     (24) stmt -> if_assign IF condition_list ELSE . expression SPLIT
     (32) expression -> . expression ADD expression
@@ -2689,20 +2778,22 @@ state 94
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expression                     shift and go to state 108
+    expression                     shift and go to state 109
 
-state 95
+state 96
 
     (6) stmt -> VAR ASSIGN LPAREN RPAREN block_format .
 
@@ -2717,28 +2808,29 @@ state 95
     TRUE            reduce using rule 6 (stmt -> VAR ASSIGN LPAREN RPAREN block_format .)
     FALSE           reduce using rule 6 (stmt -> VAR ASSIGN LPAREN RPAREN block_format .)
     NUMBER          reduce using rule 6 (stmt -> VAR ASSIGN LPAREN RPAREN block_format .)
+    FLOAT           reduce using rule 6 (stmt -> VAR ASSIGN LPAREN RPAREN block_format .)
     STRING          reduce using rule 6 (stmt -> VAR ASSIGN LPAREN RPAREN block_format .)
     $end            reduce using rule 6 (stmt -> VAR ASSIGN LPAREN RPAREN block_format .)
     END_BLOCK       reduce using rule 6 (stmt -> VAR ASSIGN LPAREN RPAREN block_format .)
 
 
-state 96
+state 97
 
     (8) stmt -> VAR ASSIGN LPAREN func_params RPAREN . block_format
     (19) block_format -> . START_BLOCK SPLIT block END_BLOCK SPLIT
 
-    START_BLOCK     shift and go to state 69
+    START_BLOCK     shift and go to state 70
 
-    block_format                   shift and go to state 109
+    block_format                   shift and go to state 110
 
-state 97
+state 98
 
     (11) func_params -> func_params COMMA . VAR
 
-    VAR             shift and go to state 110
+    VAR             shift and go to state 111
 
 
-state 98
+state 99
 
     (13) stmt -> VAR LPAREN expr_list RPAREN SPLIT .
 
@@ -2753,12 +2845,13 @@ state 98
     TRUE            reduce using rule 13 (stmt -> VAR LPAREN expr_list RPAREN SPLIT .)
     FALSE           reduce using rule 13 (stmt -> VAR LPAREN expr_list RPAREN SPLIT .)
     NUMBER          reduce using rule 13 (stmt -> VAR LPAREN expr_list RPAREN SPLIT .)
+    FLOAT           reduce using rule 13 (stmt -> VAR LPAREN expr_list RPAREN SPLIT .)
     STRING          reduce using rule 13 (stmt -> VAR LPAREN expr_list RPAREN SPLIT .)
     $end            reduce using rule 13 (stmt -> VAR LPAREN expr_list RPAREN SPLIT .)
     END_BLOCK       reduce using rule 13 (stmt -> VAR LPAREN expr_list RPAREN SPLIT .)
 
 
-state 99
+state 100
 
     (27) expr_list -> expr_list COMMA expression .
     (32) expression -> expression . ADD expression
@@ -2776,21 +2869,21 @@ state 99
 
     RPAREN          reduce using rule 27 (expr_list -> expr_list COMMA expression .)
     COMMA           reduce using rule 27 (expr_list -> expr_list COMMA expression .)
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
 
-state 100
+state 101
 
     (7) stmt -> FUNC VAR LPAREN RPAREN block_format .
 
@@ -2805,21 +2898,22 @@ state 100
     TRUE            reduce using rule 7 (stmt -> FUNC VAR LPAREN RPAREN block_format .)
     FALSE           reduce using rule 7 (stmt -> FUNC VAR LPAREN RPAREN block_format .)
     NUMBER          reduce using rule 7 (stmt -> FUNC VAR LPAREN RPAREN block_format .)
+    FLOAT           reduce using rule 7 (stmt -> FUNC VAR LPAREN RPAREN block_format .)
     STRING          reduce using rule 7 (stmt -> FUNC VAR LPAREN RPAREN block_format .)
     $end            reduce using rule 7 (stmt -> FUNC VAR LPAREN RPAREN block_format .)
     END_BLOCK       reduce using rule 7 (stmt -> FUNC VAR LPAREN RPAREN block_format .)
 
 
-state 101
+state 102
 
     (9) stmt -> FUNC VAR LPAREN func_params RPAREN . block_format
     (19) block_format -> . START_BLOCK SPLIT block END_BLOCK SPLIT
 
-    START_BLOCK     shift and go to state 69
+    START_BLOCK     shift and go to state 70
 
-    block_format                   shift and go to state 111
+    block_format                   shift and go to state 112
 
-state 102
+state 103
 
     (14) stmt -> PRINT LPAREN expr_list RPAREN SPLIT .
 
@@ -2834,12 +2928,13 @@ state 102
     TRUE            reduce using rule 14 (stmt -> PRINT LPAREN expr_list RPAREN SPLIT .)
     FALSE           reduce using rule 14 (stmt -> PRINT LPAREN expr_list RPAREN SPLIT .)
     NUMBER          reduce using rule 14 (stmt -> PRINT LPAREN expr_list RPAREN SPLIT .)
+    FLOAT           reduce using rule 14 (stmt -> PRINT LPAREN expr_list RPAREN SPLIT .)
     STRING          reduce using rule 14 (stmt -> PRINT LPAREN expr_list RPAREN SPLIT .)
     $end            reduce using rule 14 (stmt -> PRINT LPAREN expr_list RPAREN SPLIT .)
     END_BLOCK       reduce using rule 14 (stmt -> PRINT LPAREN expr_list RPAREN SPLIT .)
 
 
-state 103
+state 104
 
     (15) stmt -> FOR VAR IN range block_format .
 
@@ -2854,12 +2949,13 @@ state 103
     TRUE            reduce using rule 15 (stmt -> FOR VAR IN range block_format .)
     FALSE           reduce using rule 15 (stmt -> FOR VAR IN range block_format .)
     NUMBER          reduce using rule 15 (stmt -> FOR VAR IN range block_format .)
+    FLOAT           reduce using rule 15 (stmt -> FOR VAR IN range block_format .)
     STRING          reduce using rule 15 (stmt -> FOR VAR IN range block_format .)
     $end            reduce using rule 15 (stmt -> FOR VAR IN range block_format .)
     END_BLOCK       reduce using rule 15 (stmt -> FOR VAR IN range block_format .)
 
 
-state 104
+state 105
 
     (16) range -> RANGE LPAREN . expr_list RPAREN
     (26) expr_list -> . expression
@@ -2881,21 +2977,23 @@ state 104
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
 
     REM             shift and go to state 14
     LPAREN          shift and go to state 8
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
-    VAR             shift and go to state 35
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    VAR             shift and go to state 36
 
-    expr_list                      shift and go to state 112
-    expression                     shift and go to state 61
+    expr_list                      shift and go to state 113
+    expression                     shift and go to state 62
 
-state 105
+state 106
 
     (18) stmt -> IF condition_list block_format ELSE block_format .
 
@@ -2910,12 +3008,13 @@ state 105
     TRUE            reduce using rule 18 (stmt -> IF condition_list block_format ELSE block_format .)
     FALSE           reduce using rule 18 (stmt -> IF condition_list block_format ELSE block_format .)
     NUMBER          reduce using rule 18 (stmt -> IF condition_list block_format ELSE block_format .)
+    FLOAT           reduce using rule 18 (stmt -> IF condition_list block_format ELSE block_format .)
     STRING          reduce using rule 18 (stmt -> IF condition_list block_format ELSE block_format .)
     $end            reduce using rule 18 (stmt -> IF condition_list block_format ELSE block_format .)
     END_BLOCK       reduce using rule 18 (stmt -> IF condition_list block_format ELSE block_format .)
 
 
-state 106
+state 107
 
     (19) block_format -> START_BLOCK SPLIT block . END_BLOCK SPLIT
     (21) block -> block . stmt
@@ -2951,11 +3050,12 @@ state 106
     (46) expression -> . TRUE
     (47) expression -> . FALSE
     (48) expression -> . NUMBER
-    (49) expression -> . STRING
-    (50) expression -> . VAR
+    (49) expression -> . FLOAT
+    (50) expression -> . STRING
+    (51) expression -> . VAR
     (25) if_assign -> . VAR ASSIGN expression
 
-    END_BLOCK       shift and go to state 113
+    END_BLOCK       shift and go to state 114
     SPLIT           shift and go to state 5
     VAR             shift and go to state 7
     FUNC            shift and go to state 9
@@ -2967,13 +3067,14 @@ state 106
     TRUE            shift and go to state 16
     FALSE           shift and go to state 17
     NUMBER          shift and go to state 15
-    STRING          shift and go to state 18
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
 
-    stmt                           shift and go to state 114
+    stmt                           shift and go to state 115
     expression                     shift and go to state 6
     if_assign                      shift and go to state 13
 
-state 107
+state 108
 
     (20) block -> stmt .
 
@@ -2989,10 +3090,11 @@ state 107
     TRUE            reduce using rule 20 (block -> stmt .)
     FALSE           reduce using rule 20 (block -> stmt .)
     NUMBER          reduce using rule 20 (block -> stmt .)
+    FLOAT           reduce using rule 20 (block -> stmt .)
     STRING          reduce using rule 20 (block -> stmt .)
 
 
-state 108
+state 109
 
     (24) stmt -> if_assign IF condition_list ELSE expression . SPLIT
     (32) expression -> expression . ADD expression
@@ -3008,22 +3110,22 @@ state 108
     (42) expression -> expression . NE expression
     (43) expression -> expression . POW expression
 
-    SPLIT           shift and go to state 115
-    ADD             shift and go to state 20
-    REM             shift and go to state 21
-    MUL             shift and go to state 22
-    DIV             shift and go to state 23
-    MOD             shift and go to state 24
-    GT              shift and go to state 25
-    LT              shift and go to state 26
-    GE              shift and go to state 27
-    LE              shift and go to state 28
-    EQ              shift and go to state 29
-    NE              shift and go to state 30
-    POW             shift and go to state 31
+    SPLIT           shift and go to state 116
+    ADD             shift and go to state 21
+    REM             shift and go to state 22
+    MUL             shift and go to state 23
+    DIV             shift and go to state 24
+    MOD             shift and go to state 25
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GE              shift and go to state 28
+    LE              shift and go to state 29
+    EQ              shift and go to state 30
+    NE              shift and go to state 31
+    POW             shift and go to state 32
 
 
-state 109
+state 110
 
     (8) stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format .
 
@@ -3038,12 +3140,13 @@ state 109
     TRUE            reduce using rule 8 (stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format .)
     FALSE           reduce using rule 8 (stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format .)
     NUMBER          reduce using rule 8 (stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format .)
+    FLOAT           reduce using rule 8 (stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format .)
     STRING          reduce using rule 8 (stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format .)
     $end            reduce using rule 8 (stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format .)
     END_BLOCK       reduce using rule 8 (stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format .)
 
 
-state 110
+state 111
 
     (11) func_params -> func_params COMMA VAR .
 
@@ -3051,7 +3154,7 @@ state 110
     COMMA           reduce using rule 11 (func_params -> func_params COMMA VAR .)
 
 
-state 111
+state 112
 
     (9) stmt -> FUNC VAR LPAREN func_params RPAREN block_format .
 
@@ -3066,28 +3169,29 @@ state 111
     TRUE            reduce using rule 9 (stmt -> FUNC VAR LPAREN func_params RPAREN block_format .)
     FALSE           reduce using rule 9 (stmt -> FUNC VAR LPAREN func_params RPAREN block_format .)
     NUMBER          reduce using rule 9 (stmt -> FUNC VAR LPAREN func_params RPAREN block_format .)
+    FLOAT           reduce using rule 9 (stmt -> FUNC VAR LPAREN func_params RPAREN block_format .)
     STRING          reduce using rule 9 (stmt -> FUNC VAR LPAREN func_params RPAREN block_format .)
     $end            reduce using rule 9 (stmt -> FUNC VAR LPAREN func_params RPAREN block_format .)
     END_BLOCK       reduce using rule 9 (stmt -> FUNC VAR LPAREN func_params RPAREN block_format .)
 
 
-state 112
+state 113
 
     (16) range -> RANGE LPAREN expr_list . RPAREN
     (27) expr_list -> expr_list . COMMA expression
 
-    RPAREN          shift and go to state 116
-    COMMA           shift and go to state 82
-
-
-state 113
-
-    (19) block_format -> START_BLOCK SPLIT block END_BLOCK . SPLIT
-
-    SPLIT           shift and go to state 117
+    RPAREN          shift and go to state 117
+    COMMA           shift and go to state 83
 
 
 state 114
+
+    (19) block_format -> START_BLOCK SPLIT block END_BLOCK . SPLIT
+
+    SPLIT           shift and go to state 118
+
+
+state 115
 
     (21) block -> block stmt .
 
@@ -3103,10 +3207,11 @@ state 114
     TRUE            reduce using rule 21 (block -> block stmt .)
     FALSE           reduce using rule 21 (block -> block stmt .)
     NUMBER          reduce using rule 21 (block -> block stmt .)
+    FLOAT           reduce using rule 21 (block -> block stmt .)
     STRING          reduce using rule 21 (block -> block stmt .)
 
 
-state 115
+state 116
 
     (24) stmt -> if_assign IF condition_list ELSE expression SPLIT .
 
@@ -3121,19 +3226,20 @@ state 115
     TRUE            reduce using rule 24 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     FALSE           reduce using rule 24 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     NUMBER          reduce using rule 24 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
+    FLOAT           reduce using rule 24 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     STRING          reduce using rule 24 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     $end            reduce using rule 24 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
     END_BLOCK       reduce using rule 24 (stmt -> if_assign IF condition_list ELSE expression SPLIT .)
 
 
-state 116
+state 117
 
     (16) range -> RANGE LPAREN expr_list RPAREN .
 
     START_BLOCK     reduce using rule 16 (range -> RANGE LPAREN expr_list RPAREN .)
 
 
-state 117
+state 118
 
     (19) block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT .
 
@@ -3149,6 +3255,7 @@ state 117
     TRUE            reduce using rule 19 (block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT .)
     FALSE           reduce using rule 19 (block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT .)
     NUMBER          reduce using rule 19 (block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT .)
+    FLOAT           reduce using rule 19 (block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT .)
     STRING          reduce using rule 19 (block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT .)
     $end            reduce using rule 19 (block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT .)
     END_BLOCK       reduce using rule 19 (block_format -> START_BLOCK SPLIT block END_BLOCK SPLIT .)
@@ -3156,8 +3263,8 @@ state 117
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for SPLIT in state 57 resolved as shift
-WARNING: shift/reduce conflict for RPAREN in state 71 resolved as shift
-WARNING: shift/reduce conflict for RPAREN in state 77 resolved as shift
-WARNING: reduce/reduce conflict in state 73 resolved using rule (func_params -> VAR)
-WARNING: rejected rule (expression -> VAR) in state 73
+WARNING: shift/reduce conflict for SPLIT in state 58 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 72 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 78 resolved as shift
+WARNING: reduce/reduce conflict in state 74 resolved using rule (func_params -> VAR)
+WARNING: rejected rule (expression -> VAR) in state 74

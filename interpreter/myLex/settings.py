@@ -12,7 +12,7 @@ states = (
 这里indentify配置的都是token
 """
 # 标识符
-identify = ('NUMBER', 'VAR', 'STRING', 'SPLIT')
+identify = ('NUMBER', 'FLOAT', 'VAR', 'STRING', 'SPLIT')
 
 
 """
