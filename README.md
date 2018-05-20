@@ -5,6 +5,15 @@
 
 #### 一. 项目介绍
 
+```
+python 3.6
+ply 3.11
+django 1.11
+node
+vue
+element-ui
+```
+
 
 
 #### 二. 项目结构介绍
