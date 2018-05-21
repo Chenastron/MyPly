@@ -21,7 +21,7 @@ value: token
 key: 
 """
 # 保留字，TOKEN值为大写
-reserved_list = ['true', 'false', 'print', 'and', 'or', 'if', 'else', 'for', 'in', 'range', 'func']
+reserved_list = ['true', 'false', 'print', 'and', 'or', 'if', 'else', 'for', 'in', 'range', 'func', 'return']
 reserved = {s: s.upper() for s in reserved_list}
 
 # 单字符的操作符 +-*/% <> () = ,:
