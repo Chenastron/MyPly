@@ -43,14 +43,16 @@ Rule 3    stmt -> VAR ASSIGN LPAREN func_params RPAREN block_format
 Rule 4    stmt -> FUNC VAR LPAREN func_params RPAREN block_format
 Rule 5    func_params -> VAR
 Rule 6    func_params -> func_params COMMA VAR
-Rule 7    stmt -> VAR LPAREN RPAREN SPLIT
-Rule 8    stmt -> VAR LPAREN expr_list RPAREN SPLIT
+Rule 7    expr -> VAR LPAREN RPAREN
+Rule 8    expr -> VAR LPAREN expr_list RPAREN
+Rule 9    stmt -> RETURN expression SPLIT
 ```
 1. 函数语句(有声明和非声明的)分为2种 带参数的和不带参数的（127是无参数的, 238是带参数的）
 2. 函数的声明又分为两种 一种是直接赋值给变量， 另一种是关键字func声明的 (13是第一种， 24是第二种)
 3. 函数的参数由变量+逗号组成, 最终将形成一个list存放所有参数
 4. 函数的声明会生成一个执行类的实例,action是函数赋值, 参数是变量名和语句组成的列表（代码块），如果有参数则传递参数列表
 5. 函数的执行会生成一个执行类的实例，action是函数执行, 参数变量名, 如果有参数则传递参数列表
+6. return语句将生成一个执行类的实例，action是函数返回值, 参数为expr实例
 
 - print语句
 
