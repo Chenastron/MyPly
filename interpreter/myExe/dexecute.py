@@ -16,6 +16,7 @@ class DyqExecute:
     }
     cur_field = 'global'
     field_name_index = 0
+    # cur_exe_func_name = None
 
     def __init__(self, action=None, params=None):
         self.action = action
@@ -33,7 +34,8 @@ class DyqExecute:
             'binop': self._binop,
             'loop': self._loop,
             'assign_func': self._assign_func,
-            'exe_func': self._exe_func
+            'exe_func': self._exe_func,
+            'func_return': self._func_return
         }
         # 返回本次执行的结果
         result = action_dict.get(self.action, self._operation_error)()
@@ -95,15 +97,20 @@ class DyqExecute:
         1. params只有一个就是无函数参数的, params有两个参数就是有函数参数的
         2. 两种情况的第一个参数都是变量名
         """
+        # 指定当前执行的函数名和作用域
+        # DyqExecute.cur_exe_func =
+
         var = self.params[0]
         var_dict = self._get(var, is_func=True)
         if var_dict['type'] != 'func':
             raise MyVarException(f'{var} is not a function object')
         exe_list = var_dict['value']
 
+        func_res = None
+
         if len(self.params) == 1:
             # 获取执行列表, 并执行
-            self._resolve_block(exe_list)
+            func_res = self._resolve_block(exe_list)
 
         else: # len(self.params) == 2
             # 获取函数实参数值并执行, 可能有一些简单的逻辑运算
@@ -119,7 +126,20 @@ class DyqExecute:
             # 形参与实参组合成函数的环境变量
             env_dict = {k: v for k, v in zip(func_def_params, func_params)}
             # 执行
-            self._resolve_block(exe_list, unsaved_var=env_dict)
+            func_res = self._resolve_block(exe_list, unsaved_var=env_dict)
+
+        return func_res
+
+    def _func_return(self):
+        """
+        1. 函数中的return语句
+        """
+        # 获取return语句要返回的值
+        expr = self.params[0]
+        expr_res = DyqExecute.resolve(expr)
+
+        # DyqExecute.var_context[DyqExecute.cur_field]['var']['return'] = expr_res
+        return expr_res
 
     def _condition(self):
         """
@@ -167,7 +187,8 @@ class DyqExecute:
         var_name, exe_instance = self.params
         # 判断exe_instance是否是一个变量的名字
         obj = self._get(exe_instance.params[0], is_func=True, raise_error=False) if isinstance(exe_instance, DyqExecute) else None
-        if obj is not None:
+        # 如果是一个变量的名字而且操作不是执行函数则获取变量
+        if obj is not None and exe_instance.action != 'exe_func':
             # 是否为函数, 不是就是普通的变量
             if 'params_name' in obj:
                 self._resolve_save_var(var_name, obj['value'], DyqExecute.cur_field, True, obj['params_name'])
@@ -222,6 +243,9 @@ class DyqExecute:
                 return None
 
     def _resolve_block(self, exe_list, unsaved_var=None):
+        # 如果是函数则有返回值
+        func_res = None
+
         # 创建一个新的环境, 并且切换环境
         DyqExecute._add_change_field()
 
@@ -232,12 +256,20 @@ class DyqExecute:
 
         # 执行所有实例
         for single_exe in exe_list:
-            DyqExecute.resolve(single_exe)
+            # 如果遇到了return语句则终止实例的执行
+            if isinstance(single_exe, DyqExecute) and single_exe.action == 'func_return':
+                func_res = DyqExecute.resolve(single_exe)
+                break
+            else:
+                DyqExecute.resolve(single_exe)
+
 
         # 将环境变为父环境(global没有父环境)
         parent_field_name = DyqExecute.var_context[DyqExecute.cur_field]['parent_field_name']
         if parent_field_name is not None:
             DyqExecute.cur_field = DyqExecute.var_context[DyqExecute.cur_field]['parent_field_name']
+
+        return func_res
 
     def _resolve_save_var(self, var_name, var_value, field_name='global', is_func=False, params_name=None):
         """根据作用域存储变量"""
