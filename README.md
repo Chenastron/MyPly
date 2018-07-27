@@ -2,6 +2,7 @@
 ### 目录
 1. 项目介绍
 2. 项目结构介绍
+3. 预览图
 
 #### 一. 项目介绍
 
@@ -27,4 +28,5 @@ preview 预览图
 test 针对于interpreter包的测试
 ```
 
-
+#### 三. 预览图
+![预览图](https://github.com/dyq666/MyPly/blob/master/preview/web.png)
